@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\AdminDashboard\style_logIn.css" />
+    <Content Remove="wwwroot\AdminDashboard\style_logIn_register.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,11 +31,21 @@
     <None Include="wwwroot\AdminDashboard\README.md" />
     <None Include="wwwroot\AdminDashboard\screenshot1.png" />
     <None Include="wwwroot\AdminDashboard\screenshot2.png" />
+    <None Include="wwwroot\AdminDashboard\style_logIn_register.css" />
     <None Include="wwwroot\AdminDashboard\style_logIn.css" />
     <None Include="wwwroot\AdminDashboard\style.css" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 

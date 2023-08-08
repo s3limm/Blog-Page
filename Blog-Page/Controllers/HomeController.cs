@@ -1,4 +1,4 @@
-﻿using Blog_Page.Models;
+﻿using Blog_Page;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

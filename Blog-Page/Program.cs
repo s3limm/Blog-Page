@@ -1,7 +1,17 @@
+using Blog_Page.DBContext;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var provider = builder.Services.BuildServiceProvider();
+var configuration = provider.GetRequiredService<IConfiguration>();
+builder.Services.AddDbContext<LogInDBContext>(item => item.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+
+
 
 var app = builder.Build();
 

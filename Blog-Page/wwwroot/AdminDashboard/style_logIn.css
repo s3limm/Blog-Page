@@ -6,6 +6,11 @@
     font-family: 'poppins',sans-serif;
 }
 
+.register
+{
+    margin-left:200px;
+}
+
 section {
     display: flex;
     justify-content: center;
