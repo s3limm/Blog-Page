@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\AdminDashboard\style_logIn.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\About\Index.cshtml" />
     <None Include="Views\Blog\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
@@ -26,6 +30,7 @@
     <None Include="wwwroot\AdminDashboard\README.md" />
     <None Include="wwwroot\AdminDashboard\screenshot1.png" />
     <None Include="wwwroot\AdminDashboard\screenshot2.png" />
+    <None Include="wwwroot\AdminDashboard\style_logIn.css" />
     <None Include="wwwroot\AdminDashboard\style.css" />
   </ItemGroup>
 
