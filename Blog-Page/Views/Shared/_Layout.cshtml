@@ -69,9 +69,8 @@
     <script src="~/website/blog/js/_buildManifest.js" defer></script>
     <script src="~/website/blog/js/_ssgManifest.js" defer></script>
     <!--About-->
-    <link rel="stylesheet" href="~/website/about/css/7969056fec6838c4.css" data-n-g>
-    <link rel="preload" href="/_next/static/css/5e05f4bafb0e168e.css" as="style">
-    <link rel="stylesheet" href="~/website/about/css/5e05f4bafb0e168e.css" data-n-p>
+    <link rel="stylesheet" href="~/7969056fec6838c4.css" data-n-g>
+    <link rel="stylesheet" href="~/5e05f4bafb0e168e.css" data-n-p>
     <noscript data-n-css></noscript>
     <script defer nomodule src="~/website/about/js/polyfills-c67a75d1b6f99dc8.js"></script>
     <script src="~/website/about/js/webpack-154b6e4648b7add1.js" defer></script>
@@ -174,6 +173,9 @@
 <body>
     <script>(() => { (function () { var e = window.matchMedia("(prefers-color-scheme: dark)"); var t = window.matchMedia("(prefers-reduced-motion: reduce)"); function n(e, t) { return "".concat(e, "-").concat(t) } function a(e, t, a) { var r; (r = document.documentElement.classList).remove.apply(r, a.map((function (t) { return n(e, t) }))); document.documentElement.classList.add(n(e, t)) } function r(e, t, n) { var a = new CustomEvent("jmswrnr-settings-change", { detail: { key: e, settingsValue: t, resolvedValue: n } }); window.dispatchEvent(a) } function i() { o(k.theme) } function c() { a("theme", y.theme, ["dark", "light"]); if (k.theme === "auto") { e.addEventListener("change", i) } else { e.removeEventListener("change", i) } } function o(e) { var t = u(e); k.theme = e; y.theme = t; r("theme", e, t) } function u(t) { if (t === "auto") { return e.matches ? "dark" : "light" } return t } function s() { a("audio", y.audio, ["muted", "enabled"]); if (k.audio !== "auto") { p("audio", y.audio) } } function d(e) { var t = h(e); k.audio = e; y.audio = t; s(); r("audio", e, t) } function h(e) { if (e === "auto") { return "muted" } return e } function m() { g(k.graphics) } function f() { a("graphics", y.graphics, ["full", "reduced"]); if (k.graphics === "auto") { t.addEventListener("change", m) } else { p("graphics", y.graphics); t.removeEventListener("change", m) } } function g(e) { var t = l(e); k.graphics = e; y.graphics = t; f(); r("graphics", e, t) } function l(e) { if (e === "auto") { return t.matches ? "reduced" : "full" } return e } function v(e) { var t = null; try { t = localStorage.getItem("setting-".concat(e)) } catch (e) { } return t } function p(e, t) { try { localStorage.setItem("setting-".concat(e), t) } catch (e) { } } var w = "dark"; var E = v("audio") || "auto"; var L = v("graphics") || "auto"; var k = { theme: w, audio: E, graphics: L }; var y = { theme: u(w), audio: h(E), graphics: l(L) }; window.__jmswrnr_settings = { settings: k, resolved: y, setTheme: o, setAudio: d, setGraphics: g }; c(); s(); f() })(); })();</script>
     <div id="__next">
+
+        
+
         <div class="Header_appWrapper__eSBqL">
             <div class="Header_pageWrapper__Y4jzt">
                 <header class="Header_header__VYZ3G">

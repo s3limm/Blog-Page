@@ -23,8 +23,6 @@
     --max-page-width: min(100%,var(--max-page-width-px))
 }
 
-
-
 @media (min-width:768px) {
     :root {
         --spacing: 3rem;
@@ -37,10 +35,6 @@
         --max-content-width: var(--max-content-width-large);
         --gap: 1.5rem
     }
-}
-.imgHover img:hover
-{
-   background-color:white;
 }
 
 :root {
@@ -146,8 +140,8 @@ iframe {
 }
 
 body {
-    overflow-x:hidden;
     overflow-y: scroll;
+    overflow-x: hidden
 }
 
 body, html {
@@ -218,7 +212,7 @@ html.theme-dark [data-rmiz-modal-overlay=visible] {
     line-height: 1;
     text-rendering: auto
 }
-s
+
 /*!
  * Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
@@ -2690,7 +2684,7 @@ s
     gap: .25em
 }
 
-    .PageContents_link__ZpKnq .PageContents_external__7_CR3, .PageContents_link__ZpKnq.PageContents_internal__QrVNw {
+    .PageContents_link__ZpKnq.PageContents_external__7_CR3, .PageContents_link__ZpKnq.PageContents_internal__QrVNw {
         position: relative
     }
 
