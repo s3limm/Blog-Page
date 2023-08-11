@@ -2094,18 +2094,20 @@ html.theme-dark [data-rmiz-modal-overlay=visible] {
     content: "\f3f6"
 }
 
-.Header_appWrapper__eSBqL {
+.Header_appWrapper__eSBqL {    
     --nav-padding: 1rem;
     --sidebar-animation-speed: 300ms
 }
 
     .Header_appWrapper__eSBqL.Header_sidebarVisible__RHLuN {
-        overflow-x: hidden
+        overflow-x: hidden ;           
     }
 
 .Header_pageWrapper__Y4jzt, .Header_sidebar__MMt1G {
     background: var(--color-background);
-    transition: transform var(--sidebar-animation-speed)
+    transition: transform var(--sidebar-animation-speed);
+    background: no-repeat;
+    background-image: url('https://cutewallpaper.org/28/deep-space-field-wallpaper/2774010953.jpg');
 }
 
 .Header_sidebar__MMt1G {

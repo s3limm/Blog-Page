@@ -2111,7 +2111,7 @@ s
 
 .Header_pageWrapper__Y4jzt, .Header_sidebar__MMt1G {
     background: var(--color-background);
-    transition: transform var(--sidebar-animation-speed)
+    transition: transform var(--sidebar-animation-speed);     
 }
 
 .Header_sidebar__MMt1G {
