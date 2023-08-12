@@ -2107,7 +2107,9 @@ html.theme-dark [data-rmiz-modal-overlay=visible] {
     background: var(--color-background);
     transition: transform var(--sidebar-animation-speed);
     background: no-repeat;
-    background-image: url('https://cutewallpaper.org/28/deep-space-field-wallpaper/2774010953.jpg');
+    background-image: url('https://wallpapercave.com/wp/wp9832486.jpg');
+    background-position-x:-110px;
+    background-position-y:-60px;
 }
 
 .Header_sidebar__MMt1G {
