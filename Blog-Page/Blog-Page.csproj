@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\AdminDashboard\style_logIn.css" />
     <Content Remove="wwwroot\AdminDashboard\style_logIn_register.css" />
   </ItemGroup>
 
@@ -54,7 +53,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="wwwroot\Website\about\css\" />
   </ItemGroup>
 

@@ -6,42 +6,73 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="~/AdminDashboard/style_logIn.css">
-    <title>HASH TECHIE OFFICIAL</title>
+    <title>S3limm-Admin Panel Login</title>
 </head>
 <body>
     <section>
 
         <div class="video-container">
-            <video autoplay loop muted>
-                <source src="~/admindashboard/images/nebula_-_67135 (original).mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="form-box">
-            <div class="form-value">
-                <form action="">
-                    <h2>Giriş Sayfası</h2>
-                    <div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required>
-                        <label for="">Email</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
-                        <label for="">Şifre</label>
-                    </div>
-                    <div class="forget">
-                        <label for=""><a href="#">Şifremi unuttum</a></label>
+            @*<video autoplay loop muted>
+            <source src="~/admindashboard/images/nebula_-_67135 (original).mp4" type="video/mp4">
+            </video>*@
 
-                    </div>
-                    <button>Giriş Yap</button>
-                    <div class="register">
-                        <p>Hesabım yok ?<a href="#"> Oluştur</a></p>
-                    </div>
+            <img src="https://wallpapercave.com/wp/wp6123815.jpg" width="1920" height="1080" />
+        </div>
+
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="#">
+                    <h1>Hesap oluştur</h1>
+                    <input type="text" placeholder="İsim" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Şifre" />
+                    <button>Oluştur</button>
                 </form>
             </div>
+            <div class="form-container sign-in-container">
+                <form action="#">
+                    <h1>Giriş Yap</h1>
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Şifre" />
+                    <a href="#">Şifreni mi unuttun?</a>
+                    <button>Giriş Yap</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Tekrardan Hoşgeldin!</h1>
+                        <p>Bizimle iletişimde kal ve bilgilerinle giriş yap</p>
+                        <button class="ghost" id="signIn">Giriş Yap</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Merhaba, Dostum!</h1>
+                        <p>Bilgilerini gir ve bizimle yolculuğa çık.</p>
+                        <button class="ghost" id="signUp">Oluştur</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
+
+
+
+
     </section>
 </body>
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
 
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+
+</script>
 </html>
