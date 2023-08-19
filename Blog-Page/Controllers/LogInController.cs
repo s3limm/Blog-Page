@@ -6,34 +6,34 @@ namespace Blog_Page.Controllers
 {
     public class LogInController : Controller
     {
-        private readonly LogInDBContext logInDBContext;
+        //private readonly LogInDBContext logInDBContext;
 
-        public LogInController(LogInDBContext _logInDBContext)
-        {
-            logInDBContext = _logInDBContext;
-        }
+        //public LogInController(LogInDBContext _logInDBContext)
+        //{
+        //    logInDBContext = _logInDBContext;
+        //}
 
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult LogIn()
+        //{
+        //    return View();
+        //}
 
 
-        [HttpPost]
-        public IActionResult Index(string nameSurname, string PassWord)
-        {
-            var user = logInDBContext.logIn.FirstOrDefault(u => u.NameSurname == nameSurname && u.Password == PassWord);
-            if (user != null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.ErrorMessage = "Yanlış kullanıcı";
-                return View();
-            }
-        }
+        //[HttpPost]
+        //public IActionResult LogIn(string nameSurname, string PassWord)
+        //{
+        //    var user = logInDBContext.logIn.FirstOrDefault(u => u.NameSurname == nameSurname && u.Password == PassWord);
+        //    if (user != null)
+        //    {
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        ViewBag.ErrorMessage = "Yanlış kullanıcı";
+        //        return View();
+        //    }
+        //}
 
 
     }
