@@ -10,6 +10,5 @@
         //Relational Property 
 
         public virtual List<Blog> Blog { get; set; }
-        public virtual List<Category> Category { get; set; }
     }
 }

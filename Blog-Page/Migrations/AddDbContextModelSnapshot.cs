@@ -31,29 +31,34 @@ namespace Blog_Page.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Oluşturulma Tarihi");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Güncellenme Tarihi");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Şifre");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Durum");
 
                     b.Property<string>("userName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Kullanıcı Adı");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Users");
+                    b.ToTable("Kullanıcılar", (string)null);
                 });
 
             modelBuilder.Entity("Blog_Page.Models.Blog", b =>
@@ -158,21 +163,21 @@ namespace Blog_Page.Migrations
 
             modelBuilder.Entity("Blog_Page.Models.Blog", b =>
                 {
-                    b.HasOne("Blog_Page.Models.Category", "category")
+                    b.HasOne("Blog_Page.Models.Category", "Category")
                         .WithMany("Blog")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Blog_Page.Models.Writer", "writer")
+                    b.HasOne("Blog_Page.Models.Writer", "Writer")
                         .WithMany("Blog")
                         .HasForeignKey("WriterID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("category");
+                    b.Navigation("Category");
 
-                    b.Navigation("writer");
+                    b.Navigation("Writer");
                 });
 
             modelBuilder.Entity("Blog_Page.Models.Category", b =>
