@@ -9,10 +9,10 @@ namespace Blog_Page.Configuration
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.ToTable("Kategoriler");
-            builder.Property(x => x.CategoryName).HasColumnName("Kategori Adı");
+            builder.Property(x=>x.CategoryName).HasColumnName("Kategori Adı");
             builder.Property(x => x.CreatedDate).HasColumnName("Oluşturulma Tarihi");
-            builder.Property(x => x.Status).HasColumnName("Durum");
             builder.Property(x => x.ModifiedDate).HasColumnName("Güncellenme Tarihi");
+            builder.Property(x => x.Status).HasColumnName("Durum");
         }
     }
 }

@@ -4,6 +4,7 @@ using Blog_Page.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blog_Page.Migrations
 {
     [DbContext(typeof(AddDbContext))]
-    partial class AddDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230820120337_AddFluentApi")]
+    partial class AddFluentApi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +52,7 @@ namespace Blog_Page.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
-                        .HasColumnName("Durumu");
+                        .HasColumnName("Durum");
 
                     b.Property<string>("userName")
                         .IsRequired()
@@ -92,7 +95,7 @@ namespace Blog_Page.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
-                        .HasColumnName("Durumu");
+                        .HasColumnName("Durum");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -134,7 +137,7 @@ namespace Blog_Page.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
-                        .HasColumnName("Durumu");
+                        .HasColumnName("Durum");
 
                     b.HasKey("ID");
 
@@ -169,7 +172,7 @@ namespace Blog_Page.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
-                        .HasColumnName("Durumu");
+                        .HasColumnName("Durum");
 
                     b.HasKey("ID");
 
