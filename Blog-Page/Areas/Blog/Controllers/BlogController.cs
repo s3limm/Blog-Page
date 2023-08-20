@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Blog_Page.Controllers
+namespace Blog_Page.Areas.Blog.Controllers
 {
-    public class AboutController : Controller
+    [Area("Blog")]
+    public class BlogController : Controller
     {
         public IActionResult Index()
         {

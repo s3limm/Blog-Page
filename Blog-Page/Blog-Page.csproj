@@ -12,12 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\About\Index.cshtml" />
-    <None Include="Views\Blog\Index.cshtml" />
-    <None Include="Views\Home\Index.cshtml" />
-    <None Include="Views\Shared\Blog\_Layout.cshtml" />
-    <None Include="Views\_ViewImports.cshtml" />
-    <None Include="Views\_ViewStart.cshtml" />
+    <None Include="Areas\Blog\Views\About\Index.cshtml" />
+    <None Include="Areas\Blog\Views\Blog\Index.cshtml" />
+    <None Include="Areas\Blog\Views\Home\Index.cshtml" />
+    <None Include="Areas\Blog\Views\Shared\Blog\_Layout.cshtml" />
+    <None Include="Areas\Blog\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Blog\Views\_ViewStart.cshtml" />
     <None Include="wwwroot\AdminDashboard\images\logo.png" />
     <None Include="wwwroot\AdminDashboard\images\plus.png" />
     <None Include="wwwroot\AdminDashboard\images\profile-1.jpg" />
@@ -45,6 +45,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.9" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
