@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
-namespace Blog_Page.Areas.Blog.Controllers
+namespace Blog_Page.Controllers
 {
-    [Area("Blog")]
-    public class HomeController : Controller
+    public class BlogController : Controller
     {
         public IActionResult Index()
         {

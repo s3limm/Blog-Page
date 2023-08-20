@@ -12,12 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\Blog\Views\About\Index.cshtml" />
-    <None Include="Areas\Blog\Views\Blog\Index.cshtml" />
-    <None Include="Areas\Blog\Views\Home\Index.cshtml" />
-    <None Include="Areas\Blog\Views\Shared\Blog\_Layout.cshtml" />
-    <None Include="Areas\Blog\Views\_ViewImports.cshtml" />
-    <None Include="Areas\Blog\Views\_ViewStart.cshtml" />
+    <None Include="Views\About\Index.cshtml" />
+    <None Include="Views\Blog\Index.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Shared\Blog\_Layout.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\AdminDashboard\images\logo.png" />
     <None Include="wwwroot\AdminDashboard\images\plus.png" />
     <None Include="wwwroot\AdminDashboard\images\profile-1.jpg" />
