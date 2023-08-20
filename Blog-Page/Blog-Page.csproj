@@ -15,7 +15,7 @@
     <None Include="Views\About\Index.cshtml" />
     <None Include="Views\Blog\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
-    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\Blog\_Layout.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\AdminDashboard\images\logo.png" />

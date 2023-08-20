@@ -9,7 +9,7 @@ namespace Blog_Page.DBContext
     {
         public AddDbContext()
         {
-
+           
         }
         public AddDbContext(DbContextOptions<AddDbContext> options) : base(options)
         {

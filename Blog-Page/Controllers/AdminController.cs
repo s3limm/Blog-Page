@@ -2,9 +2,9 @@
 
 namespace Blog_Page.Controllers
 {
-    public class BlogAdminController : Controller
+    public class AdminController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Home()
         {
             return View();
         }
