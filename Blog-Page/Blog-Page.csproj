@@ -8,31 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\AdminDashboard\styleList.css" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Views\About\Index.cshtml" />
     <None Include="Views\Blog\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Shared\Blog\_Layout.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
-    <None Include="wwwroot\AdminDashboard\images\logo.png" />
-    <None Include="wwwroot\AdminDashboard\images\plus.png" />
-    <None Include="wwwroot\AdminDashboard\images\profile-1.jpg" />
-    <None Include="wwwroot\AdminDashboard\images\profile-2.jpg" />
-    <None Include="wwwroot\AdminDashboard\images\profile-3.jpg" />
-    <None Include="wwwroot\AdminDashboard\images\profile-4.jpg" />
-    <None Include="wwwroot\AdminDashboard\index.html" />
-    <None Include="wwwroot\AdminDashboard\index.js" />
-    <None Include="wwwroot\AdminDashboard\orders.js" />
-    <None Include="wwwroot\AdminDashboard\README.md" />
-    <None Include="wwwroot\AdminDashboard\screenshot1.png" />
-    <None Include="wwwroot\AdminDashboard\screenshot2.png" />
-    <None Include="wwwroot\AdminDashboard\styleList.css" />
     <None Include="wwwroot\AdminDashboard\style_logIn.css" />
-    <None Include="wwwroot\AdminDashboard\style.css" />
   </ItemGroup>
 
   <ItemGroup>
