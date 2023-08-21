@@ -1,5 +1,4 @@
-﻿//using Blog_Page.Configuration;
-using Blog_Page.Configuration;
+﻿using Blog_Page.Configuration;
 using Blog_Page.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +19,7 @@ namespace Blog_Page.DBContext
         {
             if (!optionsBuilder.IsConfigured)
                 optionsBuilder.UseSqlServer(
-                    "Server=.\\SQLEXPRESS;Database=LibraryDB;Trusted_Connection=True;TrustServerCertificate=True");
+                    "Server=.\\SQLEXPRESS;Database=S3limmBlogDb;Trusted_Connection=True;TrustServerCertificate=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,7 +28,6 @@ namespace Blog_Page.DBContext
             modelBuilder.ApplyConfiguration(new Categories());
             modelBuilder.ApplyConfiguration(new AppUsers());
             modelBuilder.ApplyConfiguration(new Writers());
-
         }
 
 

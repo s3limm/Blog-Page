@@ -1,0 +1,66 @@
+﻿@using Blog_Page.Models;
+@model List<AppUser>
+
+    <main>
+        
+<div class="bg-gray-900 text-white">
+    <div class="container mx-auto p-6 flex items-center justify-between">
+        <h2 class="text-2xl font-semibold">data table</h2>
+        <label class="theme-toggle">
+            <span>dark theme</span>
+            <input type="checkbox" id="darkmodetoggle" class="form-checkbox">
+            <div class="w-6 h-6 bg-white rounded-full"></div>
+        </label>
+    </div>
+</div>
+
+
+
+<div class="container mx-auto p-6">
+
+    <table id="datatable" class="table-auto w-full shadow-md rounded-lg">
+        <thead>
+            <tr>
+                <th class="px-4 py-2" data-field="id">ıd</th>
+                <th class="px-4 py-2" data-field="name">name</th>
+                <th class="px-4 py-2" data-field="status">status</th>
+                <th class="px-4 py-2">actions</th>
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+            <!-- table rows will be added dynamically here -->
+        </tbody>
+    </table>
+</div>
+
+    </main>
+
+@*<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Yazar Adı:</th>
+            <th>Aksiyonlar</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>@i</td>
+                <td>@Model[i].userName @Model[i].Email</td>
+                <td>
+                    <a class="big-icon" asp-controller="Author" asp-action="Edit" asp-route-id="@Model[i].ID"><i class="bi bi-pencil-square"></i></a>
+                    <a class="big-icon margin-icon" asp-controller="Author" asp-action="SoftDelete" asp-route-id="@Model[i].ID"><i class="bi bi-x-circle-fill"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+*@
+
+

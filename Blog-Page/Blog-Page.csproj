@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\AdminDashboard\style_logIn_register.css" />
+    <Content Remove="wwwroot\AdminDashboard\styleList.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +30,7 @@
     <None Include="wwwroot\AdminDashboard\README.md" />
     <None Include="wwwroot\AdminDashboard\screenshot1.png" />
     <None Include="wwwroot\AdminDashboard\screenshot2.png" />
-    <None Include="wwwroot\AdminDashboard\style_logIn_register.css" />
+    <None Include="wwwroot\AdminDashboard\styleList.css" />
     <None Include="wwwroot\AdminDashboard\style_logIn.css" />
     <None Include="wwwroot\AdminDashboard\style.css" />
   </ItemGroup>
@@ -54,7 +54,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Website\about\css\" />
   </ItemGroup>
 

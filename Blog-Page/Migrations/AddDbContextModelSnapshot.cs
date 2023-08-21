@@ -49,7 +49,7 @@ namespace Blog_Page.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
-                        .HasColumnName("Durumu");
+                        .HasColumnName("Durum");
 
                     b.Property<string>("userName")
                         .IsRequired()
@@ -92,7 +92,7 @@ namespace Blog_Page.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
-                        .HasColumnName("Durumu");
+                        .HasColumnName("Durum");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -134,7 +134,7 @@ namespace Blog_Page.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
-                        .HasColumnName("Durumu");
+                        .HasColumnName("Durum");
 
                     b.HasKey("ID");
 
@@ -169,7 +169,7 @@ namespace Blog_Page.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
-                        .HasColumnName("Durumu");
+                        .HasColumnName("Durum");
 
                     b.HasKey("ID");
 

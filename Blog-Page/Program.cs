@@ -1,10 +1,17 @@
 using Blog_Page.DBContext;
+using Blog_Page.Models;
+using Blog_Page.Repositories.Base;
+using Blog_Page.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IRepository<AppUser>, Repository<AppUser>>();
+
+
 
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();
@@ -22,12 +29,24 @@ builder.Services.AddDbContext<AddDbContext>(options =>
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+
+
+// Migrate latest database changes during startup
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider
+        .GetRequiredService<AddDbContext>();
+
+    // Here is the migration executed
+    dbContext.Database.Migrate();
 }
 
 
