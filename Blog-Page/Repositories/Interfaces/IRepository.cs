@@ -10,7 +10,6 @@ namespace Blog_Page.Repositories.Interfaces
         List<T> GetAllList();        
 
         //Getting Actives
-        List<T> ListActives();
 
         //Finding Method
         T GetByID(int id);

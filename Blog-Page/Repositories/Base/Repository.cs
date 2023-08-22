@@ -30,7 +30,7 @@ namespace Blog_Page.Repositories.Base
 
         public List<T> GetAllList()
         {
-            return table.ToList();
+            return table.Where(x => x.Status != Enums.Status.Deleted).ToList();
         }
 
         public T GetByID(int id)
@@ -42,11 +42,6 @@ namespace Blog_Page.Repositories.Base
         {
             table.Add(item);
             Save();
-        }
-
-        public List<T> ListActives()
-        {
-            return table.Where(x => x.Status != Enums.Status.Deleted).ToList();
         }
 
         public void Update(T item)

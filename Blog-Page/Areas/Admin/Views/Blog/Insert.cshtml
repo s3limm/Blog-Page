@@ -1,0 +1,44 @@
+﻿@using Blog_Page.Models;
+@model Blog
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Basic form elements</h4>
+                    <p class="card-description"> Basic form elements </p>
+                    <form method="post" asp-area="Admin" asp-controller="Blog" asp-action="Insert" class="forms-sample">
+                        <div class="form-group">
+                            <label asp-for="Title">Başlık</label>
+                            <input asp-for="Title" type="text" class="form-control" placeholder="Başlık:">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description">Açıklama</label>
+                            <input asp-for="Description" type="text" class="form-control" placeholder="Açıklama:">
+                        </div>                       
+                        <div class="form-group">
+                            <label asp-for="CategoryID">Kategoriler</label>
+                            <select asp-for="CategoryID" class="form-control"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>File upload</label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>                       
+                        <div class="form-group">
+                            <label asp-for="Content">İçerik</label>
+                            <textarea class="form-control" rows="4" asp-for="Content"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-gradient-primary mr-2">Oluştur</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
