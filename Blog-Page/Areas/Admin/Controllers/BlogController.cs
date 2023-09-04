@@ -47,7 +47,7 @@ namespace Blog_Page.Areas.Admin.Controllers
         public IActionResult Edit(Blog blog)
         {
             _blog.Update(blog);
-            return RedirectToAction("List", "Vlog", new { area = "Admin" });
+            return RedirectToAction("List", "Blog", new { area = "Admin" });
         }
 
         public IActionResult Delete(int id)
