@@ -1,107 +1,94 @@
-﻿<!-- ==================== Start header ==================== -->
+﻿<section class="hero-section jarallax light-content">
 
-<header class="works-header fixed-slider hfixd valign">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-9 col-md-11 static">
-                <div class="capt mt-50">
-                    <div class="parlx">
-                        <h2 class="custom-font"><span>Let's</span>Talk About Your project.</h2>
-                        <p>
-                            Feel free to ask me any question or let’s do to talk about
-                            our future collaboration.
-                        </p>
-                    </div>
+    <img src="~/Website/Home/images/post-large-item2.jpg" class="jarallax-img">
 
-                    <div class="bactxt custom-font valign">
-                        <span class="full-width">Contact</span>
+    <div class="hero-content padding-xlarge">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-title">Contact us</h1>
+                    <div class="breadcrumbs">
+                        <span class="item"><a href="index.html">Home /</a></span>
+                        <span class="item">Contact us</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</header>
 
-<!-- ==================== End header ==================== -->
-<!-- ==================== Start main-content ==================== -->
+</section>
 
-<div class="main-content">
+<section class="padding-large">
+    <div class="container">
+        <div class="row">
+            <h2 class="contact-title">Get in Touch</h2>
+        </div>
+    </div>
 
-    <!-- ==================== Start Contact ==================== -->
-
-    <section class="contact section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form md-mb50">
-
-                        <h4 class="extra-title mb-50">Get In Touch.</h4>
-
-                        <form id="contact-form" method="post" action="contact.php">
-
-                            <div class="messages"></div>
-
-                            <div class="controls">
-
-                                <div class="form-group">
-                                    <input id="form_name" type="text" name="name" placeholder="Name" required="required">
-                                </div>
-
-                                <div class="form-group">
-                                    <input id="form_email" type="email" name="email" placeholder="Email" required="required">
-                                </div>
-
-                                <div class="form-group">
-                                    <textarea id="form_message" name="message" placeholder="Message" rows="4" required="required"></textarea>
-                                </div>
-
-                                <button type="submit" class="btn-curve btn-lit"><span>Send Message</span></button>
-                            </div>
-                        </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Send A Message</h3>
+                <form name="contactform" action="contact.php" method="post" class="contact-form mt-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" minlength="2" name="name" placeholder="Name" class="u-full-width" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" name="email" placeholder="E-mail" class="u-full-width" required>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-5 offset-lg-1">
-                    <div class="cont-info">
-                        <h4 class="extra-title mb-50">Contact Info.</h4>
-                        <h3 class="custom-font wow" data-splitting>
-                            Let's Talk.
-                        </h3>
-                        <div class="item mb-40">
-                            <h5><a href="#0">Email@example.com</a></h5>
-                            <h5>+4.930.705.5448</h5>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea class="u-full-width" name="message" placeholder="Message" style="height: 150px;" required></textarea>
+                            <label>
+                                <input type="checkbox" required>
+                                <span class="label-body">I agree all the <a href="#">terms and conditions</a></span>
+                            </label>
+                            <button type="submit" name="submit" class="btn btn-accent btn-full btn-rounded">Submit</button>
                         </div>
-                        <h3 class="custom-font wow" data-splitting>
-                            Visit Us.
-                        </h3>
-                        <div class="item">
-                            <h6>
-                                295 Witting Streets Suite 666,
-                                <br>Melbourne, Australia
-                            </h6>
-                        </div>
-                        <div class="social mt-50">
-                            <a href="#0" class="icon">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#0" class="icon">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#0" class="icon">
-                                <i class="fab fa-pinterest"></i>
-                            </a>
-                            <a href="#0" class="icon">
-                                <i class="fab fa-behance"></i>
-                            </a>
-                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-6">
+                <div class="contact-detail">
+                    <div class="detail-item">
+                        <h4>Call Us</h4>
+                        <p>+1650-243-0000</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Mail Us</h4>
+                        <a href="mailto:info@yourcompany.com">info@yourcompany.com</a>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Location</h4>
+                        <p>North Melbourne VIC 3051, Australia</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ==================== End Contact ==================== -->
-    <!-- ==================== Start Map ==================== -->
+<section class="google-map">
+    <div class="mapouter">
+        <div class="gmap_canvas">
+            <iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://getasearch.com/fmovies"></a><br><style>
+                                                                                                                                                                                                                                                                                                    .mapouter {
+                                                                                                                                                                                                                                                                                                        position: relative;
+                                                                                                                                                                                                                                                                                                        text-align: right;
+                                                                                                                                                                                                                                                                                                        height: 500px;
+                                                                                                                                                                                                                                                                                                        width: 100%;
+                                                                                                                                                                                                                                                                                                    }</style><a href="https://www.embedgooglemap.net">embedgooglemap.net</a><style>
+                                                                                                                                                                                                                                                                                                                                                                                .gmap_canvas {
+                                                                                                                                                                                                                                                                                                                                                                                    overflow: hidden;
+                                                                                                                                                                                                                                                                                                                                                                                    background: none !important;
+                                                                                                                                                                                                                                                                                                                                                                                    height: 500px;
+                                                                                                                                                                                                                                                                                                                                                                                    width: 100%;
+                                                                                                                                                                                                                                                                                                                                                                                }</style>
+        </div>
+    </div>
+</section>
 
-    <div class="map" id="ieatmaps"></div>
-
-    <!-- ==================== End Map ==================== -->
