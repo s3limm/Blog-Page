@@ -4,6 +4,7 @@ using Blog_Page.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blog_Page.Migrations
 {
     [DbContext(typeof(AddDbContext))]
-    partial class AddDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230907125514_ChangedTableAndColumnName")]
+    partial class ChangedTableAndColumnName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,6 +98,8 @@ namespace Blog_Page.Migrations
 
                     b.HasIndex("CategoryID");
 
+                    b.HasIndex("WriterID");
+
                     b.ToTable("Blogs");
                 });
 
@@ -124,6 +129,36 @@ namespace Blog_Page.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Blog_Page.Models.Writer", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Writers");
+                });
+
             modelBuilder.Entity("Blog_Page.Models.Blog", b =>
                 {
                     b.HasOne("Blog_Page.Models.Category", "Category")
@@ -132,10 +167,23 @@ namespace Blog_Page.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Blog_Page.Models.Writer", "Writer")
+                        .WithMany("Blog")
+                        .HasForeignKey("WriterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
+
+                    b.Navigation("Writer");
                 });
 
             modelBuilder.Entity("Blog_Page.Models.Category", b =>
+                {
+                    b.Navigation("Blog");
+                });
+
+            modelBuilder.Entity("Blog_Page.Models.Writer", b =>
                 {
                     b.Navigation("Blog");
                 });

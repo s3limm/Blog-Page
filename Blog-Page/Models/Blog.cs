@@ -1,4 +1,6 @@
-﻿namespace Blog_Page.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Blog_Page.Models
 {
     public class Blog : BaseEntity
     {
@@ -12,7 +14,6 @@
 
         //Relational Property
 
-        public virtual Writer Writer { get; set; }
-        public virtual Category Category { get; set; }  
+        public virtual Category Category { get; set; }
     }
 }

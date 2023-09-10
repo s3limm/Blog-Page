@@ -27,13 +27,11 @@ namespace Blog_Page.DBContext
             modelBuilder.ApplyConfiguration(new Blogs());
             modelBuilder.ApplyConfiguration(new Categories());
             modelBuilder.ApplyConfiguration(new AppUsers());
-            modelBuilder.ApplyConfiguration(new Writers());
         }
 
 
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Writer> Writers { get; set; }
         public DbSet<AppUser> Users { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Blog_Page.Models
             CreatedDate = DateTime.Now;
         }
 
-        public int ID { get; set; }
+        //public int ID { get; set; }
         public Status Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }

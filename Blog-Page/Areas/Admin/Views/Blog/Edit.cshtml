@@ -1,13 +1,13 @@
 ﻿@using Blog_Page.Dto;
 @using Blog_Page.Models;
-@model BlogDto
+@model Blog
 
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Blog Ekleme Sayfası</h4>
+                    <h4 class="card-title">Blog Güncelleme Sayfası</h4>
                     <form method="post" asp-area="Admin" asp-controller="Blog" asp-action="Insert" class="forms-sample">
                         <div class="form-group">
                             <label asp-for="Title">Başlık</label>
@@ -35,7 +35,7 @@
                             <label asp-for="Content">İçerik</label>
                             <textarea class="form-control" rows="4" asp-for="Content"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success">Oluştur</button>
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
                     </form>
                 </div>
             </div>

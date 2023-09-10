@@ -1,4 +1,6 @@
-﻿using Blog_Page.DBContext;
+﻿using AutoMapper;
+using Blog_Page.DBContext;
+using Blog_Page.Dto;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -8,13 +10,15 @@ namespace Blog_Page.Areas.Admin.Controllers
     [Area("Admin")]
     public class BlogController : Controller
     {
+        private readonly IMapper _mapper;
         IRepository<Blog> _blog;
         AddDbContext _db;
 
-        public BlogController(IRepository<Blog> blog, AddDbContext db)
+        public BlogController(IRepository<Blog> blog, AddDbContext db,IMapper mapper)
         {
             _db = db;
             _blog = blog;
+            _mapper = mapper;
         }
 
         public IActionResult List()
@@ -26,34 +30,41 @@ namespace Blog_Page.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Insert()
         {
-            return View();
+            var result = new BlogDto();
+            result.Categories  = _db.Categories.Where(x => x.Status != Enums.Status.Deleted).Select(x => new CategoryDto { CategoryName = x.CategoryName , ID = x.ID}).ToList();
+            return View(result);
         }
 
         [HttpPost]
-        public IActionResult Insert(Blog blog)
+        public IActionResult Insert(BlogDto blog)
         {
-            _blog.Insert(blog);
+            Blog blogEntity = _mapper.Map<Blog>(blog);
+            _blog.Insert(blogEntity);
             return RedirectToAction("List", "Blog", new { area = "Admin" });
         }
 
 
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+           var blog = typeof(BlogDto)_blog.GetByID(id);
+           
+            
+            return View(blog);
         }
 
         [HttpPost]
-        public IActionResult Edit(Blog blog)
+        public IActionResult Edit(BlogDto blogDto)
         {
-            _blog.Update(blog);
+            Blog blogEntity = _mapper.Map<Blog>(blogDto);
+            _blog.Update(blogEntity);
             return RedirectToAction("List", "Blog", new { area = "Admin" });
         }
 
         public IActionResult Delete(int id)
         {
             _blog.Delete(id);
-            return RedirectToAction("List", "Category", new { area = "Admin" });
+            return RedirectToAction("List", "Blog", new { area = "Admin" });
         }
     }
 }

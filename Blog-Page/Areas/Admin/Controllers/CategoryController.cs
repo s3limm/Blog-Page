@@ -35,9 +35,10 @@ namespace Blog_Page.Areas.Admin.Controllers
 
 
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            Category cat = _cat.GetByID(id);
+            return View(cat);
         }
 
         [HttpPost]

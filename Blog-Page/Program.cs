@@ -4,6 +4,7 @@ using Blog_Page.Repositories.Base;
 using Blog_Page.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +15,12 @@ builder.Services.AddScoped<IRepository<Category>, Repository<Category>>();
 builder.Services.AddScoped<IRepository<Blog>, Repository<Blog>>();
 
 
-
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();
 
+
+//AutoMapper
+builder.Services.AddAutoMapper(typeof(Program));
 
 //Connection
 

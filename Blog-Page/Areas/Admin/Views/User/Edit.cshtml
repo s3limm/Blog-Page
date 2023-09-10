@@ -6,9 +6,9 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Kullanıcı Oluşturma Sayfası</h2>
+                    <h2 class="card-title">Kullanıcı Güncelleme Sayfası</h2>
                     <p class="card-description"> Yeni Kullanıcı </p>
-                    <form method="post" asp-area="Admin" asp-controller="User" asp-action="Insert" class="forms-sample">
+                    <form method="post" asp-area="Admin" asp-controller="User" asp-action="Edit" class="forms-sample">
                         <div class="form-group">
                             <label asp-for="userName">Kullanıcı Adı</label>
                             <input asp-for="userName" type="text" class="form-control" placeholder="Kullanıcı Adı:">
@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="Password">Şifre</label>
-                            <input asp-for="Password" type="password" class="form-control" placeholder="Şifre:">
+                            <input asp-for="Password" type="text" class="form-control" placeholder="Şifre:">
                         </div>
                         <div class="form-group">
                             <label>Resim Yükle</label>
@@ -31,7 +31,7 @@
                                 </span>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">Oluştur</button>
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
                     </form>
                 </div>
             </div>

@@ -25,8 +25,8 @@
                                     <td>@Model[i].Email</td>
                                     <td>@Model[i].CreatedDate</td>
                                     <td>
-                                        <a class="big-icon" asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@Model[i].ID"><i class="bi bi-pencil-square"></i></a>
-                                        <a class="big-icon margin-icon" asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-id="@Model[i].ID"><i class="bi bi-x-circle-fill"></i></a>
+                                        <a class="big-icon" asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@Model[i].ID"><button type="button" class="btn btn-warning">Güncelle</button></a>
+                                        <a class="big-icon margin-icon" asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-id="@Model[i].ID"><button type="button" class="btn btn-danger">Sil</button></a>
                                     </td>
                                 </tr>
                             }

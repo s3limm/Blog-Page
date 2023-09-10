@@ -36,9 +36,10 @@ namespace Blog_Page.Areas.Admin.Controllers
 
 
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            AppUser user = _user.GetByID(id);
+            return View(user);
         }
 
         [HttpPost]

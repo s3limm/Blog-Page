@@ -7,14 +7,14 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title" style="padding-bottom:20px">Kategori Oluşturma Sayfası</h2>
-                    
-                    <form method="post" asp-area="Admin" asp-controller="Category" asp-action="Insert" class="forms-sample">
-                        <div class="form-group"> 
+                    <h2 class="card-title" style="padding-bottom:20px">Kategori Güncelleme Sayfası</h2>
+
+                    <form method="post" asp-area="Admin" asp-controller="Category" asp-action="Edit" class="forms-sample">
+                        <div class="form-group">
                             <label asp-for="CategoryName">Kategori Adı</label>
                             <input type="text" class="form-control" asp-for="CategoryName" placeholder="Kategori Adı:">
-                        </div>                      
-                        <button type="submit" class="btn btn-success">Oluştur</button>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
                     </form>
                 </div>
             </div>
