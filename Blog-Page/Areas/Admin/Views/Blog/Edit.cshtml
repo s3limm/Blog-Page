@@ -1,6 +1,6 @@
 ﻿@using Blog_Page.Dto;
 @using Blog_Page.Models;
-@model Blog
+@model BlogDto
 
 <div class="main-panel">
     <div class="content-wrapper">
@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Blog Güncelleme Sayfası</h4>
-                    <form method="post" asp-area="Admin" asp-controller="Blog" asp-action="Insert" class="forms-sample">
+                    <form method="post" asp-area="Admin" asp-controller="Blog" asp-action="Edit" class="forms-sample">
                         <div class="form-group">
                             <label asp-for="Title">Başlık</label>
                             <input asp-for="Title" type="text" class="form-control" placeholder="Başlık:">

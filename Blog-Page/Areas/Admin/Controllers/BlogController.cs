@@ -14,7 +14,7 @@ namespace Blog_Page.Areas.Admin.Controllers
         IRepository<Blog> _blog;
         AddDbContext _db;
 
-        public BlogController(IRepository<Blog> blog, AddDbContext db,IMapper mapper)
+        public BlogController(IRepository<Blog> blog, AddDbContext db, IMapper mapper)
         {
             _db = db;
             _blog = blog;
@@ -31,7 +31,7 @@ namespace Blog_Page.Areas.Admin.Controllers
         public IActionResult Insert()
         {
             var result = new BlogDto();
-            result.Categories  = _db.Categories.Where(x => x.Status != Enums.Status.Deleted).Select(x => new CategoryDto { CategoryName = x.CategoryName , ID = x.ID}).ToList();
+            result.Categories = _db.Categories.Where(x => x.Status != Enums.Status.Deleted).Select(x => new CategoryDto { CategoryName = x.CategoryName, ID = x.ID }).ToList();
             return View(result);
         }
 
@@ -47,10 +47,10 @@ namespace Blog_Page.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-           var blog = typeof(BlogDto)_blog.GetByID(id);
-           
-            
-            return View(blog);
+            Blog blog = _blog.GetByID(id);
+            BlogDto blogDto = _mapper.Map<BlogDto>(blog);
+            blogDto.Categories = _db.Categories.Where(x => x.Status != Enums.Status.Deleted).Select(x => new CategoryDto { CategoryName = x.CategoryName, ID = x.ID }).ToList();
+            return View(blogDto);
         }
 
         [HttpPost]

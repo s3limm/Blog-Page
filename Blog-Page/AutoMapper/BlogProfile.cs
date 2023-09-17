@@ -9,6 +9,7 @@ namespace Blog_Page.AutoMapper
         public BlogProfile()
         {
             CreateMap<BlogDto, Blog>();
+            CreateMap<Blog, BlogDto>();
         }
     }
 }
