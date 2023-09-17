@@ -136,10 +136,10 @@ CSS STRUCTURE:
 
 /* 2.1 General Styles
 /*----------------------------------------------*/
-*, *::before, *::after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+*, *::before, *::after {   
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 html {
   box-sizing: border-box;
@@ -1345,6 +1345,7 @@ blockquote cite {
 /*====================================================================*/
 
 .container {
+    margin-bottom: 5px;
     max-width: 1220px;
     padding-right: 15px;
     padding-left: 15px;
