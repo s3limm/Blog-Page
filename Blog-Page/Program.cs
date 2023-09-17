@@ -51,7 +51,7 @@ using (var scope = app.Services.CreateScope())
         .GetRequiredService<AddDbContext>();
 
     // Here is the migration executed
-    dbContext.Database.Migrate();
+    //dbContext.Database.Migrate();
 }
 
 
