@@ -1,128 +1,82 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chris - Creative Portfolio HTML Template</title>
-
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="author" content="">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
+    <title>S3limm - Personal Portfolio HTML Template</title>
 
-    <link rel="stylesheet" type="text/css" href="~/Website/Home/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="~/Website/Home/icomoon/icomoon.css">
-    <link rel="stylesheet" type="text/css" href="~/Website/Home/fonts/fonts.css">
-    <link rel="stylesheet" type="text/css" href="~/Website/Home/css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="~/Website/Home/style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
-    <!-- script
-    ================================================== -->
-    <script src="~/Website/Home/js/modernizr.js"></script>
+    <link rel="stylesheet" href="~/Website/Home/css/iconoir.css">
 
+    <link rel="stylesheet" href="~/Website/Home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Website/Home/css/aos.css">
+
+    <link rel="stylesheet" href="~/Website/Home/css/style.css">
 </head>
 <body>
 
-    <div id="overlayer">
-        <span class="loader">
-            <span class="loader-inner"></span>
-        </span>
-    </div>
+    <main class="main-homepage">
 
-    <div class="nav nav-overlay">
-        <div class="nav__content">
-            <ul class="nav__list">
-                <li class="nav__list-item active-nav"><a href="#" class="hover-target">Home</a></li>
-                <li class="nav__list-item"><a href="styles.html" class="hover-target">Styles</a></li>
-                <li class="nav__list-item"><a href="blog.html" class="hover-target">Blog</a></li>
-                <li class="nav__list-item"><a href="single-post.html" class="hover-target">Single Post</a></li>
-                <li class="nav__list-item"><a href="contact.html" class="hover-target">Contact us</a></li>
-            </ul>
-        </div>
-    </div>
+        <!-- Header -->
+        <header class="header-area">
+            <div class="container">
+                <div class="gx-row d-flex align-items-center justify-content-between">
+                    <a href="~/Home/Index" class="logo">
+                        <img src="~/Website/Home/images/s3limm.png" alt="Logo">
+                    </a>
 
-    <header id="header">
-        <div class="header-wrap" data-aos="fade">
-            <div class="main-logo">
-                <a href="index.html">Chris</a>
-            </div><!--main-logo-->
-
-            <nav id="navbar">
-                <input id="menu-toggle" type="checkbox" />
-                <label class="menu-btn" for="menu-toggle">
-                    <span></span>
-                </label>
-            </nav>
-
-        </div><!--header-wrap-->
-    </header>
-
-    @RenderBody()
-
-    <footer id="footer" class="padding-xlarge bg-grey">
-        <div class="container">
-            <div class="row">
-                <div class="footer-menu col-md-4">
-                    <div class="footer-intro">
-                        <a href="#" class="logo">Chris</a>
-                    </div>
-                    <div class="subscribe">
-                        <p>Subscribe to newsletter to get some updates related with branding, designs and more.</p>
-                        <input type="text" name="email" placeholder="Write Your Email Address">
-                        <button class="btn-submit">Subscribe</button>
-                    </div>
-                </div>
-
-                <div class="footer-menu col-md-2">
-                    <ul class="menu-list">
-                        <li class="menu-item"><a href="#">Home</a></li>
-                        <li class="menu-item"><a href="#">About</a></li>
-                        <li class="menu-item"><a href="#">Portfolio</a></li>
-                        <li class="menu-item"><a href="#">Services</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-menu col-md-4">
-                    <div class="footer-address">
-                        <p>Just feel free to contact if you wanna collaborate with me, or simply have a conversation.</p>
-                        <div class="mail-address">
-                            <a href="#">Creatify@gmail.com</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-    <div id="footer-bottom" class="padding-medium no-padding-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="socila-links">
-                        <ul>
-                            <li><a href="#"><i class="icon icon-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon icon-twitter"></i></a></li>
-                            <li><a href="#"><i class="icon icon-behance-square"></i></a></li>
-                            <li><a href="#"><i class="icon icon-youtube-play"></i></a></li>
-                            <li><a href="#"><i class="icon icon-pinterest-p"></i></a></li>
+                    <nav class="navbar">
+                        <ul class="menu">
+                            <li><a href="~/Home/Index">Home</a></li>
+                            <li><a href="~/About/Index">About</a></li>
+                            <li><a href="~/Blog/Index">Blogs</a></li>
+                            <li><a href="~/Contact/Index">Contact</a></li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 align-right">
-                    <div class="copyright">
-                        <p>Free HTML by <a href="https://templatesjungle.com" target="_blank">TemplatesJungle</a></p>
+                    </nav>
+
+                    <div class="show-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </header>
 
-    <script src="~/Website/Home/js/jquery-1.11.0.min.js"></script>
-    <script src="~/Website/Home/js/plugins.js"></script>
-    <script src="~/Website/Home/js/script.js"></script>
+        @RenderBody()
 
+        <!-- Footer -->
+        <footer class="footer-area">
+            <div class="container">
+                <div class="footer-content text-center">
+                    <a href="~/Home/Index" class="logo">
+                        <img src="~/Website/Home/images/s3limm.png" alt="Logo">
+                    </a>
+                    <ul class="footer-menu">
+                        <li><a href="~/Home/Index">Home</a></li>
+                        <li><a href="~/About/Index">About</a></li>
+                        <li><a href="~/Blog/Index">Blogs</a></li>
+                        <li><a href="~/Contact/Index">Contact</a></li>
+                    </ul>
+                    <p class="copyright">
+                        © All rights reserved by <span>S3limm</span>
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+
+    <script src="~/Website/Home/js/jquery-3.6.4.js"></script>
+    <script src="~/Website/Home/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Website/Home/js/aos.js"></script>
+    <script src="~/Website/Home/js/main.js"></script>
+    <script src="~/Website/Home/js/ajax-form.js"></script>
 </body>
 </html>

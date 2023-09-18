@@ -5,12 +5,19 @@ namespace Blog_Page.Dto
 {
     public class BlogDto
     {
+
+        public BlogDto()
+        {
+            Status = Status.Inserted;
+            CreatedDate = DateTime.Now;
+        }
         public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Content { get; set; }
         public int WriterID { get; set; }
         public int CategoryID { get; set; }
+        public string CategoryName { get; set; }
 
          
         public Status Status { get; set; }

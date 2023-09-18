@@ -4,7 +4,7 @@ namespace Blog_Page.Controllers
 {
     public class ContactController : Controller
     {
-        public IActionResult Contact()
+        public IActionResult Index()
         {
             return View();
         }

@@ -1,69 +1,102 @@
 ﻿@using Blog_Page.Models
 @model List<Blog>
 
-<section class="hero-section jarallax">
-	<img src="images/post-large-item2.jpg" class="~/Website/home/jarallax-img">
-	<div class="hero-content padding-xlarge">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="page-title">Bloglar</h1>
-					<div class="breadcrumbs">
-						<span class="item"><a href="~/Website/home/index.html">Ana Sayfa /</a></span>
-						<span class="item">Bloglar</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <!-- Breadcrumb -->
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="breadcrumb-content" data-aos="fade-up">
+            <p>HOME - BLOG</p>
+            <h1 class="section-heading"><img src="~/Website/Home/images/star-2.png" alt="Star"> Blog with rightsidebar <img src="~/Website/Home/images/star-2.png" alt="Star"></h1>
+        </div>
+    </div>
 </section>
 
-<section class="post-grid padding-xlarge">
 
-@for (int i = 0; i < Model.Count; i++)
-	{
-		<article class="post-item">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-1">
-					<div class="post-media">
-						<img src="~/Website/home/images/portfolio3.jpg" alt="post">
-					</div>
-				</div>
+<!-- Blog Items -->
+<section class="blog-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="blog-items">
+                    
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <div class="blog-item" data-aos="zoom-in">
+                            <div class="img-box">
+                                <img src="~/Website/Home/images/blog1.jpeg" alt="Blog">
+                            </div>
+                            <div class="content">
+                                <span class="meta">@Model[i].CreatedDate</span>
+                                <h1><a href="blog-details.html">@Model[i].Title</a></h1>
+                                <p>@Model[i].Description</p>
+                                <a asp-controller="BlogDetail" asp-action="Index" asp-route-id="@Model[i].ID" class="theme-btn">Read More</a>
+                            </div>
+                        </div>
+                    }                 
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blog-sidebar">
+                    <div class="blog-sidebar-inner">
 
-				<div class="col-md-4">
-					<div class="post-content">
-						<div class="post-meta">
-							Yayınlanma Tarihi <span class="meta-date"></span>
-						</div>
-						<h2 class="post-title">
-							<a href="#">Graphic Designing Useful Tips & Best Practices</a>
-						</h2>
-						<p>lorem ipsum dolor sit amet, elit consectetur adipiscing. Odio tincidunt et, massa, turpis nec dolor posuere tempus. Nulla congue et dolor sit amet, elit consectetur adipiscing.</p>
-						<a href="single-post.html" class="btn btn-common">Read More</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</article>
+                        <div class="blog-sidebar-widget search-widget">
+                            <div class="blog-sidebar-widget-inner" data-aos="zoom-in">
+                                <form class="shadow-box">
+                                    <input type="text" placeholder="Search Here...">
+                                    <button class="theme-btn">Search</button>
+                                </form>
+                            </div>
+                        </div>
 
-	}
+                        <div class="blog-sidebar-widget recent-post-widget" data-aos="zoom-in">
+                            <div class="blog-sidebar-widget-inner shadow-box">
+                                <h3>Recent Posts</h3>
 
-</section>
+                                <ul>
+                                    <li><a href="blog-details.html">Consulted admitting is power acuteness.</a></li>
+                                    <li><a href="blog-details.html">Unsatiable entreaties may collecting Power.</a></li>
+                                    <li><a href="blog-details.html">Discovery incommode earnestly no he commanded</a></li>
+                                    <li><a href="blog-details.html">Unsatiable entreaties may collecting Power.</a></li>
+                                </ul>
 
-<section class="padding-large no-padding-top">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-9 col-md-offset-1">
+                            </div>
+                        </div>
 
-				<nav class="navigation paging-navigation text-center" role="navigation">
-					<div class="pagination loop-pagination">
-						<span aria-current="page" class="page-numbers current">1</span>
-						<a class="page-numbers" href="#">2</a> <a class="page-numbers" href="#">3</a> <a class="page-numbers" href="#">4</a> <span class="page-numbers dots">…</span> <a class="page-numbers" href="#">15</a> <a class="next page-numbers" href="#">Older posts</a>
-					</div>
-				</nav>
+                        <div class="blog-sidebar-widget categories-widget" data-aos="zoom-in">
+                            <div class="blog-sidebar-widget-inner shadow-box">
+                                <h3>Categories</h3>
 
-			</div>
-		</div>
-	</div>
+                                <ul>
+                                    <li><a href="blog-details.html">-Analysis</a></li>
+                                    <li><a href="blog-details.html">-Firewall</a></li>
+                                    <li><a href="blog-details.html">-IT Solutions</a></li>
+                                    <li><a href="blog-details.html">-Security</a></li>
+                                    <li><a href="blog-details.html">-Technology</a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                        <div class="blog-sidebar-widget tags-widget" data-aos="zoom-in">
+                            <div class="blog-sidebar-widget-inner shadow-box">
+                                <h3>Tags</h3>
+
+                                <ul>
+                                    <li><a class="theme-btn" href="blog-details.html">SAAS</a></li>
+                                    <li><a class="theme-btn" href="blog-details.html">Development</a></li>
+                                    <li><a class="theme-btn" href="blog-details.html">UI/UX</a></li>
+                                    <li><a class="theme-btn" href="blog-details.html">Web</a></li>
+                                    <li><a class="theme-btn" href="blog-details.html">Figma</a></li>
+                                    <li><a class="theme-btn" href="blog-details.html">Java</a></li>
+                                    <li><a class="theme-btn" href="blog-details.html">WordPress</a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
