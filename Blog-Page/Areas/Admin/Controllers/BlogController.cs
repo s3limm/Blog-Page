@@ -16,13 +16,11 @@ namespace Blog_Page.Areas.Admin.Controllers
         private readonly IMapper _mapper;
         IRepository<Blog> _blog;
         AddDbContext _db;
-        HostingEnvironment _hostingEnvironment;
-        public BlogController(IRepository<Blog> blog, AddDbContext db, IMapper mapper, HostingEnvironment hostingEnvironment)
+        public BlogController(IRepository<Blog> blog, AddDbContext db, IMapper mapper)
         {
             _db = db;
             _blog = blog;
             _mapper = mapper;
-            _hostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult List()
