@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Blog Ekleme Sayfası</h4>
-                    <form method="post" asp-area="Admin" asp-controller="Blog" asp-action="Insert" class="forms-sample">
+                    <form method="post" asp-area="Admin" asp-controller="Blog" asp-action="Insert" class="forms-sample" enctype="multipart/form-data">
                         <div class="form-group">
                             <label asp-for="Title">Başlık</label>
                             <input asp-for="Title" type="text" class="form-control" placeholder="Başlık:">
@@ -21,11 +21,67 @@
                             <label asp-for="CategoryID">Kategoriler</label>
                             <select asp-for="CategoryID" class="form-control" asp-items="@(new SelectList(Model.Categories,"ID","CategoryName"))"></select>
                         </div>
+                        <!--1.Görsel-->
+                        <div class="form-group">
+                            <label asp-for="image1">Görsel Yükle</label>
+                            <input asp-for="image1" type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input asp-for="image1"  type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                    <button  class="file-upload-browse btn btn-primary" type="button">Yükle</button>
+                                </span>
+                            </div>
+                        </div>
+                        <!--2.Görsel-->
                         <div class="form-group">
                             <label>Görsel Yükle</label>
                             <input type="file" name="img[]" class="file-upload-default">
                             <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled placeholder="Görsel yükle">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
+                                </span>
+                            </div>
+                        </div>
+                        <!--3.Görsel-->
+                        <div class="form-group">
+                            <label>Görsel Yükle</label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
+                                </span>
+                            </div>
+                        </div>
+                        <!--4.Görsel-->
+                        <div class="form-group">
+                            <label>Görsel Yükle</label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
+                                </span>
+                            </div>
+                        </div>
+                        <!--5.Görsel-->
+                        <div class="form-group">
+                            <label>Görsel Yükle</label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
+                                </span>
+                            </div>
+                        </div>
+                        <!--6.Görsel-->
+                        <div class="form-group">
+                            <label>Görsel Yükle</label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                 <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
                                 </span>
@@ -33,7 +89,7 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="Content">İçerik</label>
-                            <textarea class="form-control" rows="4" asp-for="Content"></textarea>
+                            <textarea class="form-control" rows="4" id="summernote" asp-for="Content"></textarea>
                         </div>
                         <button type="submit" class="btn btn-success">Oluştur</button>
                     </form>
@@ -42,3 +98,30 @@
         </div>
     </div>
 </div>
+
+
+
+
+<!--Summer Note-->
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+<div id="summernote"></div>
+<script>
+    $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+</script>

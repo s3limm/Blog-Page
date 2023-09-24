@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using Blog_Page.DBContext;
 using Blog_Page.Dto;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Interfaces;
+using Blog_Page.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace Blog_Page.Areas.Admin.Controllers
 {
@@ -13,12 +16,13 @@ namespace Blog_Page.Areas.Admin.Controllers
         private readonly IMapper _mapper;
         IRepository<Blog> _blog;
         AddDbContext _db;
-
-        public BlogController(IRepository<Blog> blog, AddDbContext db, IMapper mapper)
+        HostingEnvironment _hostingEnvironment;
+        public BlogController(IRepository<Blog> blog, AddDbContext db, IMapper mapper, HostingEnvironment hostingEnvironment)
         {
             _db = db;
             _blog = blog;
             _mapper = mapper;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public IActionResult List()
