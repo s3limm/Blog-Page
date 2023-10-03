@@ -1,0 +1,15 @@
+﻿<div id="div1">
+    <button id="button"></button>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#button").click(function () {
+            $.getJSON("/Admin/User/GetJson",null,function(data){
+                $.each(data,function(i,item) {
+                    $("#div1").append("<li>" + item.userName + "</li>")
+                })
+            })
+        })
+    })
+</script>

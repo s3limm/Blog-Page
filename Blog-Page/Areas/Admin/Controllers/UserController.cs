@@ -9,10 +9,12 @@ namespace Blog_Page.Areas.Admin.Controllers
     public class UserController : Controller
     {
         IRepository<AppUser> _user;
+        AddDbContext _db;
 
-        public UserController(IRepository<AppUser> user)
+        public UserController(IRepository<AppUser> user, AddDbContext db)
         {
             _user = user;
+            _db = db;
         }
 
         public IActionResult List()
@@ -53,6 +55,18 @@ namespace Blog_Page.Areas.Admin.Controllers
         {
             _user.Delete(id);
             return RedirectToAction("List", "User", new { area = "Admin" });
+        }
+
+        public ActionResult Jquery()
+        {
+            List<AppUser> users = _db.Users.ToList();
+            return View(users);
+        }
+
+        public JsonResult GetJson()
+        {
+            List<AppUser> users = _db.Users.ToList();
+            return Json(users);
         }
     }
 }
