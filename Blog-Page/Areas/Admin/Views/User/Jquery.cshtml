@@ -1,0 +1,89 @@
+﻿<div id="div1">
+    <button id="button">Selamla</button>
+</div>
+
+<script src="~/website/home/js/jquery-3.6.4.js"></script>
+
+@*<script>
+    $(document).ready(function () {
+        $("#button").click(function() {
+            $.ajax({
+                type:"get",
+                url: "/Website/TextFile.txt",
+                datatype: "text",
+                cache:false,
+                success: function (data) {
+                    $("#div1").html(data);
+                    alert("Data başarıyla getirildi.");
+                },
+                error:function(data){
+                alert("Data getirilemedi");
+                }
+            })
+        })
+    })
+</script>
+*@
+
+<!--XML Example-->
+@*<script>
+
+    $(document).ready(function () {
+        $("#button").click(function () {
+            $("#div1").append("<p><b>Author<b/><b>Title<b/><b>Genre<b/><b>Price<b/><b>PublishDate<b/><b>Description<b/></p></br>"),
+                $.ajax({
+                    type: "Get",
+                    url: "/Website/XmlFile.xml",
+                    datatype: "xml",
+
+                    success: function (xml) {
+                        $(xml).find("Book").each(function () {
+                            $("#div1").append("<p><li><h4>Author :</h4>" +
+                                $(this).find("Author").text() + "</li><li><h4>Title :</h4>" +
+                                $(this).find("Title").text() + "</li><li><h4>Genre :</h4>" +
+                                $(this).find("Genre").text() + "</li><li><h4>Price</h4>" +
+                                $(this).find("Price").text() + "</li><li><h4>PublishDate :</h4>" +
+                                $(this).find("PublishDate").text() + "</li><li><h4>Description :</h4>" +
+                                $(this).find("Description").text() + "</li><p></br>");
+                        })
+                    },
+                    error: function () {
+                        alert("Bir hata oluştu")
+                    }
+                })
+        })
+    })
+
+</script>
+*@
+
+<!--Json Example-->
+@*<script>
+
+    $(document).ready(function () {
+        $("#button").click(function () {
+            $.getJSON("/Website/JsonFile.json", function (data) {
+                $.each(data.value, function (key, item) {
+                    $("#div1").append("<li>" + item.Name + "----" + item.Description + "</li>")
+                })
+            })
+        })
+    })
+
+</script>
+
+*@
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#button").click(function () {
+            $.getJSON("/Admin/User/JQuery", function (user) {
+                $.each(user.value, function (key, item) {
+                    $("#div1").append("<li>"+item.userName+"</li>")
+                })
+            })
+        })
+    })
+</script>
