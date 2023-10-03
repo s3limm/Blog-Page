@@ -26,7 +26,7 @@
                                 <img src="~/Website/Home/images/blog1.jpeg" alt="Blog">
                             </div>
                             <div class="content">
-                                <span class="meta">@Model[i].CreatedDate</span>
+                                <span class="meta">@Model[i].CreatedDate.ToShortDateString()</span>
                                 <h1><a href="blog-details.html">@Model[i].Title</a></h1>
                                 <p>@Model[i].Description</p>
                                 <a asp-controller="BlogDetail" asp-action="Index" asp-route-id="@Model[i].ID" class="theme-btn">Read More</a>
