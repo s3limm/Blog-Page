@@ -58,28 +58,28 @@ namespace Blog_Page.Areas.Admin.Controllers
             return RedirectToAction("List", "User", new { area = "Admin" });
         }
 
-        public ActionResult Jquery()
-        {
-            List<AppUser> users = _db.Users.ToList();
-            return View(users);
-        }
+        //public ActionResult Jquery()
+        //{
+        //    List<AppUser> users = _db.Users.ToList();
+        //    return View(users);
+        //}
 
-        public JsonResult GetJson()
-        {
-            List<AppUser> users = _db.Users.ToList();
-            return Json(users);
-        }
+        //public JsonResult GetJson()
+        //{
+        //    List<AppUser> users = _db.Users.ToList();
+        //    return Json(users);
+        //}
 
-        public IActionResult GetJsonWithAjax()
-        {
-            return View();
-        }
+        //public IActionResult GetJsonWithAjax()
+        //{
+        //    return View();
+        //}
 
-        public IActionResult GetJsonWithAjax2()
-        {
-            List<AppUser> users = _db.Users.ToList();
-            var usersJson = JsonConvert.SerializeObject(users);
-            return Json(usersJson);
-        }
+        //public IActionResult GetJsonWithAjax2()
+        //{
+        //    List<AppUser> users = _db.Users.ToList();
+        //    var usersJson = JsonConvert.SerializeObject(users);
+        //    return Json(usersJson);
+        //}
     }
 }
