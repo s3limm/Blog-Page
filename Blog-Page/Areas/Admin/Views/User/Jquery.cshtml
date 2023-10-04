@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 ﻿<div id="div1">
+=======
+﻿@*<div id="div1">
+>>>>>>> test
     <button id="button">Selamla</button>
 </div>
 
 <script src="~/website/home/js/jquery-3.6.4.js"></script>
+<<<<<<< HEAD
 
+=======
+*@
+>>>>>>> test
 @*<script>
     $(document).ready(function () {
         $("#button").click(function() {
@@ -75,15 +83,28 @@
 *@
 
 
+<<<<<<< HEAD
 <script>
 
     $(document).ready(function () {
         $("#button").click(function () {
             $.getJSON("/Admin/User/JQuery", function (user) {
                 $.each(user.value, function (key, item) {
+=======
+@*<script>
+
+    $(document).ready(function () {
+        $("#button").click(function () {
+            $.getJSON("/Admin/User/JQuery",null, function (user) {
+                $.each(user.value, function (i, item) {
+>>>>>>> test
                     $("#div1").append("<li>"+item.userName+"</li>")
                 })
             })
         })
     })
+<<<<<<< HEAD
 </script>
+=======
+</script>*@
+>>>>>>> test

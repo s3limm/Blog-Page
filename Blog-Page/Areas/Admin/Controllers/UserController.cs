@@ -2,6 +2,7 @@
 using Blog_Page.Models;
 using Blog_Page.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Blog_Page.Areas.Admin.Controllers
 {
@@ -33,7 +34,7 @@ namespace Blog_Page.Areas.Admin.Controllers
         public IActionResult Insert(AppUser user)
         {
             _user.Insert(user);
-            return RedirectToAction("List", "User", new {area="Admin"});
+            return RedirectToAction("List", "User", new { area = "Admin" });
         }
 
 
@@ -57,6 +58,7 @@ namespace Blog_Page.Areas.Admin.Controllers
             return RedirectToAction("List", "User", new { area = "Admin" });
         }
 
+<<<<<<< HEAD
         public ActionResult Jquery()
         {
             List<AppUser> users = _db.Users.ToList();
@@ -68,5 +70,30 @@ namespace Blog_Page.Areas.Admin.Controllers
             List<AppUser> users = _db.Users.ToList();
             return Json(users);
         }
+=======
+        //public ActionResult Jquery()
+        //{
+        //    List<AppUser> users = _db.Users.ToList();
+        //    return View(users);
+        //}
+
+        //public JsonResult GetJson()
+        //{
+        //    List<AppUser> users = _db.Users.ToList();
+        //    return Json(users);
+        //}
+
+        //public IActionResult GetJsonWithAjax()
+        //{
+        //    return View();
+        //}
+
+        //public IActionResult GetJsonWithAjax2()
+        //{
+        //    List<AppUser> users = _db.Users.ToList();
+        //    var usersJson = JsonConvert.SerializeObject(users);
+        //    return Json(usersJson);
+        //}
+>>>>>>> test
     }
 }

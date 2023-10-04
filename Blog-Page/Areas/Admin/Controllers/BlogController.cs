@@ -4,7 +4,6 @@ using Blog_Page.DBContext;
 using Blog_Page.Dto;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Interfaces;
-using Blog_Page.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting.Internal;
 
