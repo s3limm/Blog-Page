@@ -58,7 +58,7 @@ namespace Blog_Page.Areas.Admin.Controllers
             return RedirectToAction("List", "User", new { area = "Admin" });
         }
 
-<<<<<<< HEAD
+
         public ActionResult Jquery()
         {
             List<AppUser> users = _db.Users.ToList();
@@ -70,7 +70,7 @@ namespace Blog_Page.Areas.Admin.Controllers
             List<AppUser> users = _db.Users.ToList();
             return Json(users);
         }
-=======
+
         //public ActionResult Jquery()
         //{
         //    List<AppUser> users = _db.Users.ToList();
@@ -94,6 +94,6 @@ namespace Blog_Page.Areas.Admin.Controllers
         //    var usersJson = JsonConvert.SerializeObject(users);
         //    return Json(usersJson);
         //}
->>>>>>> test
+
     }
 }

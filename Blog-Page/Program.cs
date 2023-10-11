@@ -1,7 +1,9 @@
+using Blog_Page.AppServices.Services;
 using Blog_Page.DBContext;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Base;
 using Blog_Page.Repositories.Interfaces;
+using Blog_Page.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Reflection;
@@ -13,6 +15,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IRepository<AppUser>, Repository<AppUser>>();
 builder.Services.AddScoped<IRepository<Category>, Repository<Category>>();
 builder.Services.AddScoped<IRepository<Blog>, Repository<Blog>>();
+builder.Services.AddScoped<IImageService, ImageService>();
 
 
 var provider = builder.Services.BuildServiceProvider();

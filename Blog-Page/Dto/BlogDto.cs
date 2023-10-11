@@ -16,15 +16,9 @@ namespace Blog_Page.Dto
         public int WriterID { get; set; }
         public int CategoryID { get; set; }
 
-        //public string image1 { get; set; }
-        //public string image2 { get; set; }
-        //public string image3 { get; set; }
-        //public string image4 { get; set; }
-        //public string image5 { get; set; }
-
-
         //Relational Property
 
+        public List<Image> Images { get; set; }
         public CategoryDto Category { get; set; }
         public List<CategoryDto> Categories { get; set; }
     }

@@ -4,6 +4,7 @@ using Blog_Page.DBContext;
 using Blog_Page.Dto;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Interfaces;
+using Blog_Page.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting.Internal;
 
@@ -15,12 +16,16 @@ namespace Blog_Page.Areas.Admin.Controllers
         private readonly IMapper _mapper;
         IRepository<Blog> _blog;
         AddDbContext _db;
-        public BlogController(IRepository<Blog> blog, AddDbContext db, IMapper mapper)
+        private readonly IImageService _imageService;
+        public BlogController(IRepository<Blog> blog, AddDbContext db, IMapper mapper, IImageService imageService)
         {
             _db = db;
             _blog = blog;
             _mapper = mapper;
+            _imageService = imageService;
         }
+
+        public string FilePath;
 
         public IActionResult List()
         {
@@ -37,11 +42,20 @@ namespace Blog_Page.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Insert(BlogDto blog)
+        public IActionResult Insert(BlogDto blog, IFormFile file)
         {
+            UploadImage(file);
             Blog blogEntity = _mapper.Map<Blog>(blog);
             _blog.Insert(blogEntity);
             return RedirectToAction("List", "Blog", new { area = "Admin" });
+        }
+
+        public async void UploadImage(IFormFile file)
+        {
+            if (file != null)
+            {
+                FilePath = await _imageService.UploadFileAsync(file);
+            }
         }
 
 

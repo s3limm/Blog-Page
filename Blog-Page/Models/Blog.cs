@@ -11,17 +11,13 @@ namespace Blog_Page.Models
 
         [AllowHtml]
         public string Content { get; set; }
-        //public string image1 { get; set; }
-        //public string image2 { get; set; }
-        //public string image3 { get; set; }
-        //public string image4 { get; set; }
-        //public string image5 { get; set; }
         public int WriterID { get; set; }
         public int CategoryID { get; set; }
 
 
         //Relational Property
 
+        public List<Image> Images { get; set; }
         public virtual Category Category { get; set; }
     }
 }

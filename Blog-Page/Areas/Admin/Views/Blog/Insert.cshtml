@@ -22,16 +22,16 @@
                             <select asp-for="CategoryID" class="form-control" asp-items="@(new SelectList(Model.Categories,"ID","CategoryName"))"></select>
                         </div>
                         <!--1.Görsel-->
-                 @*       <div class="form-group">
-                            <label asp-for="image1">Görsel Yükle</label>
-                            <input asp-for="image1" type="file" name="img[]" class="file-upload-default">
+                        <div class="form-group">
+                            <label asp-for="Images[0]">Görsel Yükle</label>
+                            <input asp-for="Images[0]" type="file" name="file" class="file-upload-default">
                             <div class="input-group col-xs-12">
-                                <input asp-for="image1"  type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <input asp-for="Images[0]" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                 <span class="input-group-append">
                                     <button  class="file-upload-browse btn btn-primary" type="button">Yükle</button>
                                 </span>
                             </div>
-                        </div>*@
+                        </div>
                         <!--2.Görsel-->
                         <div class="form-group">
                             <label>Görsel Yükle</label>
