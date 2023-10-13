@@ -1,4 +1,6 @@
-﻿namespace Blog_Page.Services.Interfaces
+﻿using Blog_Page.Models;
+
+namespace Blog_Page.Services.Interfaces
 {
     public interface IImageService
     {

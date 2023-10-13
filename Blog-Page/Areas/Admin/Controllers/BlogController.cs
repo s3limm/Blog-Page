@@ -5,14 +5,17 @@ using Blog_Page.Dto;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Interfaces;
 using Blog_Page.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting.Internal;
 
 namespace Blog_Page.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class BlogController : Controller
     {
+
         private readonly IMapper _mapper;
         IRepository<Blog> _blog;
         AddDbContext _db;
@@ -25,7 +28,6 @@ namespace Blog_Page.Areas.Admin.Controllers
             _imageService = imageService;
         }
 
-        public string FilePath;
 
         public IActionResult List()
         {
@@ -42,20 +44,27 @@ namespace Blog_Page.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Insert(BlogDto blog, IFormFile file)
+        public async Task<IActionResult> Insert(BlogDto blog, IFormFile file)
         {
-            UploadImage(file);
+            var images = await UploadImage(file);
             Blog blogEntity = _mapper.Map<Blog>(blog);
+            blogEntity.Images = images;
             _blog.Insert(blogEntity);
             return RedirectToAction("List", "Blog", new { area = "Admin" });
         }
 
-        public async void UploadImage(IFormFile file)
+        public async Task<List<Image>> UploadImage(IFormFile file)
         {
+            List<Image> images = new List<Image>();
+
             if (file != null)
             {
-                FilePath = await _imageService.UploadFileAsync(file);
+                var FilePath = await _imageService.UploadFileAsync(file);
+                var image = new Image { ImageFileName = FilePath };
+                images.Add(image);
             }
+
+            return images;
         }
 
 

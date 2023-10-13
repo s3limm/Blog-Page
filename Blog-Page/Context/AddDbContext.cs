@@ -1,4 +1,5 @@
 ﻿using Blog_Page.Configuration;
+using Blog_Page.Initializer;
 using Blog_Page.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,7 @@ namespace Blog_Page.DBContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            DataInitializer.Seed(modelBuilder);
             modelBuilder.ApplyConfiguration(new Blogs());
             modelBuilder.ApplyConfiguration(new Categories());
             modelBuilder.ApplyConfiguration(new AppUsers());

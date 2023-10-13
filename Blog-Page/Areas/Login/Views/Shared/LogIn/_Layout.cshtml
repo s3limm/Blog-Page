@@ -1,37 +1,39 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link rel="stylesheet" href="~/AdminDashboard/style_logIn.css">
-    <title>S3limm-Admin Panel Login</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>S3limm Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/AdminDashboard/Admin/vendors/feather/feather.css">
+    <link rel="stylesheet" href="~/AdminDashboard/Admin/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="~/AdminDashboard/Admin/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/AdminDashboard/Admin/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/AdminDashboard/Admin/images/favicon.png" />
 </head>
+
 <body>
-    <section>
-
-        <div class="video-container">
-            @*<video autoplay loop muted>
-            <source src="~/admindashboard/images/nebula_-_67135 (original).mp4" type="video/mp4">
-            </video>*@
-
-            <img src="https://wallpapercave.com/wp/wp6123815.jpg" width="1920" height="1080" />
-        </div>
-
-        @RenderBody()
-
-    </section>
+    @RenderBody()
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/AdminDashboard/Admin/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="~/AdminDashboard/Admin/js/off-canvas.js"></script>
+    <script src="~/AdminDashboard/Admin/js/hoverable-collapse.js"></script>
+    <script src="~/AdminDashboard/Admin/js/template.js"></script>
+    <script src="~/AdminDashboard/Admin/js/settings.js"></script>
+    <script src="~/AdminDashboard/Admin/js/todolist.js"></script>
+    <!-- endinject -->
 </body>
-<script>
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const container = document.getElementById('container');
 
-    signUpButton.addEventListener('click', () => {
-        container.classList.add("right-panel-active");
-    });
-
-    signInButton.addEventListener('click', () => {
-        container.classList.remove("right-panel-active");
-    });
-
-</script>
 </html>
-

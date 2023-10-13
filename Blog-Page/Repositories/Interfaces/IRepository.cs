@@ -1,4 +1,5 @@
 ﻿using Blog_Page.Models;
+using System.Linq.Expressions;
 
 namespace Blog_Page.Repositories.Interfaces
 {
@@ -7,7 +8,7 @@ namespace Blog_Page.Repositories.Interfaces
         //Introduction of Methods
 
         //Getting Lists
-        List<T> GetAllList();        
+        List<T> GetAllList();
 
         //Getting Actives
 
@@ -20,5 +21,9 @@ namespace Blog_Page.Repositories.Interfaces
         void Delete(int id);
         //Update Method 
         void Update(T item);
+        //Any Method
+        bool Any(Expression<Func<T, bool>> expression);
+        //Default Method
+        T Default(Expression<Func<T, bool>> expression);
     }
 }

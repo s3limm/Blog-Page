@@ -4,6 +4,7 @@ using Blog_Page.Models;
 using Blog_Page.Repositories.Base;
 using Blog_Page.Repositories.Interfaces;
 using Blog_Page.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Reflection;
@@ -17,6 +18,7 @@ builder.Services.AddScoped<IRepository<Category>, Repository<Category>>();
 builder.Services.AddScoped<IRepository<Blog>, Repository<Blog>>();
 builder.Services.AddScoped<IImageService, ImageService>();
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => options.LoginPath = "/Login/Login/Index");
 
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();
@@ -54,7 +56,7 @@ using (var scope = app.Services.CreateScope())
         .GetRequiredService<AddDbContext>();
 
     // Here is the migration executed
-    //dbContext.Database.Migrate();
+    dbContext.Database.Migrate();
 }
 
 
@@ -63,7 +65,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

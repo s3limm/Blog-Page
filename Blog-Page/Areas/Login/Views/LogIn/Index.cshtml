@@ -1,36 +1,50 @@
-﻿<div class="container" id="container">
-    <div class="form-container sign-up-container">
-        <form asp-controller="LogIn" asp-action="LogIn">
-            <h1>Hesap oluştur</h1>
-            <input type="text" placeholder="İsim" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Şifre" />
-            <button type="submit">Oluştur</button>
-        </form>
-    </div>
-    <div class="form-container sign-in-container">
-        <form action="#">
-            <h1>Giriş Yap</h1>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Şifre" />
-            <a href="#">Şifreni mi unuttun?</a>
-            <button>Giriş Yap</button>
-        </form>
-    </div>
-    <div class="overlay-container">
-        <div class="overlay">
-            <div class="overlay-panel overlay-left">
-                <h1>Tekrardan Hoşgeldin!</h1>
-                <p>Bizimle iletişimde kal ve bilgilerinle giriş yap</p>
-                <button class="ghost" id="signIn">Giriş Yap</button>
-            </div>
-            <div class="overlay-panel overlay-right">
-                <h1>Merhaba, Dostum!</h1>
-                <p>Bilgilerini gir ve bizimle yolculuğa çık.</p>
-                <button class="ghost" id="signUp">Oluştur</button>
+﻿@using Blog_Page.Models;
+@model AppUser
+
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth px-0">
+            <div class="row w-100 mx-0">
+                <div class="col-lg-4 mx-auto">
+                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                        <div class="brand-logo">
+                            <img src="~/AdminDashboard/Admin/images/logo.svg" alt="logo">
+                        </div>
+                        <h4>Hello! let's get started</h4>
+                        <h6 class="font-weight-light">Sign in to continue.</h6>
+                        <form class="pt-3" asp-action="Index" asp-controller="Login" method="post">
+                            <div class="form-group">
+                                <input asp-for="userName" type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Password" type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+                            <div class="mt-3">
+                                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
+                            </div>
+                            <div class="my-2 d-flex justify-content-between align-items-center">
+                                <div class="form-check">
+                                    <label class="form-check-label text-muted">
+                                        <input type="checkbox" class="form-check-input">
+                                        Keep me signed in
+                                    </label>
+                                </div>
+                                <a href="#" class="auth-link text-black">Forgot password?</a>
+                            </div>
+                            <div class="mb-2">
+                                <button type="button" class="btn btn-block btn-facebook auth-form-btn">
+                                    <i class="ti-facebook mr-2"></i>Connect using facebook
+                                </button>
+                            </div>
+                            <div class="text-center mt-4 font-weight-light">
+                                Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- content-wrapper ends -->
     </div>
+    <!-- page-body-wrapper ends -->
 </div>
-
-

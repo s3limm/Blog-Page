@@ -3,6 +3,7 @@ using Blog_Page.Models;
 using Blog_Page.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System.Linq.Expressions;
 
 namespace Blog_Page.Repositories.Base
 {
@@ -50,6 +51,16 @@ namespace Blog_Page.Repositories.Base
             item.ModifiedDate = DateTime.Now;
             table.Update(item);
             Save();
+        }
+
+        public bool Any(Expression<Func<T, bool>> expression)
+        {
+            return table.Any(expression);
+        }
+
+        public T Default(Expression<Func<T, bool>> expression)
+        {
+            return table.FirstOrDefault(expression);
         }
     }
 }
