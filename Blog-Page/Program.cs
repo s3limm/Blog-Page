@@ -18,7 +18,14 @@ builder.Services.AddScoped<IRepository<Category>, Repository<Category>>();
 builder.Services.AddScoped<IRepository<Blog>, Repository<Blog>>();
 builder.Services.AddScoped<IImageService, ImageService>();
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => options.LoginPath = "/Login/Login/Index");
+//Authentication and Authorization 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Admin/LogIn/LogIn";
+        options.Cookie.Name = "UserDetail";
+        options.AccessDeniedPath = "/Admin/LogIn/Error";
+    });
 
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();

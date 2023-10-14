@@ -11,8 +11,8 @@ using Microsoft.Extensions.Hosting.Internal;
 
 namespace Blog_Page.Areas.Admin.Controllers
 {
-    [Authorize]
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class BlogController : Controller
     {
 

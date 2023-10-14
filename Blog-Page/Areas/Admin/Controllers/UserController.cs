@@ -7,8 +7,8 @@ using Newtonsoft.Json;
 
 namespace Blog_Page.Areas.Admin.Controllers
 {
-    [Authorize]
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         IRepository<AppUser> _user;

@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blog_Page.Areas.Admin.Controllers
 {
-    [Authorize]
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         IRepository<Category> _cat;

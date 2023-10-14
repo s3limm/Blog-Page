@@ -103,10 +103,13 @@
                                 <i class="ti-settings text-primary"></i>
                                 Settings
                             </a>
-                            <a class="dropdown-item">
-                                <i class="ti-power-off text-primary"></i>
-                                Logout
-                            </a>
+                            @if(User.Identity.IsAuthenticated)
+                            {
+                                <a class="dropdown-item" asp-controller="LogIn" asp-action="LogOut" asp-area="Admin">
+                                    <i class="ti-power-off text-primary"></i>
+                                    Logout
+                                </a>
+                            }
                         </div>
                     </li>
                     <li class="nav-item nav-settings d-none d-lg-flex">
