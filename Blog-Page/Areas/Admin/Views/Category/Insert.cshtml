@@ -13,6 +13,7 @@
                         <div class="form-group"> 
                             <label asp-for="CategoryName">Kategori Adı</label>
                             <input type="text" class="form-control" asp-for="CategoryName" placeholder="Kategori Adı:">
+                            <span class="text-danger" asp-validation-for="CategoryName"></span>
                         </div>                      
                         <button type="submit" class="btn btn-success">Oluştur</button>
                     </form>

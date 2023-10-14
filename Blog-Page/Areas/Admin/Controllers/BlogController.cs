@@ -46,6 +46,10 @@ namespace Blog_Page.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Insert(BlogDto blog, IFormFile file)
         {
+            if(!ModelState.IsValid)
+            {
+                return View((blog,file));
+            }
             var images = await UploadImage(file);
             Blog blogEntity = _mapper.Map<Blog>(blog);
             blogEntity.Images = images;

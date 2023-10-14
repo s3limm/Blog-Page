@@ -31,6 +31,10 @@ namespace Blog_Page.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Insert(Category cat)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(cat);
+            }
             _cat.Insert(cat);
             return RedirectToAction("List", "Category", new { area = "Admin" });
         }

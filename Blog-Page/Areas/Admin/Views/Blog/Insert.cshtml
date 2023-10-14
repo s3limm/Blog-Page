@@ -12,14 +12,17 @@
                         <div class="form-group">
                             <label asp-for="Title">Başlık</label>
                             <input asp-for="Title" type="text" class="form-control" placeholder="Başlık:">
+                            <span class="text-danger" asp-validation-for="Title"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="Description">Açıklama</label>
                             <input asp-for="Description" type="text" class="form-control" placeholder="Açıklama:">
+                            <span class="text-danger" asp-validation-for="Description"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="CategoryID">Kategoriler</label>
                             <select asp-for="CategoryID" class="form-control" asp-items="@(new SelectList(Model.Categories,"ID","CategoryName"))"></select>
+                            <span class="text-danger" asp-validation-for="Categories"></span>
                         </div>
                         <!--1.Görsel-->
                         <div class="form-group">
@@ -28,9 +31,10 @@
                             <div class="input-group col-xs-12">
                                 <input asp-for="Images[0]" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                 <span class="input-group-append">
-                                    <button  class="file-upload-browse btn btn-primary" type="button">Yükle</button>
+                                    <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
                                 </span>
                             </div>
+                            <span class="text-danger" asp-validation-for="Images[0]"></span>
                         </div>
                         <!--2.Görsel-->
                         <div class="form-group">
@@ -90,6 +94,7 @@
                         <div class="form-group">
                             <label asp-for="Content">İçerik</label>
                             <textarea class="form-control" rows="4" id="summernote" asp-for="Content"></textarea>
+                            <span class ="text-danger" asp-validation-for="Content"></span>
                         </div>
                         <button type="submit" class="btn btn-success">Oluştur</button>
                     </form>

@@ -35,6 +35,10 @@ namespace Blog_Page.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Insert(AppUser user)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
             _user.Insert(user);
             return RedirectToAction("List", "User", new { area = "Admin" });
         }
