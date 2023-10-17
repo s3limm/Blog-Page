@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Blog Ekleme Sayfası</h4>
-                    <form method="post" asp-area="Admin" asp-controller="Blog" asp-action="Insert" class="forms-sample" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Blog" asp-action="Insert" class="forms-sample">
                         <div class="form-group">
                             <label asp-for="Title">Başlık</label>
                             <input asp-for="Title" type="text" class="form-control" placeholder="Başlık:">
@@ -26,15 +26,15 @@
                         </div>
                         <!--1.Görsel-->
                         <div class="form-group">
-                            <label asp-for="Images[0]">Görsel Yükle</label>
-                            <input asp-for="Images[0]" type="file" name="file" class="file-upload-default">
+                            <label asp-for="@Model.ImageFİle">Görsel Yükle</label>
+                            <input asp-for="@Model.ImageFİle" type="file" name="ImageFile" class="file-upload-default">
                             <div class="input-group col-xs-12">
-                                <input asp-for="Images[0]" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <input asp-for="@Model.ImageFİle" type="name" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                 <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
                                 </span>
                             </div>
-                            <span class="text-danger" asp-validation-for="Images[0]"></span>
+                            <span class="text-danger" asp-validation-for="@Model.ImageFİle"></span>
                         </div>
                         <!--2.Görsel-->
                         <div class="form-group">

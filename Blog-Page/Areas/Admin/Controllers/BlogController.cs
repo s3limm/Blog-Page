@@ -20,6 +20,10 @@ namespace Blog_Page.Areas.Admin.Controllers
         IRepository<Blog> _blog;
         AddDbContext _db;
         private readonly IImageService _imageService;
+
+        [BindProperty]
+        public Blog Blog { get; set; }
+
         public BlogController(IRepository<Blog> blog, AddDbContext db, IMapper mapper, IImageService imageService)
         {
             _db = db;
@@ -44,32 +48,38 @@ namespace Blog_Page.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Insert(BlogDto blog, IFormFile file)
+        public async Task<IActionResult> Insert(BlogDto blog)
         {
-            if(!ModelState.IsValid)
+            byte[] bytes = null;
+            if(Blog.ImageFİle != null)
             {
-                return View((blog,file));
+                using (Stream fs = Blog.ImageFİle.OpenReadStream())
+                {
+                    using(BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+                }
+                Blog.BlogImageData = Convert.ToBase64String(bytes,0,bytes.Length);
             }
-            var images = await UploadImage(file);
-            Blog blogEntity = _mapper.Map<Blog>(blog);
-            blogEntity.Images = images;
-            _blog.Insert(blogEntity);
+            Blog  = _mapper.Map<Blog>(blog);
+            _blog.Insert(Blog);
             return RedirectToAction("List", "Blog", new { area = "Admin" });
         }
 
-        public async Task<List<Image>> UploadImage(IFormFile file)
-        {
-            List<Image> images = new List<Image>();
+        //public async Task<List<Image>> UploadImage(IFormFile file)
+        //{
+        //    List<Image> images = new List<Image>();
 
-            if (file != null)
-            {
-                var FilePath = await _imageService.UploadFileAsync(file);
-                var image = new Image { ImageFileName = FilePath };
-                images.Add(image);
-            }
+        //    if (file != null)
+        //    {
+        //        var FilePath = await _imageService.UploadFileAsync(file);
+        //        var image = new Image { ImageFileName = FilePath };
+        //        images.Add(image);
+        //    }
 
-            return images;
-        }
+        //    return images;
+        //}
 
 
         [HttpGet]

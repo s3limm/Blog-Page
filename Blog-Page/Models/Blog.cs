@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
 
 namespace Blog_Page.Models
@@ -19,11 +20,11 @@ namespace Blog_Page.Models
         public string Content { get; set; }
         public int WriterID { get; set; }
         public int CategoryID { get; set; }
-
+        public string BlogImageData { get; set; }
 
         //Relational Property
-
-        public List<Image> Images { get; set; }
+        [NotMapped]
+        public IFormFile ImageFİle { get; set; }
         public virtual Category Category { get; set; }
     }
 }

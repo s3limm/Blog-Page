@@ -42,7 +42,8 @@ namespace Blog_Page.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
@@ -52,7 +53,8 @@ namespace Blog_Page.Migrations
 
                     b.Property<string>("userName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ID");
 
@@ -62,10 +64,10 @@ namespace Blog_Page.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedDate = new DateTime(2023, 10, 13, 21, 19, 28, 440, DateTimeKind.Local).AddTicks(8652),
+                            CreatedDate = new DateTime(2023, 10, 15, 8, 59, 29, 71, DateTimeKind.Local).AddTicks(35),
                             Email = "selimemrem@gmail.com",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Password = "$2a$10$7OVvK3IHup9maHk9y1ZGou35qqJPTFkvka2hKG3xdhuSBBA62A0hG",
+                            Password = "$2a$10$i.5ApLVH0WkOEXuAnYLVH.HZJHV84KKKo6IhPnYsGJvEZHkJ7TJDm",
                             Role = 0,
                             Status = 0,
                             userName = "s3limm"
@@ -80,11 +82,16 @@ namespace Blog_Page.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<string>("BlogImageData")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .IsRequired()
+                        .HasMaxLength(10000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
@@ -92,7 +99,8 @@ namespace Blog_Page.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -102,7 +110,8 @@ namespace Blog_Page.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("WriterID")
                         .HasColumnType("int");
@@ -124,7 +133,8 @@ namespace Blog_Page.Migrations
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -140,37 +150,6 @@ namespace Blog_Page.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Blog_Page.Models.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("BlogID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ImageFileName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogID");
-
-                    b.ToTable("Image");
-                });
-
             modelBuilder.Entity("Blog_Page.Models.Blog", b =>
                 {
                     b.HasOne("Blog_Page.Models.Category", "Category")
@@ -180,18 +159,6 @@ namespace Blog_Page.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("Blog_Page.Models.Image", b =>
-                {
-                    b.HasOne("Blog_Page.Models.Blog", null)
-                        .WithMany("Images")
-                        .HasForeignKey("BlogID");
-                });
-
-            modelBuilder.Entity("Blog_Page.Models.Blog", b =>
-                {
-                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("Blog_Page.Models.Category", b =>
