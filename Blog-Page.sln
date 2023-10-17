@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog-Page", "Blog-Page\Blog-Page.csproj", "{EBEE9C55-CF07-4319-B33F-A72E6DF9F8FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogPage.WebApi", "BlogPage.WebApi\BlogPage.WebApi.csproj", "{C1437303-78F6-4912-9240-62A606C4EBCC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogPage.Api", "BlogPage.WebApi\BlogPage.Api.csproj", "{C1437303-78F6-4912-9240-62A606C4EBCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
