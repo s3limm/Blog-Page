@@ -43,4 +43,8 @@
     <Folder Include="images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BlogPage.WebApi\BlogPage.Api.csproj" />
+  </ItemGroup>
+
 </Project>
