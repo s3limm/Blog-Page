@@ -3,7 +3,6 @@ using Blog_Page.Models;
 using Blog_Page.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace Blog_Page.Areas.Admin.Controllers
 {

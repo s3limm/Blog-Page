@@ -1,6 +1,9 @@
-﻿namespace BlogPage.Api.Core.Domain
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
+namespace Blog_Page.API.Core.Domain
 {
-    public class Blog : BaseEntity
+    public class Blog:BaseEntity
     {
         public int ID { get; set; }
         [Required(ErrorMessage = "Lütfen bir başlık giriniz.")]
@@ -19,8 +22,6 @@
 
 
         //Relational Property
-
-        public List<Image> Images { get; set; }
         public virtual Category Category { get; set; }
     }
 }

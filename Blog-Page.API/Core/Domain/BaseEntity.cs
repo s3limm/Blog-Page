@@ -1,4 +1,6 @@
-﻿namespace BlogPage.Api.Core.Domain
+﻿using Blog_Page.API.Core.Application.Enums;
+
+namespace Blog_Page.API.Core.Domain
 {
     public class BaseEntity
     {
