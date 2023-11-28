@@ -16,15 +16,27 @@ namespace Blog_Page.API.Core.Application.Features.CQRS.Handlers.BlogHandler.Crea
 
         public async Task<Unit> Handle(CreateBlogCommandRequest request, CancellationToken cancellationToken)
         {
+            byte[] fileData = await ConvertFormFileToByteArrayAsync(request.FileData);
+
             await _repository.CreateAsync(new Blog
             {
                 Title = request.Title,
                 Description = request.Description,
                 Content = request.Content,
                 CategoryID = request.CategoryID,
+                FileData = fileData
             });
 
             return Unit.Value;
+        }
+
+        private async Task<byte[]> ConvertFormFileToByteArrayAsync(IFormFile file)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                await file.CopyToAsync(memoryStream);
+                return memoryStream.ToArray();
+            }
         }
     }
 }

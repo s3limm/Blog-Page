@@ -19,6 +19,7 @@ namespace Blog_Page.API.Core.Domain
         public string Content { get; set; }
         public int WriterID { get; set; }
         public int CategoryID { get; set; }
+        public byte[] FileData { get; set; }
 
 
         //Relational Property
