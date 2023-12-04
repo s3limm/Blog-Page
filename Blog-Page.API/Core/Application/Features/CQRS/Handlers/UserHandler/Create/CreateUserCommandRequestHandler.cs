@@ -3,6 +3,7 @@ using Blog_Page.API.Core.Application.Features.CQRS.Commands.User.Create;
 using Blog_Page.API.Core.Application.Interfaces;
 using Blog_Page.API.Core.Domain;
 using MediatR;
+using MediatR.Wrappers;
 
 namespace Blog_Page.API.Core.Application.Features.CQRS.Handlers.UserHandler.Create
 {
@@ -20,8 +21,10 @@ namespace Blog_Page.API.Core.Application.Features.CQRS.Handlers.UserHandler.Crea
             {
                 userName = request.userName,
                 Password = request.Password,
-                Role = request.Role,
-                Email = request.Email
+                Email = request.Email,
+                AppRoleId = request.AppRoleId,
+                Status = Enums.Status.Inserted,
+                CreatedDate = DateTime.UtcNow
             });
 
             return Unit.Value;

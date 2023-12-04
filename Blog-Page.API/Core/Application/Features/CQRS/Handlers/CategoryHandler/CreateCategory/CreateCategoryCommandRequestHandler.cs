@@ -16,7 +16,8 @@ namespace Blog_Page.API.Core.Application.Features.CQRS.Handlers.CategoryHandler.
 
         public async Task<Unit> Handle(CreateCategoryCommandRequest request, CancellationToken cancellationToken)
         {
-            await _repository.CreateAsync(new Category { CategoryName = request.CategoryName});
+            await _repository.CreateAsync(new Category { CategoryName = request.CategoryName , 
+                Status = Enums.Status.Inserted, CreatedDate = DateTime.UtcNow}) ;
             return Unit.Value;
         }
     }

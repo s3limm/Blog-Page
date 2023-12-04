@@ -1,4 +1,4 @@
-﻿namespace Blog_Page.API.Core.Application.Dtos
+﻿namespace Blog_Page.API.Core.Application.Dtos.Blog
 {
     public class BlogListDto
     {

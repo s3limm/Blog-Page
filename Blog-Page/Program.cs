@@ -23,8 +23,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie(options =>
     {
         options.LoginPath = "/Admin/LogIn/LogIn";
+        options.LogoutPath = "/Admin/LogOut/LogOut";
         options.Cookie.Name = "UserDetail";
         options.AccessDeniedPath = "/Admin/LogIn/Error";
+        options.Cookie.Name = "BlogCookie";
     });
 
 var provider = builder.Services.BuildServiceProvider();

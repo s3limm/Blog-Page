@@ -3,11 +3,14 @@ using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Delete;
 using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Update;
 using Blog_Page.API.Core.Application.Features.CQRS.Commands.User.Create;
 using Blog_Page.API.Core.Application.Features.CQRS.Commands.User.Delete;
+using Blog_Page.API.Core.Application.Features.CQRS.Commands.User.Register;
 using Blog_Page.API.Core.Application.Features.CQRS.Commands.User.Update;
 using Blog_Page.API.Core.Application.Features.CQRS.Queries.Blog.BlogList;
 using Blog_Page.API.Core.Application.Features.CQRS.Queries.Blog.GetBlog;
+using Blog_Page.API.Core.Application.Features.CQRS.Queries.User.CheckUser;
 using Blog_Page.API.Core.Application.Features.CQRS.Queries.User.Get;
 using Blog_Page.API.Core.Application.Features.CQRS.Queries.User.List;
+using Blog_Page.API.Infrastructure.Tools.JwtTokenGenerator;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +61,32 @@ namespace Blog_Page.API.Controllers
         {
             var result = await _mediator.Send(request);
             return Ok(result);
+        }
+
+
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register(RegisterUserCommandRequest request)
+        {
+            await _mediator.Send(request);
+            return Created("", request.UserName);
+        }
+
+        [HttpPost("[action]")]
+
+
+        public async Task<IActionResult> Login(CheckUserQueryRequest request)
+        {
+            var dto = await _mediator.Send(request);
+
+            if (dto != null)
+            {
+                return Created("", JwtTokenGenerator.GenerateToken(dto));
+            }
+            else
+            {
+                return BadRequest("Kullanıcı adı veya şifre hatalı");
+            }
         }
     }
 }

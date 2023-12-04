@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Blog_Page.API.Core.Application.Dtos;
+using Blog_Page.API.Core.Application.Dtos.User;
 using Blog_Page.API.Core.Application.Features.CQRS.Queries.User.List;
 using Blog_Page.API.Core.Application.Interfaces;
 using Blog_Page.API.Core.Domain;

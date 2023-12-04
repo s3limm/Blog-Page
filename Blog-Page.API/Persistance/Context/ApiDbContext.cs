@@ -1,4 +1,5 @@
 ﻿using Blog_Page.API.Core.Domain;
+using Blog_Page.API.Infrastructure.Initializer;
 using Blog_Page.API.Persistance.Configurations;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,7 +26,9 @@ namespace Blog_Page.API.Persistance.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            DataInitializer.Seed(modelBuilder);
             modelBuilder.ApplyConfiguration(new BlogConfigurations());
+            modelBuilder.ApplyConfiguration(new AppUserConfigurations());
         }
 
 

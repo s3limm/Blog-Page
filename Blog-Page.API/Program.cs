@@ -6,6 +6,10 @@ using System.Reflection;
 using AutoMapper;
 using Blog_Page.API.Core.Application.Mappings;
 using Blog_Page.API.Persistance.Repositories;
+using Blog_Page.API.Infrastructure.Tools.JwtTokenDefaults;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +28,12 @@ builder.Services.AddDbContext<ApiDbContext>(opt =>
 });
 
 
+builder.Services.AddControllers().AddNewtonsoftJson(opt =>
+{
+    opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
+
+
 builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
@@ -37,7 +47,22 @@ builder.Services.AddAutoMapper(opt =>
     });
 });
 
-    var app = builder.Build();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.RequireHttpsMetadata = false;
+    opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidAudience = JwtTokenDefaults.ValidAudience,
+        ValidIssuer = JwtTokenDefaults.ValidIssuer,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero,
+    };
+});
+
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

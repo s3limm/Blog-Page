@@ -24,8 +24,11 @@ namespace Blog_Page.API.Core.Application.Features.CQRS.Handlers.BlogHandler.Crea
                 Description = request.Description,
                 Content = request.Content,
                 CategoryID = request.CategoryID,
-                FileData = fileData
+                FileData = fileData,
+                CreatedDate = DateTime.UtcNow,
+                Status = Enums.Status.Inserted
             });
+           ;
 
             return Unit.Value;
         }

@@ -23,7 +23,8 @@ namespace Blog_Page.API.Core.Application.Features.CQRS.Handlers.UserHandler.Upda
                 data.userName = request.userName;
                 data.Email = request.Email;
                 data.Password = request.Password;
-                data.Role = request.Role;
+                data.Status = Enums.Status.Updated;
+                data.ModifiedDate = DateTime.UtcNow;
             }
             await _repository.UpdateAsync(data);
             return Unit.Value;

@@ -21,6 +21,8 @@ namespace Blog_Page.API.Core.Application.Features.CQRS.Handlers.CategoryHandler.
             if(data != null)
             {
                 data.CategoryName = request.CategoryName;
+                data.Status = Enums.Status.Updated;
+                data.ModifiedDate = DateTime.UtcNow;
             }
             await repository.UpdateAsync(data);
             return Unit.Value;
