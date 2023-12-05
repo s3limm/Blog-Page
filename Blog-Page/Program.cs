@@ -5,6 +5,7 @@ using Blog_Page.Repositories.Base;
 using Blog_Page.Repositories.Interfaces;
 using Blog_Page.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Reflection;
@@ -19,15 +20,16 @@ builder.Services.AddScoped<IRepository<Blog>, Repository<Blog>>();
 builder.Services.AddScoped<IImageService, ImageService>();
 
 //Authentication and Authorization 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/Admin/LogIn/LogIn";
-        options.LogoutPath = "/Admin/LogOut/LogOut";
-        options.Cookie.Name = "UserDetail";
-        options.AccessDeniedPath = "/Admin/LogIn/Error";
-        options.Cookie.Name = "BlogCookie";
-    });
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme, opt =>
+{
+    opt.LoginPath = "/Account/Login";
+    opt.LogoutPath = "/Account/Logout";
+    opt.AccessDeniedPath = "/Account/AccessDenied";
+    opt.Cookie.SameSite = SameSiteMode.Strict;
+    opt.Cookie.HttpOnly = true;
+    opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    opt.Cookie.Name = "UdemyJwtCookie";
+});
 
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();

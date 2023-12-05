@@ -72,8 +72,8 @@ namespace Blog_Page.API.Controllers
             return Created("", request.UserName);
         }
 
-        [HttpPost("[action]")]
 
+        [HttpPost("Login")]
 
         public async Task<IActionResult> Login(CheckUserQueryRequest request)
         {
