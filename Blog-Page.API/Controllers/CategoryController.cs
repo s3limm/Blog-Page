@@ -1,4 +1,5 @@
-﻿using Blog_Page.API.Core.Application.Features.CQRS.Commands.Category.Create;
+﻿using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Delete;
+using Blog_Page.API.Core.Application.Features.CQRS.Commands.Category.Create;
 using Blog_Page.API.Core.Application.Features.CQRS.Commands.Category.Delete;
 using Blog_Page.API.Core.Application.Features.CQRS.Commands.Category.Update;
 using Blog_Page.API.Core.Application.Features.CQRS.Queries.Category.Get;
@@ -41,11 +42,11 @@ namespace Blog_Page.API.Controllers
             return Created("", request.CategoryName);
         }
 
-        [HttpDelete("Delete")]
-        public async Task<IActionResult> DeleteCategory(DeleteCategoryCommandRequest request)
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> DeleteCategory(int id)
         {
-            var result = await _mediator.Send(request);
-            return Ok(result);
+            await _mediator.Send(new DeleteCategoryCommandRequest(id));
+            return NoContent();
         }
 
         [HttpPut("Update")]

@@ -1,5 +1,5 @@
 ﻿@using Blog_Page.Models;
-@model AppUser
+@model UpdateUserModel
 
 <div class="main-panel">
     <div class="content-wrapper">
@@ -20,16 +20,6 @@
                         <div class="form-group">
                             <label asp-for="Password">Şifre</label>
                             <input asp-for="Password" type="text" class="form-control" placeholder="Şifre:">
-                        </div>
-                        <div class="form-group">
-                            <label>Resim Yükle</label>
-                            <input type="file" name="img[]" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled placeholder="Resim Yükle">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-gradient-primary" type="button">Yükle</button>
-                                </span>
-                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Güncelle</button>
                     </form>

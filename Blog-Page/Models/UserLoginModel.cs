@@ -2,7 +2,7 @@
 
 namespace Blog_Page.Models
 {
-    public class UserLogin
+    public class UserLoginModel : BaseModel
     {
         [Required(ErrorMessage = "Username gereklidir")]
         public string Username { get; set; } = null!;

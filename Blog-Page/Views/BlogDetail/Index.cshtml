@@ -1,5 +1,5 @@
-﻿@using Blog_Page.Dto
-@model BlogDto
+﻿@using Blog_Page.Models
+@model BlogListModel
 
 
   <!-- Breadcrumb -->
@@ -15,7 +15,7 @@
 <!-- Project Details -->
 <section class="project-details-wrap">
     <div class="project-details-img" data-aos="zoom-in">
-        <img src="@Model.Images[0]" alt="Project Details">
+        <img src="@* @Model.Images[0] *@" alt="Project Details">
     </div>
 
     <div class="container">

@@ -1,6 +1,5 @@
-﻿@using Blog_Page.Dto;
-@using Blog_Page.Models;
-@model BlogDto
+﻿@using Blog_Page.Models;
+@model UpdateBlogModel
 
 <div class="main-panel">
     <div class="content-wrapper">
@@ -18,18 +17,19 @@
                             <input asp-for="Description" type="text" class="form-control" placeholder="Açıklama:">
                         </div>
                         <div class="form-group">
-                            <label asp-for="CategoryID">Kategoriler</label>
-                            <select asp-for="CategoryID" class="form-control" asp-items="@(new SelectList(Model.Categories,"ID","CategoryName"))"></select>
+                            <label asp-for="Categories">Kategoriler</label>
+                            <select asp-for="Categories" class="form-control" asp-items="@(new SelectList(Model.Categories,"ID","CategoryName"))"></select>
                         </div>
                         <div class="form-group">
-                            <label>Görsel Yükle</label>
-                            <input type="file" name="img[]" class="file-upload-default">
+                            <label asp-for="FileData">Görsel Yükle</label>
+                            <input asp-for="FileData" type="file" name="file" class="file-upload-default">
                             <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled placeholder="Görsel yükle">
+                                <input asp-for="FileData" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                 <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
                                 </span>
                             </div>
+                            <span class="text-danger" asp-validation-for="FileData"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="Content">İçerik</label>

@@ -1,9 +1,9 @@
-using Blog_Page.AppServices.Services;
-using Blog_Page.DBContext;
+using AutoMapper;
+using Blog_Page.API.Persistance.Context;
+using Blog_Page.Mapper;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Base;
 using Blog_Page.Repositories.Interfaces;
-using Blog_Page.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IRepository<AppUser>, Repository<AppUser>>();
-builder.Services.AddScoped<IRepository<Category>, Repository<Category>>();
-builder.Services.AddScoped<IRepository<Blog>, Repository<Blog>>();
-builder.Services.AddScoped<IImageService, ImageService>();
+builder.Services.AddScoped(typeof(IRepositoryUI<>),typeof(Repository<>));
+
 
 //Authentication and Authorization 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme, opt =>
@@ -31,6 +29,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
     opt.Cookie.Name = "UdemyJwtCookie";
 });
 
+builder.Services.AddAutoMapper(opt =>
+opt.AddProfiles(new List<Profile>()
+{
+    new BlogProfile(),
+    new CategoryProfile()
+})
+);
+
+
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();
 
@@ -42,7 +49,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 var config = builder.Configuration;
 
-builder.Services.AddDbContext<AddDbContext>(options =>
+builder.Services.AddDbContext<ApiDbContext>(options =>
 {
     options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
 });
@@ -64,7 +71,7 @@ if (!app.Environment.IsDevelopment())
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider
-        .GetRequiredService<AddDbContext>();
+        .GetRequiredService<ApiDbContext>();
 
     // Here is the migration executed
     dbContext.Database.Migrate();

@@ -1,5 +1,5 @@
 ﻿@using Blog_Page.Models;
-@model List<AppUser>
+@model List<UserListModel>
 
 <div class="main-panel">
     <div class="content-wrapper">
@@ -12,6 +12,7 @@
                             <tr>
                                 <th> Kullanıcı Adı </th>
                                 <th> Email </th>
+                                <th> Kullanıcı Tipi </th>
                                 <th> Oluşturulma Tarihi </th>
                                 <th> İşlemler</th>
                             </tr>
@@ -23,6 +24,7 @@
                                 <tr>
                                     <td>@Model[i].userName</td>
                                     <td>@Model[i].Email</td>
+                                    <td>@Model[i].AppRole.Definition</td>
                                     <td>@Model[i].CreatedDate</td>
                                     <td>
                                         <a class="big-icon" asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@Model[i].ID"><button type="button" class="btn btn-warning">Güncelle</button></a>

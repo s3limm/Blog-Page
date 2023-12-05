@@ -1,8 +1,11 @@
-﻿using Blog_Page.DBContext;
+﻿
 using Blog_Page.Models;
-using Blog_Page.Repositories.Interfaces;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text;
+using System.Text.Json;
 
 namespace Blog_Page.Areas.Admin.Controllers
 {
@@ -10,95 +13,143 @@ namespace Blog_Page.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
-        IRepository<AppUser> _user;
-        AddDbContext _db;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public UserController(IRepository<AppUser> user, AddDbContext db)
+        public UserController(IHttpClientFactory httpClientFactory)
         {
-            _user = user;
-            _db = db;
+            _httpClientFactory = httpClientFactory;
         }
-
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            List<AppUser> users = _user.GetAllList();
-            return View(users);
-        }
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+            if (token != null)
+            {
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-        [HttpGet]
-        public IActionResult Insert()
-        {
+                var response = await client.GetAsync("http://localhost:5158/api/User/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonData = await response.Content.ReadAsStringAsync();
+                    var result = JsonSerializer.Deserialize<List<UserListModel>>(jsonData, new JsonSerializerOptions
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    });
+
+                    return View(result);
+                }
+            }
+
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Insert(AppUser user)
+        [HttpGet]
+        public async Task<IActionResult> Insert()
         {
-            if (!ModelState.IsValid)
+            return View(new CreateUserModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Insert(CreateUserModel model)
+        {
+            if (ModelState.IsValid)
             {
-                return View(user);
+                var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+                if (token != null)
+                {
+                    var client = _httpClientFactory.CreateClient();
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+
+                    var jsonData = JsonSerializer.Serialize(model);
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                    var response = await client.PostAsync("http://localhost:5158/api/User/", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("List", "User", new { area = "Admin" });
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Bir hata oluştu");
+                    }
+
+                }
             }
-            _user.Insert(user);
-            return RedirectToAction("List", "User", new { area = "Admin" });
+            return View(model);
         }
 
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            AppUser user = _user.GetByID(id);
-            return View(user);
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+            if (token != null)
+            {
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                var response = await client.GetAsync($"http://localhost:5158/api/User/{id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonData = await response.Content.ReadAsStringAsync();
+                    var result = JsonSerializer.Deserialize<UpdateUserModel>(jsonData, new JsonSerializerOptions
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    });
+
+                    return View(result);
+                }
+            }
+
+            return RedirectToAction("List", "User", new { area = "Admin" });
         }
 
         [HttpPost]
-        public IActionResult Edit(AppUser user)
+        public async Task<IActionResult> Edit(UpdateUserModel model)
         {
-            _user.Update(user);
+            if (ModelState.IsValid)
+            {
+                var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+                if (token != null)
+                {
+                    var client = _httpClientFactory.CreateClient();
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+
+                    var jsonData = JsonSerializer.Serialize(model);
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                    var response = await client.PutAsync("http://localhost:5158/api/User/", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("List", "User", new { area = "Admin" });
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Bir hata oluştu");
+                    }
+
+                }
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+            if (token != null)
+            {
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                await client.DeleteAsync($"http://localhost:5158/api/User/{id}");
+            }
             return RedirectToAction("List", "User", new { area = "Admin" });
         }
-
-        public IActionResult Delete(int id)
-        {
-            _user.Delete(id);
-            return RedirectToAction("List", "User", new { area = "Admin" });
-        }
-
-
-        public ActionResult Jquery()
-        {
-            List<AppUser> users = _db.Users.ToList();
-            return View(users);
-        }
-
-        public JsonResult GetJson()
-        {
-            List<AppUser> users = _db.Users.ToList();
-            return Json(users);
-        }
-
-        //public ActionResult Jquery()
-        //{
-        //    List<AppUser> users = _db.Users.ToList();
-        //    return View(users);
-        //}
-
-        //public JsonResult GetJson()
-        //{
-        //    List<AppUser> users = _db.Users.ToList();
-        //    return Json(users);
-        //}
-
-        //public IActionResult GetJsonWithAjax()
-        //{
-        //    return View();
-        //}
-
-        //public IActionResult GetJsonWithAjax2()
-        //{
-        //    List<AppUser> users = _db.Users.ToList();
-        //    var usersJson = JsonConvert.SerializeObject(users);
-        //    return Json(usersJson);
-        //}
 
     }
 }

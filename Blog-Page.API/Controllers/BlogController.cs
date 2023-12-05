@@ -41,11 +41,11 @@ namespace Blog_Page.API.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("Delete")]
-        public async Task<IActionResult> DeleteBlog(DeleteBlogCommandRequest request)
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> DeleteBlog(int id)
         {
-            var result = await _mediator.Send(request);
-            return Ok(result);
+            await _mediator.Send(new DeleteBlogCommandRequest(id));
+            return NoContent();
         }
 
         [HttpPut("Update")]

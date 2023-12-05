@@ -1,7 +1,9 @@
 ﻿using Blog_Page.Models;
-using Blog_Page.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text;
+using System.Text.Json;
 
 namespace Blog_Page.Areas.Admin.Controllers
 {
@@ -9,54 +11,142 @@ namespace Blog_Page.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
-        IRepository<Category> _cat;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public CategoryController(IRepository<Category> cat)
+        public CategoryController(IHttpClientFactory httpClientFactory)
         {
-            _cat = cat;
+            _httpClientFactory = httpClientFactory;
         }
 
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            List<Category> cat = _cat.GetAllList();
-            return View(cat);
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+            if (token != null)
+            {
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                var response = await client.GetAsync("http://localhost:5158/api/Category/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonData = await response.Content.ReadAsStringAsync();
+                    var result = JsonSerializer.Deserialize<List<CategoryListModel>>(jsonData, new JsonSerializerOptions
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    });
+
+                    return View(result);
+                }
+            }
+
+            return View();
         }
 
         [HttpGet]
         public IActionResult Insert()
         {
-            return View();
+            return View(new CreateCategoryModel());
         }
 
         [HttpPost]
-        public IActionResult Insert(Category cat)
+        public async Task<IActionResult> Insert(CreateCategoryModel model)
         {
-            if(!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(cat);
+                var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+                if (token != null)
+                {
+                    var client = _httpClientFactory.CreateClient();
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+
+                    var jsonData = JsonSerializer.Serialize(model);
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                    var response = await client.PostAsync("http://localhost:5158/api/Category/", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("List", "Category", new { area = "Admin" });
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Bir hata oluştu");
+                    }
+
+                }
             }
-            _cat.Insert(cat);
-            return RedirectToAction("List", "Category", new { area = "Admin" });
+            return View(model);
         }
 
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            Category cat = _cat.GetByID(id);
-            return View(cat);
-        }
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+            if (token != null)
+            {
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-        [HttpPost]
-        public IActionResult Edit(Category cat)
-        {
-            _cat.Update(cat);
+                var response = await client.GetAsync($"http://localhost:5158/api/Category/{id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonData = await response.Content.ReadAsStringAsync();
+                    var result = JsonSerializer.Deserialize<UpdateCategoryModel>(jsonData, new JsonSerializerOptions
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    });
+
+                    return View(result);
+                }
+            }
+
             return RedirectToAction("List", "Category", new { area = "Admin" });
         }
 
-        public IActionResult Delete(int id)
+        [HttpPost]
+        public async Task<IActionResult> Edit(UpdateCategoryModel model)
         {
-            _cat.Delete(id);
+            if (ModelState.IsValid)
+            {
+                var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+                if (token != null)
+                {
+                    var client = _httpClientFactory.CreateClient();
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+
+                    var jsonData = JsonSerializer.Serialize(model);
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                    var response = await client.PutAsync("http://localhost:5158/api/Category/", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("List", "Category", new { area = "Admin" });
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Bir hata oluştu");
+                    }
+
+                }
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
+            if (token != null)
+            {
+                var client = _httpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                await client.DeleteAsync($"http://localhost:5158/api/Category/{id}");
+            }
             return RedirectToAction("List", "Category", new { area = "Admin" });
         }
     }
