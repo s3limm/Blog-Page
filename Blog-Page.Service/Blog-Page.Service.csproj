@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Blog-Page.Persistance\Blog-Page.Persistance.csproj" />
+  </ItemGroup>
+
 </Project>

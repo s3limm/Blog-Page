@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog_Page.Service.Api.Abstract
 {
-    public interface IRepository<T> where T : class,new()
+    public interface IApiService<T> where T : class,new()
     {
         Task<List<T>> GetAllListAsync();
         Task<T> GetByIdAsync(object id);

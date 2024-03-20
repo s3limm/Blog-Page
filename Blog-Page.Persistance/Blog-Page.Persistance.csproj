@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Blog-Page.Domain\Blog-Page.Domain.csproj" />
-    <ProjectReference Include="..\Blog-Page.Infrastructure\Blog-Page.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

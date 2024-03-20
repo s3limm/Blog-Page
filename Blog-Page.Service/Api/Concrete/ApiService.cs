@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Blog_Page.Service.Api.Concrete
 {
-    public class Repository<T> : IRepository<T> where T : class, new()
+    public class ApiService<T> : IApiService<T> where T : class, new()
     {
         public readonly BlogContext _context;
 
-        public Repository(BlogContext context)
+        public ApiService(BlogContext context)
         {
             _context = context;
         }

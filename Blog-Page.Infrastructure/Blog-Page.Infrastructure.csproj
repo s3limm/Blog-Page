@@ -14,6 +14,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Blog-Page.Domain\Blog-Page.Domain.csproj" />
+    <ProjectReference Include="..\Blog-Page.Persistance\Blog-Page.Persistance.csproj" />
+    <ProjectReference Include="..\Blog-Page.Service\Blog-Page.Service.csproj" />
   </ItemGroup>
 
 </Project>
