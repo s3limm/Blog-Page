@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog_Page.Persistance.Context
+namespace Blog_Page.Domain.Enums
 {
-    internal class BlogDbContext
+    public enum Role
     {
+        Admin = 1, User = 2 
     }
 }

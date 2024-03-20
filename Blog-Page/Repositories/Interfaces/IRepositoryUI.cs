@@ -6,9 +6,9 @@ namespace Blog_Page.Repositories.Interfaces
 {
     public interface IRepositoryUI<T> where T : BaseEntity, new()
     {
-        Task<List<T>> GetAllList();
+        Task<List<T>> GetListAsync();
 
-        Task<T> GetByID(int id);
+        Task<T> GetByIDAsync(int id);
 
     }
 }

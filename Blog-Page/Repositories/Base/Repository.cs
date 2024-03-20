@@ -16,12 +16,12 @@ namespace Blog_Page.Repositories.Base
             _context = context;
         }
 
-        public async Task<List<T>> GetAllList()
+        public async Task<List<T>> GetListAsync()
         {
             return await _context.Set<T>().ToListAsync();
         }
 
-        public async Task<T> GetByID(int id)
+        public async Task<T> GetByIDAsync(int id)
         {
             var data =  await _context.Set<T>().FindAsync(id);
             return (data);

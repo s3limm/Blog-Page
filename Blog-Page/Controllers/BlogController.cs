@@ -15,7 +15,7 @@ namespace Blog_Page.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<Blog> blogs = await _blog.GetAllList();
+            List<Blog> blogs = await _blog.GetListAsync();
             return View(blogs);
         }
 

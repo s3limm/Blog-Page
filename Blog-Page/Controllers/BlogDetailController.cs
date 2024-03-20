@@ -20,8 +20,8 @@ namespace Blog_Page.Controllers
 
         public async Task<IActionResult> Index(int id)
         {
-            Blog blog = await _blog.GetByID(id);
-            var cat = await _category.GetByID(blog.CategoryID);
+            Blog blog = await _blog.GetByIDAsync(id);
+            var cat = await _category.GetByIDAsync(blog.CategoryID);
             blog.Category = cat;
             CategoryListModel catMapped = _mapper.Map<CategoryListModel>(blog.Category);
             BlogListModel blogDetails = _mapper.Map<BlogListModel>(blog);

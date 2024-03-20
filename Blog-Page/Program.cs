@@ -1,5 +1,6 @@
 using AutoMapper;
 using Blog_Page.API.Persistance.Context;
+using Blog_Page.Infrastructure.Middleware;
 using Blog_Page.Mapper;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Base;
@@ -14,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped(typeof(IRepositoryUI<>),typeof(Repository<>));
+builder.Services.AddScoped(typeof(IRepositoryUI<>), typeof(Repository<>));
 
 
 //Authentication and Authorization 
@@ -45,14 +46,15 @@ var configuration = provider.GetRequiredService<IConfiguration>();
 //AutoMapper
 builder.Services.AddAutoMapper(typeof(Program));
 
+
+//RegisterService Middleware
+ServiceMiddleware.RegisterServices();
+
+//Database Migrate Middleware 
+DatabaseMigrator.Migrate();
+
 //Connection
-
 var config = builder.Configuration;
-
-builder.Services.AddDbContext<ApiDbContext>(options =>
-{
-    options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
-});
 
 
 var app = builder.Build();
@@ -65,18 +67,6 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-
-// Migrate latest database changes during startup
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider
-        .GetRequiredService<ApiDbContext>();
-
-    // Here is the migration executed
-    dbContext.Database.Migrate();
-}
-
 
 
 app.UseHttpsRedirection();
