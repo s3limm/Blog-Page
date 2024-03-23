@@ -11,4 +11,14 @@
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Blog-Page.Dtos\Blog\" />
+    <None Remove="Blog-Page.Dtos\Category\" />
+    <None Remove="Blog-Page.Dtos\User\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Blog-Page.Dtos\Blog\" />
+    <Folder Include="Blog-Page.Dtos\Category\" />
+    <Folder Include="Blog-Page.Dtos\User\" />
+  </ItemGroup>
 </Project>

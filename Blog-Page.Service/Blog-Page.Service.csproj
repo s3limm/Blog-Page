@@ -9,6 +9,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Blog-Page.Persistance\Blog-Page.Persistance.csproj" />
+    <ProjectReference Include="..\Blog-Page.Domain\Blog-Page.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Interfaces\" />
+    <None Remove="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
 </Project>

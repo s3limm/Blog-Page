@@ -7,6 +7,8 @@
     <RootNamespace>Blog_Page</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <None Include="Views\About\Index.cshtml" />
     <None Include="Views\Blog\Index.cshtml" />
