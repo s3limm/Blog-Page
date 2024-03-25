@@ -1,4 +1,6 @@
-﻿using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Create;
+﻿using AutoMapper;
+using Blog_Page.API.Core.Application.Dtos.User;
+using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Create;
 using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Delete;
 using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Update;
 using Blog_Page.API.Core.Application.Features.CQRS.Commands.User.Create;
@@ -10,7 +12,13 @@ using Blog_Page.API.Core.Application.Features.CQRS.Queries.Blog.GetBlog;
 using Blog_Page.API.Core.Application.Features.CQRS.Queries.User.CheckUser;
 using Blog_Page.API.Core.Application.Features.CQRS.Queries.User.Get;
 using Blog_Page.API.Core.Application.Features.CQRS.Queries.User.List;
+using Blog_Page.API.Core.Application.Interfaces;
 using Blog_Page.API.Infrastructure.Tools.JwtTokenGenerator;
+using Blog_Page.API.Persistance.Repositories;
+using Blog_Page.Domain.BlogPage.Dtos.User;
+using Blog_Page.Domain.Entities;
+using Blog_Page.Model.User.Request;
+using Blog_Page.Service.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,63 +29,103 @@ namespace Blog_Page.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly IUserService _service;
+        private readonly IMapper _mapper;
 
-        public UserController(IMediator mediator)
+        public UserController(IUserService service)
         {
-            _mediator = mediator;
+            
+            _service = service;
         }
 
-        [HttpGet("List")]
-        public async Task<IActionResult> GetAllUsers()
+        [HttpGet("list")]
+        public async Task<IActionResult> GetListAsync()
         {
-            var result = await _mediator.Send(new GetUserListQueryRequest());
-            return Ok(result);
+            var data = await _service.GetListAsync(); 
+            return Ok(data);
         }
 
-        [HttpGet("Get/{id}")]
-        public async Task<IActionResult> GetUser(int id)
+        [HttpGet("get/{id}")]
+        public async Task<IActionResult> GetAsync(int id)
         {
-            var result = await _mediator.Send(new GetUserQueryRequest(id));
-            return Ok(result);
+            var data = await _service.FindAsync(id);
+            return Ok(data);
         }
 
-        [HttpPost("Create")]
-        public async Task<IActionResult> CreateUser(CreateUserCommandRequest request)
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateAsync(CreateUserRequest request)
         {
-            var result = await _mediator.Send(request);
-            return Ok(result);
+            await _service.CreateAsync(new CreateUserDto
+            {
+                userName = request.userName,
+                Password = request.Password,
+                Email = request.Email,
+                AppRoleId = request.AppRoleId
+            });
+            return Created("", request.userName);
         }
 
-        [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-            await _mediator.Send(new DeleteUserCommandRequest(id));
-            return NoContent();
+            var data = await _service.FindAsync(id);
+            if(data!=null)
+            {
+                await _service.DeleteAsync(data);
+            }
+            return Ok();
         }
 
-        [HttpPut("Update")]
-        public async Task<IActionResult> UpdateUser(UpdateUserCommandRequest request)
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateAsync(UpdateUserRequest request)
         {
-            var result = await _mediator.Send(request);
-            return Ok(result);
+            var data = await _service.FindAsync(request.Id);
+            if(data!=null)
+            {
+                data.userName = request.userName;
+                data.Password = request.Password;
+                data.Email = request.Email;
+                //data.AppRoleId = (AppRole)request.Role;
+            }
+            var mappedData = _mapper.Map<UpdateUserDto>(data);
+            await _service.UpdateAsync(mappedData);
+            return Ok(data.userName);
         }
 
 
 
-        [HttpPost("Register")]
-        public async Task<IActionResult> Register(RegisterUserCommandRequest request)
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(CreateUserDto request)
         {
-            await _mediator.Send(request);
-            return Created("", request.UserName);
+            await _service.CreateAsync(new CreateUserDto
+            {
+                userName = request.userName,
+                Password = request.Password,
+                Email = request.Email,
+                AppRoleId = request.AppRoleId
+            });
+            return Created("", request.userName);
         }
 
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
 
-        public async Task<IActionResult> Login(CheckUserQueryRequest request)
+        public async Task<IActionResult> Login(CheckUserRequest request)
         {
-            var dto = await _mediator.Send(request);
+            var dto = new CheckUserDto();
+            var user = await _service.GetByFilterAsync(x => x.userName == request.UserName && x.Password == request.Password);
+            if (user == null)
+            {
+                dto.IsExist = false;
+            }
+            else
+            {
+                dto.IsExist = true;
+                dto.UserName = user.userName;
+                dto.Password = user.Password;
+                //var role = await this._service.GetByFilterAsync(x => x.AppRoleId == user.AppRoleId);
+                //dto.Role = role?.definition;
+            }
 
             if (dto != null)
             {

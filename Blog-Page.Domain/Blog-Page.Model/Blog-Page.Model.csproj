@@ -12,7 +12,6 @@
     <None Remove="Blog\Request\" />
     <None Remove="Category\" />
     <None Remove="Category\Request\" />
-    <None Remove="BaseModel\" />
     <None Remove="User\" />
     <None Remove="User\Request\" />
   </ItemGroup>
@@ -21,7 +20,6 @@
     <Folder Include="Blog\Request\" />
     <Folder Include="Category\" />
     <Folder Include="Category\Request\" />
-    <Folder Include="BaseModel\" />
     <Folder Include="User\" />
     <Folder Include="User\Request\" />
   </ItemGroup>

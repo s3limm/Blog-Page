@@ -1,5 +1,6 @@
 ﻿using Blog_Page.API.Core.Application.Dtos.Token;
 using Blog_Page.API.Core.Application.Dtos.User;
+using Blog_Page.Domain.BlogPage.Dtos.User;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -9,7 +10,7 @@ namespace Blog_Page.API.Infrastructure.Tools.JwtTokenGenerator
 {
     public class JwtTokenGenerator
     {
-        public static TokenResponseDto GenerateToken(UserResponseDto dto)
+        public static TokenResponseDto GenerateToken(CheckUserDto dto)
         {
             var claims = new List<Claim>();
 

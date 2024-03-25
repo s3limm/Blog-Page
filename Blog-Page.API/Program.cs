@@ -1,15 +1,16 @@
 using Blog_Page.API.Core.Application.Interfaces;
-using Blog_Page.API.Persistance.Context;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using AutoMapper;
-using Blog_Page.API.Core.Application.Mappings;
 using Blog_Page.API.Persistance.Repositories;
 using Blog_Page.API.Infrastructure.Tools.JwtTokenDefaults;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Blog_Page.Persistance.Context;
+using Blog_Page.Service.Mappings.AutoMapper;
+using Blog_Page.Infrastructure.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,9 +23,9 @@ builder.Services.AddSwaggerGen();
 
 var config = builder.Configuration;
 
-builder.Services.AddDbContext<ApiDbContext>(opt =>
+builder.Services.AddDbContext<BlogContext>(opt =>
 {
-    opt.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+    opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=BlogDb;Trusted_Connection=True;TrustServerCertificate=True");
 });
 
 
@@ -33,9 +34,11 @@ builder.Services.AddControllers().AddNewtonsoftJson(opt =>
     opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 });
 
+//RegisterService Middleware
+ServiceMiddleware.RegisterServices();
 
-builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+//Database Migrate Middleware 
+DatabaseMigrator.Migrate();
 
 builder.Services.AddAutoMapper(opt =>
 {

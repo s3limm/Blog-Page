@@ -7,9 +7,9 @@ namespace Blog_Page.API.Persistance.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class, new()
     {
-        private readonly ApiDbContext _context;
+        private readonly BlogContext _context;
 
-        public Repository(ApiDbContext context)
+        public Repository(BlogContext context)
         {
             _context = context;
         }

@@ -17,10 +17,10 @@ namespace Blog_Page.API.Core.Application.Features.CQRS.Handlers.BlogHandler.Upda
         public async Task<Unit> Handle(UpdateBlogCommandRequest request, CancellationToken cancellationToken)
         {
             var data = await _repository.GetByIdAsync(request.ID);
-            if(data != null)
+            if (data != null)
             {
                 data.CategoryID = request.CategoryID;
-                    data.Description = request.Description;
+                data.Description = request.Description;
                 data.Content = request.Content;
                 data.Title = request.Title;
             }

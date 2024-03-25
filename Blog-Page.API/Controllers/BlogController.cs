@@ -1,8 +1,15 @@
-﻿using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Create;
+﻿using System;
+using System.Data;
+using AutoMapper;
+using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Create;
 using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Delete;
 using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Update;
 using Blog_Page.API.Core.Application.Features.CQRS.Queries.Blog.BlogList;
 using Blog_Page.API.Core.Application.Features.CQRS.Queries.Blog.GetBlog;
+using Blog_Page.Domain.BlogPage.Dtos.Blog;
+using Blog_Page.Domain.Enums;
+using Blog_Page.Model.Blog.Request;
+using Blog_Page.Service.Api.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,46 +20,70 @@ namespace Blog_Page.API.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly IBlogService _service;
+        private readonly IMapper _mapper;
 
-        public BlogController(IMediator mediator)
+        public BlogController(IBlogService service, IMapper mapper)
         {
-            _mediator = mediator;
+            _service = service;
+            _mapper = mapper;
         }
 
-        [HttpGet("List")]
-        public async Task<IActionResult> GetAllBlogs()
+        [HttpGet("list")]
+        public async Task<IActionResult> GetListAsync()
         {
-            var result = await _mediator.Send(new GetBlogListQueryRequest());
+            var result = await _service.GetListAsync();
             return Ok(result);
         }
 
-        [HttpGet("Get/{id}")]
-        public async Task<IActionResult> GetBlog(int id)
+        [HttpGet("get/{id}")]
+        public async Task<IActionResult> GetAsync([FromBody] int id)
         {
-            var result = await _mediator.Send(new GetBlogByIdQueryRequest(id));
+            var result = await _service.FindAsync(id);
             return Ok(result);
         }
 
-        [HttpPost("Create")]
-        public async Task<IActionResult> CreateBlog(CreateBlogCommandRequest request)
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateAsync([FromBody] CreateBlogRequest request)
         {
-            var result = await _mediator.Send(request);
-            return Ok(result);
+            await _service.CreateAsync(new CreateBlogDto
+            {
+                Title = request.Title,
+                Description = request.Description,
+                Content = request.Content,
+                CategoryID = request.CategoryID,
+                CreatedDate = DateTime.UtcNow,
+                Status = Status.Inserted
+            });
+            return Ok();
         }
 
-        [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> DeleteBlog(int id)
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-            await _mediator.Send(new DeleteBlogCommandRequest(id));
+            var data = await _service.FindAsync(id);
+
+            if(data != null)
+            {
+                await _service.DeleteAsync(data);
+            }
             return NoContent();
         }
 
-        [HttpPut("Update")]
-        public async Task<IActionResult> UpdateBlog(UpdateBlogCommandRequest request)
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateAsync(UpdateBlogRequest request)
         {
-            var result = await _mediator.Send(request);
-            return Ok(result);
+            var data = await _service.FindAsync(request.ID);
+            if(data!=null)
+            {
+                data.Title = request.Title;
+                data.Description = request.Description;
+                data.Content = request.Content;
+                data.CategoryID = request.CategoryID;
+            }
+            var mappedData = _mapper.Map<UpdateBlogDto>(data);
+            await _service.UpdateAsync(mappedData);
+            return Ok();
         }
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog_Page.API.Persistance.Migrations
 {
-    [DbContext(typeof(ApiDbContext))]
+    [DbContext(typeof(BlogContext))]
     partial class ApiDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

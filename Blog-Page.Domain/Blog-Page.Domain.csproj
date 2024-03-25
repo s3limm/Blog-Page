@@ -15,10 +15,12 @@
     <None Remove="Blog-Page.Dtos\Blog\" />
     <None Remove="Blog-Page.Dtos\Category\" />
     <None Remove="Blog-Page.Dtos\User\" />
+    <None Remove="Blog-Page.Dtos\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Blog-Page.Dtos\Blog\" />
     <Folder Include="Blog-Page.Dtos\Category\" />
     <Folder Include="Blog-Page.Dtos\User\" />
+    <Folder Include="Blog-Page.Dtos\Base\" />
   </ItemGroup>
 </Project>

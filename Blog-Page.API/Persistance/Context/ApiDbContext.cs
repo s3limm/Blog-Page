@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blog_Page.API.Persistance.Context
 {
-    public class ApiDbContext : DbContext
+    public class BlogContext : DbContext
     {
-        public ApiDbContext()
+        public BlogContext()
         {
 
         }
 
-        public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
+        public BlogContext(DbContextOptions<BlogContext> options) : base(options)
         {
 
         }

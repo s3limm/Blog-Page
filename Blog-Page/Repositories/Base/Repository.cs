@@ -9,9 +9,9 @@ namespace Blog_Page.Repositories.Base
 {
     public class Repository<T> : IRepositoryUI<T> where T : BaseEntity, new()
     {
-        private readonly ApiDbContext _context;
+        private readonly BlogContext _context;
 
-        public Repository(ApiDbContext context)
+        public Repository(BlogContext context)
         {
             _context = context;
         }
