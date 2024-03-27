@@ -9,7 +9,7 @@ using Blog_Page.API.Core.Application.Features.CQRS.Queries.Blog.GetBlog;
 using Blog_Page.Domain.BlogPage.Dtos.Blog;
 using Blog_Page.Domain.Enums;
 using Blog_Page.Model.Blog.Request;
-using Blog_Page.Service.Api.Interfaces;
+using Blog_Page.Service.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

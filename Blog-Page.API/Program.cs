@@ -1,16 +1,14 @@
-using Blog_Page.API.Core.Application.Interfaces;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
-using AutoMapper;
 using Blog_Page.API.Persistance.Repositories;
 using Blog_Page.API.Infrastructure.Tools.JwtTokenDefaults;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Blog_Page.Persistance.Context;
-using Blog_Page.Service.Mappings.AutoMapper;
 using Blog_Page.Infrastructure.Middleware;
+using AutoMapper;
+using Blog_Page.Service.Mappings.AutoMappers;
+using Blog_Page.Service.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,15 +38,15 @@ ServiceMiddleware.RegisterServices();
 //Database Migrate Middleware 
 DatabaseMigrator.Migrate();
 
-builder.Services.AddAutoMapper(opt =>
+//AutoMapper Configuration
+var profiles = ProfileHelper.GetProfiles();
+var mapConfiguration = new MapperConfiguration(opt =>
 {
-    opt.AddProfiles(new List<Profile>()
-    {
-        new BlogProfile(),
-        new CategoryProfile(),
-        new UserProfile()
-    });
+    opt.AddProfiles(profiles);
 });
+var mapper = mapConfiguration.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {

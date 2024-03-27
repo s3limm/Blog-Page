@@ -1,10 +1,10 @@
 using AutoMapper;
-using Blog_Page.API.Persistance.Context;
 using Blog_Page.Infrastructure.Middleware;
-using Blog_Page.Mapper;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Base;
 using Blog_Page.Repositories.Interfaces;
+using Blog_Page.Service.Helpers;
+using Blog_Page.Service.Mappings.AutoMappers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -30,28 +30,24 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
     opt.Cookie.Name = "UdemyJwtCookie";
 });
 
-builder.Services.AddAutoMapper(opt =>
-opt.AddProfiles(new List<Profile>()
-{
-    new BlogProfile(),
-    new CategoryProfile()
-})
-);
-
-
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();
-
-
-//AutoMapper
-builder.Services.AddAutoMapper(typeof(Program));
-
 
 //RegisterService Middleware
 ServiceMiddleware.RegisterServices();
 
 //Database Migrate Middleware 
 DatabaseMigrator.Migrate();
+
+//AutoMapper Configuration
+var profiles = ProfileHelper.GetProfiles();
+var mapConfiguration = new MapperConfiguration(opt =>
+{
+    opt.AddProfiles(profiles);
+});
+var mapper = mapConfiguration.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
 
 //Connection
 var config = builder.Configuration;

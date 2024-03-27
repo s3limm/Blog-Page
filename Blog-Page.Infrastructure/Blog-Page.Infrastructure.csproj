@@ -1,21 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>Blog_Page.Infrastructure</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+		<RootNamespace>Blog_Page.Infrastructure</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.17" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.17" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Blog-Page.Domain\Blog-Page.Domain.csproj" />
-    <ProjectReference Include="..\Blog-Page.Persistance\Blog-Page.Persistance.csproj" />
-    <ProjectReference Include="..\Blog-Page.Service\Blog-Page.Service.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Blog-Page.Domain\Blog-Page.Domain.csproj" />
+		<ProjectReference Include="..\Blog-Page.Persistance\Blog-Page.Persistance.csproj" />
+		<ProjectReference Include="..\Blog-Page.Service\Blog-Page.Service.csproj" />
+	</ItemGroup>
 
 </Project>

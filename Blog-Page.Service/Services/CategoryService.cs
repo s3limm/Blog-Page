@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blog_Page.Service.Services
 {
-    public class CategoryService<T> : ICategoryService
+    public class CategoryService<T> : ICategoryService<T>
     {
         private readonly BlogContext _context;
         private readonly IMapper _mapper;

@@ -3,7 +3,7 @@ using AutoMapper;
 using Blog_Page.Domain.BlogPage.Dtos.Category;
 using Blog_Page.Domain.Entities;
 
-namespace Blog_Page.Service.Mappings.AutoMapper
+namespace Blog_Page.Service.Mappings.AutoMappers
 {
 	public class CategoryProfile:Profile
 	{

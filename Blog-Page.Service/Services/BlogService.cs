@@ -3,7 +3,7 @@ using Blog_Page.Domain.BlogPage.Dtos.Blog;
 using Blog_Page.Domain.Entities;
 using Blog_Page.Model.Blog.Request;
 using Blog_Page.Persistance.Context;
-using Blog_Page.Service.Api.Interfaces;
+using Blog_Page.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,9 +12,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog_Page.Service.Api.Concrete
+namespace Blog_Page.Service.Services
 {
-    public class BlogService<T> : IBlogService
+    public class BlogService<T> : IBlogService<T>
     {
         public readonly BlogContext _context;
         private readonly IMapper _mapper;

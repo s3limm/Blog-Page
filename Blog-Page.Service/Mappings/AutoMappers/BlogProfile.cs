@@ -4,7 +4,7 @@ using Blog_Page.Domain.BlogPage.Dtos.Blog;
 using Blog_Page.Domain.Entities;
 using Blog_Page.Model.Blog.Request;
 
-namespace Blog_Page.Service.Mappings.AutoMapper
+namespace Blog_Page.Service.Mappings.AutoMappers
 {
 	public class BlogProfile:Profile
 	{

@@ -6,7 +6,7 @@ using Blog_Page.Model.Category.Request;
 
 namespace Blog_Page.Service.Interfaces
 {
-	public interface ICategoryService
+	public interface ICategoryService<T>
 	{
 		Task<List<CategoryListDto>> GetListAsync();
 		Task<CategoryListDto> FindAsync(int id);

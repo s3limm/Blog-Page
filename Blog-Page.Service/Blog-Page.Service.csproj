@@ -1,31 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>Blog_Page.Service</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+		<RootNamespace>Blog_Page.Service</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Blog-Page.Persistance\Blog-Page.Persistance.csproj" />
-    <ProjectReference Include="..\Blog-Page.Domain\Blog-Page.Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Blog-Page.Persistance\Blog-Page.Persistance.csproj" />
+		<ProjectReference Include="..\Blog-Page.Domain\Blog-Page.Domain.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Interfaces\" />
-    <None Remove="Services\" />
-    <None Remove="Mappings\" />
-    <None Remove="Mappings\AutoMapper\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
-    <Folder Include="Mappings\" />
-    <Folder Include="Mappings\AutoMapper\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Interfaces\" />
+		<None Remove="Services\" />
+		<None Remove="Mappings\" />
+		<None Remove="Mappings\AutoMapper\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Interfaces\" />
+		<Folder Include="Services\" />
+		<Folder Include="Mappings\AutoMappers\" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+	</ItemGroup>
 </Project>

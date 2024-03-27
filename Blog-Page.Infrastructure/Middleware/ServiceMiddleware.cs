@@ -1,8 +1,6 @@
 ﻿using Blog_Page.Persistance.Context;
-using Blog_Page.Service.Api.Abstract;
-using Blog_Page.Service.Api.Concrete;
-using Blog_Page.Service.Application.Abstract;
-using Blog_Page.Service.Application.Concrete;
+using Blog_Page.Service.Interfaces;
+using Blog_Page.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -31,8 +29,9 @@ namespace Blog_Page.Infrastructure.Middleware
             {
                 opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=BlogDb;Trusted_Connection=True;TrustServerCertificate=True");
             });
-            services.AddScoped(typeof(IApiService<>), typeof(ApiService<>));
-            services.AddScoped(typeof(IApplicationService<>), typeof(ApplicationService<>));
+            services.AddScoped(typeof(IBlogService<>), typeof(BlogService<>));
+            services.AddScoped(typeof(ICategoryService<>), typeof(CategoryService<>));
+            services.AddScoped(typeof(IUserService<>), typeof(UserService<>));
 
             serviceProvider = services.BuildServiceProvider();
         }
@@ -44,8 +43,9 @@ namespace Blog_Page.Infrastructure.Middleware
             {
                 opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=BlogDb;Trusted_Connection=True;TrustServerCertificate=True");
             });
-            services.AddScoped(typeof(IApiService<>), typeof(ApiService<>));
-            services.AddScoped(typeof(IApplicationService<>), typeof(ApplicationService<>));
+            services.AddScoped(typeof(IBlogService<>), typeof(BlogService<>));
+            services.AddScoped(typeof(ICategoryService<>), typeof(CategoryService<>));
+            services.AddScoped(typeof(IUserService<>), typeof(UserService<>));
 
             serviceProvider = services.BuildServiceProvider();
         }

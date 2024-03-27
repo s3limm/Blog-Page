@@ -1,32 +1,34 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>Blog_Page.Model</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+		<RootNamespace>Blog_Page.Model</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Blog\" />
-    <None Remove="Blog\Request\" />
-    <None Remove="Category\" />
-    <None Remove="Category\Request\" />
-    <None Remove="User\" />
-    <None Remove="User\Request\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Blog\" />
-    <Folder Include="Blog\Request\" />
-    <Folder Include="Category\" />
-    <Folder Include="Category\Request\" />
-    <Folder Include="User\" />
-    <Folder Include="User\Request\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Blog-Page.Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Blog\" />
+		<None Remove="Blog\Request\" />
+		<None Remove="Category\" />
+		<None Remove="Category\Request\" />
+		<None Remove="User\" />
+		<None Remove="User\Request\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Blog\" />
+		<Folder Include="Blog\Request\" />
+		<Folder Include="Category\" />
+		<Folder Include="Category\Request\" />
+		<Folder Include="User\" />
+		<Folder Include="User\Request\" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Blog-Page.Domain.csproj" />
+	</ItemGroup>
 </Project>
