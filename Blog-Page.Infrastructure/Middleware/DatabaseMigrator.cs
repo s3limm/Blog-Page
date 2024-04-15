@@ -12,8 +12,8 @@ namespace Blog_Page.Infrastructure.Middleware
     {
         public static void Migrate()
         {
-            var context = ServiceMiddleware.GetService<BlogContext>();
-            context.Database.Migrate();
+           ///* var context = ServiceMiddleware.*/GetService<BlogContext>();
+            //context.Database.Migrate();
         }
     }
 }

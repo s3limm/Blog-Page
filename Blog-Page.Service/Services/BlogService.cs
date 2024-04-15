@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Blog_Page.Service.Services
 {
-    public class BlogService<T> : IBlogService<T>
+    public class BlogService : IBlogService
     {
         public readonly BlogContext _context;
         private readonly IMapper _mapper;

@@ -34,7 +34,6 @@ namespace Blog_Page.API.Controllers
 
         public UserController(IUserService service)
         {
-            
             _service = service;
         }
 

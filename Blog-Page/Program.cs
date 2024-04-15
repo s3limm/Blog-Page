@@ -1,10 +1,13 @@
 using AutoMapper;
+using Blog_Page.API.Persistance.Context;
 using Blog_Page.Infrastructure.Middleware;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Base;
 using Blog_Page.Repositories.Interfaces;
 using Blog_Page.Service.Helpers;
+using Blog_Page.Service.Interfaces;
 using Blog_Page.Service.Mappings.AutoMappers;
+using Blog_Page.Service.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -33,11 +36,22 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();
 
+
+
+builder.Services.AddDbContext<BlogContext>(opt =>
+{
+    opt.UseSqlServer("Server=localhost;Database=BlogDb;User Id=SA;Password=reallyStrongPwd123");
+});
+builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+
 //RegisterService Middleware
-ServiceMiddleware.RegisterServices();
+//ServiceMiddleware.RegisterServices();
 
 //Database Migrate Middleware 
-DatabaseMigrator.Migrate();
+//DatabaseMigrator.Migrate();
 
 //AutoMapper Configuration
 var profiles = ProfileHelper.GetProfiles();

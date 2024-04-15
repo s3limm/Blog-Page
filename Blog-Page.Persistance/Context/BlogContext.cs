@@ -26,7 +26,7 @@ namespace Blog_Page.Persistance.Context
         {
             if (!optionsBuilder.IsConfigured)
                 optionsBuilder.UseSqlServer(
-                    "Server=.\\SQLEXPRESS;Database=BlogDb;Trusted_Connection=True;TrustServerCertificate=True");
+                    "Server=localhost;Database=BlogDb;User Id=SA;Password=reallyStrongPwd123");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -6,7 +6,7 @@ using Blog_Page.Model.Blog.Request;
 
 namespace Blog_Page.Service.Interfaces
 {
-	public interface IBlogService<T>
+	public interface IBlogService
 	{
 		Task<List<BlogListDto>> GetListAsync();
         Task<Blog> GetByFilterAsync(Expression<Func<Blog, bool>> filter);

@@ -9,6 +9,8 @@ using Blog_Page.Infrastructure.Middleware;
 using AutoMapper;
 using Blog_Page.Service.Mappings.AutoMappers;
 using Blog_Page.Service.Helpers;
+using Blog_Page.Service.Interfaces;
+using Blog_Page.Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,10 +23,21 @@ builder.Services.AddSwaggerGen();
 
 var config = builder.Configuration;
 
+//builder.Services.AddDbContext<BlogContext>(opt =>
+//{
+//    opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=BlogDb;Trusted_Connection=True;TrustServerCertificate=True");
+//});
+
+
 builder.Services.AddDbContext<BlogContext>(opt =>
 {
-    opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=BlogDb;Trusted_Connection=True;TrustServerCertificate=True");
+    opt.UseSqlServer("Server=localhost;Database=BlogDb;User Id=SA;Password=reallyStrongPwd123");
 });
+builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+
 
 
 builder.Services.AddControllers().AddNewtonsoftJson(opt =>
@@ -33,10 +46,10 @@ builder.Services.AddControllers().AddNewtonsoftJson(opt =>
 });
 
 //RegisterService Middleware
-ServiceMiddleware.RegisterServices();
+//ServiceMiddleware.RegisterServices();
 
 //Database Migrate Middleware 
-DatabaseMigrator.Migrate();
+//DatabaseMigrator.Migrate();
 
 //AutoMapper Configuration
 var profiles = ProfileHelper.GetProfiles();

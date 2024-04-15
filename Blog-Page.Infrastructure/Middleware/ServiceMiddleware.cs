@@ -17,38 +17,24 @@ namespace Blog_Page.Infrastructure.Middleware
         public static IServiceProvider serviceProvider { get; set; }
         public static IServiceCollection services{ get; set; }
 
-        public static T GetService<T>()  where T : notnull //DI Bağımlılıkların düzenlenmesi için kullanılır.
-        {
-            return serviceProvider.GetRequiredService<T>();
-        }
+        //public static void RegisterServices()
+        //{
+        //    services = new ServiceCollection();
+        //    services.AddDbContext<BlogContext>(opt =>
+        //    {
+        //        opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=BlogDb;Trusted_Connection=True;TrustServerCertificate=True");
+        //    });
+        //    services.AddScoped<IBlogService,BlogService>();
+        //    services.AddScoped<ICategoryService, CategoryService>();
+        //    services.AddScoped<IUserService, UserService>();
 
-        public static void RegisterServices()
-        {
-            services = new ServiceCollection();
-            services.AddDbContext<BlogContext>(opt =>
-            {
-                opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=BlogDb;Trusted_Connection=True;TrustServerCertificate=True");
-            });
-            services.AddScoped(typeof(IBlogService<>), typeof(BlogService<>));
-            services.AddScoped(typeof(ICategoryService<>), typeof(CategoryService<>));
-            services.AddScoped(typeof(IUserService<>), typeof(UserService<>));
+        //    serviceProvider = services.BuildServiceProvider();
+        //}
 
-            serviceProvider = services.BuildServiceProvider();
-        }
 
-        public static void RegisterServices(IServiceCollection services)
-        {
-            services = new ServiceCollection();
-            services.AddDbContext<BlogContext>(opt =>
-            {
-                opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=BlogDb;Trusted_Connection=True;TrustServerCertificate=True");
-            });
-            services.AddScoped(typeof(IBlogService<>), typeof(BlogService<>));
-            services.AddScoped(typeof(ICategoryService<>), typeof(CategoryService<>));
-            services.AddScoped(typeof(IUserService<>), typeof(UserService<>));
-
-            serviceProvider = services.BuildServiceProvider();
-        }
-
+        //public static T GetService<T>() where T : notnull //DI Bağımlılıkların düzenlenmesi için kullanılır.
+        //{
+        //    return serviceProvider.GetRequiredService<T>();
+        //}
     }
 }

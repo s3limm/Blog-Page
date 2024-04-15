@@ -6,7 +6,7 @@ using Blog_Page.Model.User.Request;
 
 namespace Blog_Page.Service.Interfaces
 {
-	public interface IUserService<T>
+	public interface IUserService
 	{
         Task<List<UserListDto>> GetListAsync();
         Task<AppUser> GetByFilterAsync(Expression<Func<AppUser, bool>> filter);
