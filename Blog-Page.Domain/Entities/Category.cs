@@ -9,6 +9,7 @@ namespace Blog_Page.Domain.Entities
 {
     public class Category:BaseEntity
     {
+        
         public int ID { get; set; }
 
         [Required(ErrorMessage = "Lütfen bir kategori adı giriniz.")]

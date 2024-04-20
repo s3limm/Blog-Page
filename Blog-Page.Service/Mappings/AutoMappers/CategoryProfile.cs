@@ -12,6 +12,7 @@ namespace Blog_Page.Service.Mappings.AutoMappers
             CreateMap<Category, CategoryListDto>().ReverseMap();
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();
+			CreateMap<CategoryListDto , UpdateCategoryDto>().ReverseMap();
         }
 	}
 }

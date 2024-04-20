@@ -16,10 +16,10 @@ namespace Blog_Page.Service.Services
 {
     public class BlogService : IBlogService
     {
-        public readonly BlogContext _context;
+        public readonly BlogDbContext _context;
         private readonly IMapper _mapper;
 
-        public BlogService(BlogContext context, IMapper mapper)
+        public BlogService(BlogDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

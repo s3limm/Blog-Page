@@ -12,10 +12,10 @@ namespace Blog_Page.Service.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly BlogContext _context;
+        private readonly BlogDbContext _context;
         private readonly IMapper _mapper;
 
-        public CategoryService(BlogContext context, IMapper mapper)
+        public CategoryService(BlogDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -43,15 +43,15 @@ namespace Blog_Page.Service.Services
 
         public async Task<CategoryListDto> FindAsync(int id)
         {
-            var entity = GetByFilterAsync(x => x.ID == id);
+            var entity = await _context.Set<Category>().FindAsync(id);
             var mappedData = _mapper.Map<CategoryListDto>(entity);
-            return mappedData;
+             return mappedData;
         }
 
-        public async Task<Category> GetByFilterAsync(Expression<Func<Category, bool>> filter)
-        {
-            return await _context.Set<Category>().AsNoTracking().SingleOrDefaultAsync(filter);
-        }
+        //public async Task<Category> GetByFilterAsync(Expression<Func<Category, bool>> filter)
+        //{
+        //    return await _context.Set<Category>().AsNoTracking().SingleOrDefaultAsync(filter);
+        //}
 
         public async Task<CategoryListDto> GetAsync(int id)
         {

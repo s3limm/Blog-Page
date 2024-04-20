@@ -12,10 +12,10 @@ namespace Blog_Page.Service.Services
 {
     public class UserService : IUserService
     {
-        private readonly BlogContext _context;
+        private readonly BlogDbContext _context;
         private readonly IMapper _mapper;
 
-        public UserService(BlogContext context, IMapper mapper)
+        public UserService(BlogDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

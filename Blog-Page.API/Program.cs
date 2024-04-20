@@ -29,9 +29,9 @@ var config = builder.Configuration;
 //});
 
 
-builder.Services.AddDbContext<BlogContext>(opt =>
+builder.Services.AddDbContext<BlogDbContext>(opt =>
 {
-    opt.UseSqlServer("Server=localhost;Database=BlogDb;User Id=SA;Password=reallyStrongPwd123");
+    opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=blogdb;Trusted_Connection=True;TrustServerCertificate=True");
 });
 builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -59,6 +59,7 @@ var mapConfiguration = new MapperConfiguration(opt =>
 });
 var mapper = mapConfiguration.CreateMapper();
 builder.Services.AddSingleton(mapper);
+
 
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>

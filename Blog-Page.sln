@@ -12,6 +12,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{725FD794-413E-44E2-B147-CEC3866B5D53}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistance", "Persistance", "{AD490B8E-11DC-45FE-A274-C82FC22E4504}"
+	ProjectSection(SolutionItems) = preProject
+		Blog-Page.API\appsettings.Development.json = Blog-Page.API\appsettings.Development.json
+		Blog-Page.API\appsettings.json = Blog-Page.API\appsettings.json
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{86A60765-4024-451A-9CBE-E9C200C8402E}"
 EndProject

@@ -40,7 +40,7 @@ var configuration = provider.GetRequiredService<IConfiguration>();
 
 builder.Services.AddDbContext<BlogContext>(opt =>
 {
-    opt.UseSqlServer("Server=localhost;Database=BlogDb;User Id=SA;Password=reallyStrongPwd123");
+    opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=blogdb;Trusted_Connection=True;TrustServerCertificate=True");
 });
 builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();

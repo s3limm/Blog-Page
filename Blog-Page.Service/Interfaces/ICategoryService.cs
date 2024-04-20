@@ -10,7 +10,7 @@ namespace Blog_Page.Service.Interfaces
 	{
 		Task<List<CategoryListDto>> GetListAsync();
 		Task<CategoryListDto> FindAsync(int id);
-        Task<Category> GetByFilterAsync(Expression<Func<Category, bool>> filter);
+        //Task<Category> GetByFilterAsync(Expression<Func<Category, bool>> filter);
         Task CreateAsync(CreateCategoryDto dto);
 		Task UpdateAsync(UpdateCategoryDto dto);
         Task DeleteAsync(CategoryListDto dto);
