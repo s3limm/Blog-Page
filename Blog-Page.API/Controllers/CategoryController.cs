@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Delete;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.Category.Create;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.Category.Delete;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.Category.Update;
-using Blog_Page.API.Core.Application.Features.CQRS.Queries.Category.Get;
-using Blog_Page.API.Core.Application.Features.CQRS.Queries.Category.List;
 using Blog_Page.Domain.BlogPage.Dtos.Category;
+using Blog_Page.Domain.Entities;
 using Blog_Page.Model.Category.Request;
 using Blog_Page.Service.Interfaces;
+using Blog_Page.Service.Services;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +14,10 @@ namespace Blog_Page.API.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryService _service;
+        private readonly IRepository<Category> _service;
         private readonly IMapper _mapper;
 
-        public CategoryController(IMapper mapper, ICategoryService service)
+        public CategoryController(IMapper mapper, IRepository<Category> service)
         {
 
             _mapper = mapper;
@@ -38,14 +34,14 @@ namespace Blog_Page.API.Controllers
         [HttpGet("get/{id}")]
         public async Task<IActionResult> GetAsync(int id)
         {
-            var data = await _service.FindAsync(id);
+            var data = await _service.GetAsync(id);
             return Ok(data);
         }
 
         [HttpPost("create")]
         public async Task<IActionResult> CreateAsync(CreateCategoryRequest request)
         {
-            await _service.CreateAsync(new CreateCategoryDto
+            await _service.CreateAsync(new Category
             {
                 CategoryName = request.CategoryName
             });
@@ -55,7 +51,7 @@ namespace Blog_Page.API.Controllers
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            var data = await _service.FindAsync(id);
+            var data = await _service.GetAsync(id);
             if(data != null)
             {
                 await _service.DeleteAsync(data);
@@ -64,15 +60,14 @@ namespace Blog_Page.API.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> UpdateAsync(UpdateCategoryCommandRequest request)
+        public async Task<IActionResult> UpdateAsync(UpdateCategoryRequest request)
         {
-            var data = await _service.FindAsync(request.Id);
-            if(data!=null)
+            var entity = await _service.GetAsync(request.Id);
+            if(entity!= null)
             {
-                data.CategoryName = request.CategoryName;
-            };
-            var mappedData = _mapper.Map<UpdateCategoryDto>(data);
-            await _service.UpdateAsync(mappedData);
+                entity.CategoryName = request.CategoryName;
+            }
+            await _service.UpdateAsync(entity);
             return Ok(request.CategoryName);
         }
     }

@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Blog_Page.API.Persistance.Repositories;
 using Blog_Page.API.Infrastructure.Tools.JwtTokenDefaults;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -33,9 +32,8 @@ builder.Services.AddDbContext<BlogDbContext>(opt =>
 {
     opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=blogdb;Trusted_Connection=True;TrustServerCertificate=True");
 });
-builder.Services.AddScoped<IBlogService, BlogService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
 
 
 

@@ -21,8 +21,6 @@
 		<None Remove="Mappings\AutoMapper\" />
 	</ItemGroup>
 	<ItemGroup>
-		<Folder Include="Interfaces\" />
-		<Folder Include="Services\" />
 		<Folder Include="Mappings\AutoMappers\" />
 	</ItemGroup>
 	<ItemGroup>

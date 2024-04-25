@@ -1,24 +1,10 @@
 ﻿using AutoMapper;
-using Blog_Page.API.Core.Application.Dtos.User;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Create;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Delete;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Update;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.User.Create;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.User.Delete;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.User.Register;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.User.Update;
-using Blog_Page.API.Core.Application.Features.CQRS.Queries.Blog.BlogList;
-using Blog_Page.API.Core.Application.Features.CQRS.Queries.Blog.GetBlog;
-using Blog_Page.API.Core.Application.Features.CQRS.Queries.User.CheckUser;
-using Blog_Page.API.Core.Application.Features.CQRS.Queries.User.Get;
-using Blog_Page.API.Core.Application.Features.CQRS.Queries.User.List;
-using Blog_Page.API.Core.Application.Interfaces;
 using Blog_Page.API.Infrastructure.Tools.JwtTokenGenerator;
-using Blog_Page.API.Persistance.Repositories;
 using Blog_Page.Domain.BlogPage.Dtos.User;
 using Blog_Page.Domain.Entities;
 using Blog_Page.Model.User.Request;
 using Blog_Page.Service.Interfaces;
+using Blog_Page.Service.Services;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,10 +15,10 @@ namespace Blog_Page.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _service;
+        private readonly IRepository<AppUser> _service;
         private readonly IMapper _mapper;
 
-        public UserController(IUserService service)
+        public UserController(IRepository<AppUser> service)
         {
             _service = service;
         }
@@ -47,14 +33,14 @@ namespace Blog_Page.API.Controllers
         [HttpGet("get/{id}")]
         public async Task<IActionResult> GetAsync(int id)
         {
-            var data = await _service.FindAsync(id);
+            var data = await _service.GetAsync(id);
             return Ok(data);
         }
 
         [HttpPost("create")]
         public async Task<IActionResult> CreateAsync(CreateUserRequest request)
         {
-            await _service.CreateAsync(new CreateUserDto
+            await _service.CreateAsync(new AppUser
             {
                 userName = request.userName,
                 Password = request.Password,
@@ -67,7 +53,7 @@ namespace Blog_Page.API.Controllers
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            var data = await _service.FindAsync(id);
+            var data = await _service.GetAsync(id);
             if(data!=null)
             {
                 await _service.DeleteAsync(data);
@@ -78,7 +64,7 @@ namespace Blog_Page.API.Controllers
         [HttpPut("update")]
         public async Task<IActionResult> UpdateAsync(UpdateUserRequest request)
         {
-            var data = await _service.FindAsync(request.Id);
+            var data = await _service.GetAsync(request.Id);
             if(data!=null)
             {
                 data.userName = request.userName;
@@ -86,8 +72,7 @@ namespace Blog_Page.API.Controllers
                 data.Email = request.Email;
                 //data.AppRoleId = (AppRole)request.Role;
             }
-            var mappedData = _mapper.Map<UpdateUserDto>(data);
-            await _service.UpdateAsync(mappedData);
+            await _service.UpdateAsync(data);
             return Ok(data.userName);
         }
 
@@ -96,7 +81,7 @@ namespace Blog_Page.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(CreateUserDto request)
         {
-            await _service.CreateAsync(new CreateUserDto
+            await _service.CreateAsync(new AppUser
             {
                 userName = request.userName,
                 Password = request.Password,

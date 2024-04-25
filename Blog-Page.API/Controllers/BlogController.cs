@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Data;
 using AutoMapper;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Create;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Delete;
-using Blog_Page.API.Core.Application.Features.CQRS.Commands.Blog.Update;
-using Blog_Page.API.Core.Application.Features.CQRS.Queries.Blog.BlogList;
-using Blog_Page.API.Core.Application.Features.CQRS.Queries.Blog.GetBlog;
 using Blog_Page.Domain.BlogPage.Dtos.Blog;
+using Blog_Page.Domain.Entities;
 using Blog_Page.Domain.Enums;
 using Blog_Page.Model.Blog.Request;
 using Blog_Page.Service.Interfaces;
@@ -20,10 +16,10 @@ namespace Blog_Page.API.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-        private readonly IBlogService _service;
+        private readonly IRepository<Blog> _service;
         private readonly IMapper _mapper;
 
-        public BlogController(IBlogService service, IMapper mapper)
+        public BlogController(IRepository<Blog> service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
@@ -39,14 +35,14 @@ namespace Blog_Page.API.Controllers
         [HttpGet("get/{id}")]
         public async Task<IActionResult> GetAsync([FromBody] int id)
         {
-            var result = await _service.FindAsync(id);
+            var result = await _service.GetAsync(id);
             return Ok(result);
         }
 
         [HttpPost("create")]
         public async Task<IActionResult> CreateAsync([FromBody] CreateBlogRequest request)
         {
-            await _service.CreateAsync(new CreateBlogDto
+            await _service.CreateAsync(new Blog
             {
                 Title = request.Title,
                 Description = request.Description,
@@ -61,7 +57,7 @@ namespace Blog_Page.API.Controllers
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            var data = await _service.FindAsync(id);
+            var data = await _service.GetAsync(id);
 
             if(data != null)
             {
@@ -73,7 +69,7 @@ namespace Blog_Page.API.Controllers
         [HttpPut("update")]
         public async Task<IActionResult> UpdateAsync(UpdateBlogRequest request)
         {
-            var data = await _service.FindAsync(request.ID);
+            var data = await _service.GetAsync(request.ID);
             if(data!=null)
             {
                 data.Title = request.Title;
@@ -81,8 +77,7 @@ namespace Blog_Page.API.Controllers
                 data.Content = request.Content;
                 data.CategoryID = request.CategoryID;
             }
-            var mappedData = _mapper.Map<UpdateBlogDto>(data);
-            await _service.UpdateAsync(mappedData);
+            await _service.UpdateAsync(data);
             return Ok();
         }
     }

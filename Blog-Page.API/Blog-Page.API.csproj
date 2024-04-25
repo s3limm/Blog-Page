@@ -45,4 +45,9 @@
 			<GlobalPropertiesToRemove></GlobalPropertiesToRemove>
 		</ProjectReference>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Core\Application\Interfaces\" />
+	  <Folder Include="Persistance\Repositories\" />
+	</ItemGroup>
 </Project>
