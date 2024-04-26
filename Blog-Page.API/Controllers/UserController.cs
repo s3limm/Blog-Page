@@ -18,15 +18,16 @@ namespace Blog_Page.API.Controllers
         private readonly IRepository<AppUser> _service;
         private readonly IMapper _mapper;
 
-        public UserController(IRepository<AppUser> service)
+        public UserController(IRepository<AppUser> service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         [HttpGet("list")]
         public async Task<IActionResult> GetListAsync()
         {
-            var data = await _service.GetListAsync(); 
+            var data = await _service.GetListAsync();
             return Ok(data);
         }
 
@@ -54,7 +55,7 @@ namespace Blog_Page.API.Controllers
         public async Task<IActionResult> DeleteAsync(int id)
         {
             var data = await _service.GetAsync(id);
-            if(data!=null)
+            if (data != null)
             {
                 await _service.DeleteAsync(data);
             }
@@ -65,12 +66,12 @@ namespace Blog_Page.API.Controllers
         public async Task<IActionResult> UpdateAsync(UpdateUserRequest request)
         {
             var data = await _service.GetAsync(request.Id);
-            if(data!=null)
+            if (data != null)
             {
                 data.userName = request.userName;
                 data.Password = request.Password;
                 data.Email = request.Email;
-                //data.AppRoleId = (AppRole)request.Role;
+                data.AppRoleId = Convert.ToInt32(request.Role);
             }
             await _service.UpdateAsync(data);
             return Ok(data.userName);
@@ -107,8 +108,7 @@ namespace Blog_Page.API.Controllers
                 dto.IsExist = true;
                 dto.UserName = user.userName;
                 dto.Password = user.Password;
-                //var role = await this._service.GetByFilterAsync(x => x.AppRoleId == user.AppRoleId);
-                //dto.Role = role?.definition;
+                //dto.Role = user?.AppRole.Definition;
             }
 
             if (dto != null)
