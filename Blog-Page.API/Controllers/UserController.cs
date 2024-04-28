@@ -16,12 +16,14 @@ namespace Blog_Page.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IRepository<AppUser> _service;
+        private readonly IRepository<AppRole> _roleService;
         private readonly IMapper _mapper;
 
-        public UserController(IRepository<AppUser> service, IMapper mapper)
+        public UserController(IRepository<AppUser> service, IMapper mapper, IRepository<AppRole> roleService)
         {
             _service = service;
             _mapper = mapper;
+            _roleService = roleService;
         }
 
         [HttpGet("list")]
@@ -108,12 +110,15 @@ namespace Blog_Page.API.Controllers
                 dto.IsExist = true;
                 dto.UserName = user.userName;
                 dto.Password = user.Password;
-                //dto.Role = user?.AppRole.Definition;
+                var role = await _roleService.GetByFilterAsync(x=>x.Id == user.AppRoleId);
+                dto.Definition = role.Definition;
+                dto.Id = user.ID;
+                dto.Email = user.Email;
             }
 
-            if (dto != null)
+            if (dto != null && user != null)
             {
-                return Created("", JwtTokenGenerator.GenerateToken(dto));
+                return Created("",JwtTokenGenerator.GenerateToken(dto));
             }
             else
             {

@@ -18,7 +18,7 @@ namespace Blog_Page.Domain.Entities
         [Required(ErrorMessage = "Lütfen bir şifre giriniz.")]
         [MaxLength(100, ErrorMessage = "En fazla 100 karakter kullanabilirsiniz.")]
         public string Password { get; set; }
-        public int? AppRoleId { get; set; }
+        public int AppRoleId { get; set; }
 
         //Relational Properties
         public AppRole? AppRole { get; set; }

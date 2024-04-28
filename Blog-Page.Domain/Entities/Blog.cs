@@ -25,7 +25,7 @@ namespace Blog_Page.Domain.Entities
         public string Content { get; set; }
         public int WriterID { get; set; }
         public int CategoryID { get; set; }
-        public byte[] FileData { get; set; }
+        //public byte[]? FileData { get; set; }
 
 
         //Relational Property

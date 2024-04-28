@@ -33,7 +33,7 @@ namespace Blog_Page.API.Controllers
         }
 
         [HttpGet("get/{id}")]
-        public async Task<IActionResult> GetAsync([FromBody] int id)
+        public async Task<IActionResult> GetAsync(int id)
         {
             var result = await _service.GetAsync(id);
             return Ok(result);

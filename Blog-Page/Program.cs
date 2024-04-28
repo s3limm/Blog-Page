@@ -18,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped(typeof(IRepositoryUI<>), typeof(Repository<>));
+//builder.Services.AddScoped(typeof(IRepositoryUI<>), typeof(Repository<>));
 
 
 //Authentication and Authorization 
@@ -42,9 +42,9 @@ builder.Services.AddDbContext<BlogContext>(opt =>
 {
     opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=blogdb;Trusted_Connection=True;TrustServerCertificate=True");
 });
-builder.Services.AddScoped<IBlogService, BlogService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<IUserService, UserService>();
+//builder.Services.AddScoped<IBlogService, BlogService>();
+//builder.Services.AddScoped<ICategoryService, CategoryService>();
+//builder.Services.AddScoped<IUserService, UserService>();
 
 
 //RegisterService Middleware

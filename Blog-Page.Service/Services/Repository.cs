@@ -40,7 +40,7 @@ namespace Blog_Page.Service.Services
 
         public async Task<T> GetByFilterAsync(Expression<Func<T, bool>> filter)
         {
-            return await _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(filter);
+            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(filter);
         }
 
         public async Task<T> GetAsync(object id)

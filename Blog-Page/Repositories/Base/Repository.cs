@@ -1,5 +1,4 @@
-﻿using Blog_Page.API.Core.Application.Interfaces;
-using Blog_Page.API.Core.Domain;
+﻿using Blog_Page.API.Core.Domain;
 using Blog_Page.API.Persistance.Context;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Interfaces;
