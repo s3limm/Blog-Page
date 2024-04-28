@@ -1,4 +1,4 @@
-﻿using Blog_Page.API.Core.Domain;
+﻿using Blog_Page.Domain.Entities;
 using Blog_Page.Models;
 using System.Linq.Expressions;
 

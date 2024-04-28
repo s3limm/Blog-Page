@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Blog_Page.API.Core.Domain;
+using Blog_Page.Domain.Entities;
 using Blog_Page.Models;
 
 namespace Blog_Page.Mapper

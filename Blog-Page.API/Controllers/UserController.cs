@@ -100,17 +100,13 @@ namespace Blog_Page.API.Controllers
         public async Task<IActionResult> Login(CheckUserRequest request)
         {
             var dto = new CheckUserDto();
-            var user = await _service.GetByFilterAsync(x => x.userName == request.UserName && x.Password == request.Password);
-            if (user == null)
-            {
-                dto.IsExist = false;
-            }
-            else
+            var user = await _service.GetByFilterAsync(x => x.userName == request.userName && x.Password == request.passWord);
+            if (user != null)
             {
                 dto.IsExist = true;
                 dto.UserName = user.userName;
                 dto.Password = user.Password;
-                var role = await _roleService.GetByFilterAsync(x=>x.Id == user.AppRoleId);
+                var role = await _roleService.GetByFilterAsync(x => x.Id == user.AppRoleId);
                 dto.Definition = role.Definition;
                 dto.Id = user.ID;
                 dto.Email = user.Email;

@@ -1,7 +1,6 @@
-﻿using Blog_Page.API.Core.Application.Dtos.Token;
-using Blog_Page.API.Core.Application.Dtos.User;
-using Blog_Page.Domain.BlogPage.Dtos.User;
+﻿using Blog_Page.Domain.BlogPage.Dtos.User;
 using Blog_Page.Domain.Entities;
+using Blog_Page.Dtos.JwtToken;
 using Blog_Page.Service.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

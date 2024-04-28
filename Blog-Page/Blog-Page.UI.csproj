@@ -37,7 +37,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Blog-Page.API\Blog-Page.API.csproj" />
-		<ProjectReference Include="..\Blog-Page.Infrastructure\Blog-Page.Infrastructure.csproj" />
 		<ProjectReference Include="..\Blog-Page.Persistance\Blog-Page.Persistance.csproj" />
 	</ItemGroup>
 

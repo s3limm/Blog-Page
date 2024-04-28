@@ -36,7 +36,7 @@ namespace Blog_Page.Areas.Admin.Controllers
 
                 var content = new StringContent(JsonSerializer.Serialize(model), Encoding.UTF8, "application/json");
 
-                var response = await client.PostAsync("http://localhost:5158/api/User/Login", content);
+                var response = await client.PostAsync("http://localhost:5158/api/User/login", content);
 
                 if (response.IsSuccessStatusCode)
                 {

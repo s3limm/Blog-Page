@@ -123,7 +123,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                     var jsonData = JsonSerializer.Serialize(model);
                     var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                    var response = await client.PutAsync("http://localhost:5158/api/User/", content);
+                    var response = await client.PutAsync("http://localhost:5158/api/user/login", content);
 
                     if (response.IsSuccessStatusCode)
                     {

@@ -1,16 +1,16 @@
-﻿using Blog_Page.API.Core.Domain;
-using Blog_Page.API.Persistance.Context;
+﻿using Blog_Page.Domain.Entities;
 using Blog_Page.Models;
+using Blog_Page.Persistance.Context;
 using Blog_Page.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Blog_Page.Repositories.Base
 {
-    public class Repository<T> : IRepositoryUI<T> where T : BaseEntity, new()
+    public class RepositoryUI<T> : IRepositoryUI<T> where T : BaseEntity, new()
     {
-        private readonly BlogContext _context;
+        private readonly BlogDbContext _context;
 
-        public Repository(BlogContext context)
+        public RepositoryUI(BlogDbContext context)
         {
             _context = context;
         }

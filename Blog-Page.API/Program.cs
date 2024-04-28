@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Blog_Page.Persistance.Context;
-using Blog_Page.Infrastructure.Middleware;
 using AutoMapper;
 using Blog_Page.Service.Mappings.AutoMappers;
 using Blog_Page.Service.Helpers;
@@ -22,12 +21,6 @@ builder.Services.AddSwaggerGen();
 
 var config = builder.Configuration;
 
-//builder.Services.AddDbContext<BlogContext>(opt =>
-//{
-//    opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=BlogDb;Trusted_Connection=True;TrustServerCertificate=True");
-//});
-
-
 builder.Services.AddDbContext<BlogDbContext>(opt =>
 {
     opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=blogdb;Trusted_Connection=True;TrustServerCertificate=True");
@@ -35,21 +28,12 @@ builder.Services.AddDbContext<BlogDbContext>(opt =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 
-
-
-
 builder.Services.AddControllers().AddNewtonsoftJson(opt =>
 {
     opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 });
 
-//RegisterService Middleware
-//ServiceMiddleware.RegisterServices();
 
-//Database Migrate Middleware 
-//DatabaseMigrator.Migrate();
-
-//AutoMapper Configuration
 var profiles = ProfileHelper.GetProfiles();
 var mapConfiguration = new MapperConfiguration(opt =>
 {
@@ -57,8 +41,6 @@ var mapConfiguration = new MapperConfiguration(opt =>
 });
 var mapper = mapConfiguration.CreateMapper();
 builder.Services.AddSingleton(mapper);
-
-
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
@@ -73,7 +55,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ClockSkew = TimeSpan.Zero,
     };
 });
-
 
 var app = builder.Build();
 

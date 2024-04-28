@@ -1,4 +1,10 @@
-﻿namespace Blog_Page.API.Core.Application.Dtos.Token
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Blog_Page.Dtos.JwtToken
 {
     public class TokenResponseDto
     {

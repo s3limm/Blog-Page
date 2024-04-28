@@ -1,7 +1,6 @@
 using AutoMapper;
-using Blog_Page.API.Persistance.Context;
-using Blog_Page.Infrastructure.Middleware;
 using Blog_Page.Models;
+using Blog_Page.Persistance.Context;
 using Blog_Page.Repositories.Base;
 using Blog_Page.Repositories.Interfaces;
 using Blog_Page.Service.Helpers;
@@ -20,6 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 //builder.Services.AddScoped(typeof(IRepositoryUI<>), typeof(Repository<>));
 
+builder.Services.AddHttpClient();
 
 //Authentication and Authorization 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme, opt =>
@@ -30,7 +30,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
     opt.Cookie.SameSite = SameSiteMode.Strict;
     opt.Cookie.HttpOnly = true;
     opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-    opt.Cookie.Name = "UdemyJwtCookie";
+    opt.Cookie.Name = "JwtCookie";
 });
 
 var provider = builder.Services.BuildServiceProvider();
@@ -38,7 +38,7 @@ var configuration = provider.GetRequiredService<IConfiguration>();
 
 
 
-builder.Services.AddDbContext<BlogContext>(opt =>
+builder.Services.AddDbContext<BlogDbContext>(opt =>
 {
     opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=blogdb;Trusted_Connection=True;TrustServerCertificate=True");
 });
