@@ -26,7 +26,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                var response = await client.GetAsync("http://localhost:5158/api/Category/");
+                var response = await client.GetAsync("http://localhost:5158/api/Category/list");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -64,7 +64,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                     var jsonData = JsonSerializer.Serialize(model);
                     var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                    var response = await client.PostAsync("http://localhost:5158/api/Category/", content);
+                    var response = await client.PostAsync("http://localhost:5158/api/Category/create", content);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -90,7 +90,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                var response = await client.GetAsync($"http://localhost:5158/api/Category/{id}");
+                var response = await client.GetAsync($"http://localhost:5158/api/Category/Get/{id}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -122,7 +122,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                     var jsonData = JsonSerializer.Serialize(model);
                     var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                    var response = await client.PutAsync("http://localhost:5158/api/Category/", content);
+                    var response = await client.PutAsync("http://localhost:5158/api/Category/update", content);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -145,7 +145,7 @@ namespace Blog_Page.Areas.Admin.Controllers
             {
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                await client.DeleteAsync($"http://localhost:5158/api/Category/{id}");
+                await client.DeleteAsync($"http://localhost:5158/api/Category/delete/{id}");
             }
             return RedirectToAction("List", "Category", new { area = "Admin" });
         }

@@ -40,7 +40,7 @@ namespace Blog_Page.API.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync([FromBody] CreateBlogRequest request)
+        public async Task<IActionResult> CreateAsync(CreateBlogRequest request)
         {
             await _service.CreateAsync(new Blog
             {
@@ -48,8 +48,8 @@ namespace Blog_Page.API.Controllers
                 Description = request.Description,
                 Content = request.Content,
                 CategoryID = request.CategoryID,
-                CreatedDate = DateTime.UtcNow,
-                Status = Status.Inserted
+                //CreatedDate = DateTime.UtcNow,
+                //Status = Status.Inserted
             });
             return Ok();
         }

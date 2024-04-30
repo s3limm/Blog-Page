@@ -24,8 +24,8 @@
                                     <td> @Model[i].Title </td>
                                     <td> @Model[i].CreatedDate</td>
                                     <td>
-                                        <a class="big-icon" asp-controller="Blog" asp-action="Edit" asp-route-id="@Model[i].ID"><button type="button" class="btn btn-warning">Güncelle</button></a>
-                                        <a class="big-icon margin-icon" asp-controller="Blog" asp-action="Delete" asp-route-id="@Model[i].ID"> <button type="button" class="btn btn-danger">Sil</button></a>
+                                        <a class="big-icon" asp-area="Admin" asp-controller="Blog" asp-action="Edit" asp-route-id="@Model[i].ID"><button type="button" class="btn btn-warning">Güncelle</button></a>
+                                        <a class="big-icon margin-icon" asp-area="Admin" asp-controller="Blog" asp-action="Delete" asp-route-id="@Model[i].ID"> <button type="button" class="btn btn-danger">Sil</button></a>
                                     </td>
                                 </tr>
 

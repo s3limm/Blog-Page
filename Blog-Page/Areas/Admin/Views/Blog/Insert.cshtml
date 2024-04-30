@@ -18,13 +18,13 @@
                             <input asp-for="Description" type="text" class="form-control" placeholder="Açıklama:">
                             <span class="text-danger" asp-validation-for="Description"></span>
                         </div>
-                        <div class="form-group">
+                        @* <div class="form-group">
                             <label asp-for="Categories">Kategoriler</label>
                             <select asp-for="Categories" class="form-control" asp-items="@(new SelectList(Model.Categories,"ID","CategoryName"))"></select>
                             <span class="text-danger" asp-validation-for="Categories"></span>
-                        </div>
+                        </div> *@
                         <!--1.Görsel-->
-                        <div class="form-group">
+                        @* <div class="form-group">
                             <label asp-for="FileData">Görsel Yükle</label>
                             <input asp-for="FileData" type="file" name="file" class="file-upload-default">
                             <div class="input-group col-xs-12">
@@ -34,7 +34,7 @@
                                 </span>
                             </div>
                             <span class="text-danger" asp-validation-for="FileData"></span>
-                        </div>
+                        </div> *@
                        
                         <div class="form-group">
                             <label asp-for="Content">İçerik</label>

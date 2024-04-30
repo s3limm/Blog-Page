@@ -12,8 +12,6 @@
                             <tr>
                                 <th> Kullanıcı Adı </th>
                                 <th> Email </th>
-                                <th> Kullanıcı Tipi </th>
-                                <th> Oluşturulma Tarihi </th>
                                 <th> İşlemler</th>
                             </tr>
                         </thead>
@@ -24,8 +22,6 @@
                                 <tr>
                                     <td>@Model[i].userName</td>
                                     <td>@Model[i].Email</td>
-                                    <td>@Model[i].AppRole.Definition</td>
-                                    <td>@Model[i].CreatedDate</td>
                                     <td>
                                         <a class="big-icon" asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@Model[i].ID"><button type="button" class="btn btn-warning">Güncelle</button></a>
                                         <a class="big-icon margin-icon" asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-id="@Model[i].ID"><button type="button" class="btn btn-danger">Sil</button></a>

@@ -27,7 +27,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                var response = await client.GetAsync("http://localhost:5158/api/User/");
+                var response = await client.GetAsync("http://localhost:5158/api/User/list");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -65,7 +65,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                     var jsonData = JsonSerializer.Serialize(model);
                     var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                    var response = await client.PostAsync("http://localhost:5158/api/User/", content);
+                    var response = await client.PostAsync("http://localhost:5158/api/User/create", content);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -91,7 +91,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                var response = await client.GetAsync($"http://localhost:5158/api/User/{id}");
+                var response = await client.GetAsync($"http://localhost:5158/api/User/get/{id}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -123,7 +123,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                     var jsonData = JsonSerializer.Serialize(model);
                     var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                    var response = await client.PutAsync("http://localhost:5158/api/user/login", content);
+                    var response = await client.PutAsync("http://localhost:5158/api/User/update", content);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -146,7 +146,7 @@ namespace Blog_Page.Areas.Admin.Controllers
             {
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                await client.DeleteAsync($"http://localhost:5158/api/User/{id}");
+                await client.DeleteAsync($"http://localhost:5158/api/User/delete/{id}");
             }
             return RedirectToAction("List", "User", new { area = "Admin" });
         }

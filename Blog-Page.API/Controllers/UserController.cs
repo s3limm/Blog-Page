@@ -48,7 +48,7 @@ namespace Blog_Page.API.Controllers
                 userName = request.userName,
                 Password = request.Password,
                 Email = request.Email,
-                AppRoleId = request.AppRoleId
+                AppRoleId = 2
             });
             return Created("", request.userName);
         }
@@ -73,7 +73,6 @@ namespace Blog_Page.API.Controllers
                 data.userName = request.userName;
                 data.Password = request.Password;
                 data.Email = request.Email;
-                data.AppRoleId = Convert.ToInt32(request.Role);
             }
             await _service.UpdateAsync(data);
             return Ok(data.userName);

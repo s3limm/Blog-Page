@@ -57,7 +57,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                var response = await client.GetAsync($"http://localhost:5158/api/Category/");
+                var response = await client.GetAsync($"http://localhost:5158/api/Category/list");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -68,7 +68,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                     });
 
-                    model.Categories = new SelectList(data, "Id", "CategoryName");
+                    //model.Categories = new SelectList(data, "Id", "CategoryName");
 
                     return View(model);
                 }
@@ -83,13 +83,12 @@ namespace Blog_Page.Areas.Admin.Controllers
             if (data != null)
             {
                 var categories = JsonSerializer.Deserialize<List<SelectListItem>>(data);
-                model.Categories = new SelectList(categories, "Value", "Text");
+                //model.Categories = new SelectList(categories, "Value", "Text");
             }
 
 
             if (ModelState.IsValid)
             {
-
                 var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
                 if (token != null)
                 {
@@ -99,7 +98,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                     var jsonData = JsonSerializer.Serialize(model);
                     var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                    var response = await client.PostAsync($"http://localhost:5158/api/Blog/", content);
+                    var response = await client.PostAsync($"http://localhost:5158/api/Blog/create", content);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -122,7 +121,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                var responseProduct = await client.GetAsync($"http://localhost:5287/Blog/{id}");
+                var responseProduct = await client.GetAsync($"http://localhost:5287/Blog/Get/{id}");
 
                 if (responseProduct.IsSuccessStatusCode)
                 {
@@ -134,20 +133,20 @@ namespace Blog_Page.Areas.Admin.Controllers
 
 
 
-                    var responseCategory = await client.GetAsync($"http://localhost:5287/api/Category");
+                    //var responseCategory = await client.GetAsync($"http://localhost:5287/api/Category/list");
 
-                    if (responseCategory.IsSuccessStatusCode)
-                    {
-                        var jsonCategoryData = await responseCategory.Content.ReadAsStringAsync();
+                    //if (responseCategory.IsSuccessStatusCode)
+                    //{
+                    //    var jsonCategoryData = await responseCategory.Content.ReadAsStringAsync();
 
-                        var data = JsonSerializer.Deserialize<List<CategoryListModel>>(jsonCategoryData, new JsonSerializerOptions
-                        {
-                            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                        });
+                    //    var data = JsonSerializer.Deserialize<List<CategoryListModel>>(jsonCategoryData, new JsonSerializerOptions
+                    //    {
+                    //        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    //    });
 
-                        if (result != null)
-                            result.Categories = new SelectList(data, "Id", "CategoryName");
-                    }
+                    //    if (result != null)
+                    //        result.Categories = new SelectList(data, "Id", "CategoryName");
+                    //}
 
 
 
@@ -180,7 +179,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                     var jsonData = JsonSerializer.Serialize(model);
                     var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                    var response = await client.PutAsync($"http://localhost:5287/api/Blog", content);
+                    var response = await client.PutAsync($"http://localhost:5287/api/Blog/update", content);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -201,7 +200,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                await client.DeleteAsync($"http://localhost:5158/api/Blog/{id}");
+                await client.DeleteAsync($"http://localhost:5158/api/Blog/delete/{id}");
             }
             return RedirectToAction("List", "Blog", new { area = "Admin" });
         }
