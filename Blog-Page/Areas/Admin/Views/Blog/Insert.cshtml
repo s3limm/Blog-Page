@@ -18,11 +18,15 @@
                             <input asp-for="Description" type="text" class="form-control" placeholder="Açıklama:">
                             <span class="text-danger" asp-validation-for="Description"></span>
                         </div>
-                        @* <div class="form-group">
-                            <label asp-for="Categories">Kategoriler</label>
-                            <select asp-for="Categories" class="form-control" asp-items="@(new SelectList(Model.Categories,"ID","CategoryName"))"></select>
-                            <span class="text-danger" asp-validation-for="Categories"></span>
-                        </div> *@
+                       
+                        <div class="form-group">
+                            <label asp-for="CategoryID" class="control-label">Kategori Seç</label>
+                            <select asp-for="CategoryID" asp-items="@(new SelectList(Model.Categories, "Value", "Text"))" class="form-control">
+                                <option value="">-- Kategori Seç --</option>
+                            </select>
+                            <span asp-validation-for="CategoryID" class="text-danger"></span>
+                        </div>
+
                         <!--1.Görsel-->
                         @* <div class="form-group">
                             <label asp-for="FileData">Görsel Yükle</label>

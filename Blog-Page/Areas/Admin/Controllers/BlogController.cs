@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using Azure.Core;
+using Blog_Page.Domain.Entities;
 using Blog_Page.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Hosting.Internal;
+using Newtonsoft.Json;
 using System.Text;
 using System.Text.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Blog_Page.Areas.Admin.Controllers
 {
@@ -47,10 +50,10 @@ namespace Blog_Page.Areas.Admin.Controllers
             return View();
         }
 
+
         [HttpGet]
         public async Task<IActionResult> Insert()
         {
-            var model = new CreateBlogModel();
             var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
             if (token != null)
             {
@@ -63,12 +66,17 @@ namespace Blog_Page.Areas.Admin.Controllers
                 {
                     var jsonData = await response.Content.ReadAsStringAsync();
 
-                    var data = JsonSerializer.Deserialize<List<CategoryListModel>>(jsonData, new JsonSerializerOptions
+                    var categories = JsonSerializer.Deserialize<List<CategoryListModel>>(jsonData, new JsonSerializerOptions
                     {
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                     });
 
-                    //model.Categories = new SelectList(data, "Id", "CategoryName");
+                    var model = new CreateBlogModel
+                    {
+                        Categories = categories.Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.CategoryName }).ToList()
+                    };
+
+                    TempData["Categories"] = JsonConvert.SerializeObject(categories);
 
                     return View(model);
                 }
@@ -76,19 +84,25 @@ namespace Blog_Page.Areas.Admin.Controllers
             return RedirectToAction("List", "Blog", new { area = "Admin" });
         }
 
+
+
         [HttpPost]
         public async Task<IActionResult> Insert(CreateBlogModel model)
         {
-            var data = TempData["Categories"]?.ToString();
-            if (data != null)
-            {
-                var categories = JsonSerializer.Deserialize<List<SelectListItem>>(data);
-                //model.Categories = new SelectList(categories, "Value", "Text");
-            }
-
-
             if (ModelState.IsValid)
             {
+                var data = TempData["Categories"]?.ToString();
+                if (data != null)
+                {
+                    var categories = JsonSerializer.Deserialize<List<SelectListItem>>(data);
+                    model.Categories = categories.Select(item => new SelectListItem { Text = item.Text, Value = item.Value }).ToList();
+                }
+
+                // model.Categories null değilse, SelectList veya MultiSelectList oluşturun
+                var multiSelectList = model.Categories != null
+                    ? new MultiSelectList(model.Categories, "Value", "Text")
+                    : new MultiSelectList(Enumerable.Empty<SelectListItem>(), "Value", "Text");
+
                 var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
                 if (token != null)
                 {
@@ -106,13 +120,16 @@ namespace Blog_Page.Areas.Admin.Controllers
                     }
                     ModelState.AddModelError("", "Bir hata oluştu");
                 }
-
             }
+
             return View(model);
         }
 
 
+
+
         [HttpGet]
+
         public async Task<IActionResult> Edit(int id)
         {
             var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
@@ -121,7 +138,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                var responseProduct = await client.GetAsync($"http://localhost:5287/Blog/Get/{id}");
+                var responseProduct = await client.GetAsync($"http://localhost:5158/api/Blog/Get/{id}");
 
                 if (responseProduct.IsSuccessStatusCode)
                 {
@@ -133,23 +150,30 @@ namespace Blog_Page.Areas.Admin.Controllers
 
 
 
-                    //var responseCategory = await client.GetAsync($"http://localhost:5287/api/Category/list");
+                    var responseCategory = await client.GetAsync($"http://localhost:5158/api/Category/list");
 
-                    //if (responseCategory.IsSuccessStatusCode)
-                    //{
-                    //    var jsonCategoryData = await responseCategory.Content.ReadAsStringAsync();
+                    if (responseCategory.IsSuccessStatusCode)
+                    {
+                        var jsonCategoryData = await responseCategory.Content.ReadAsStringAsync();
 
-                    //    var data = JsonSerializer.Deserialize<List<CategoryListModel>>(jsonCategoryData, new JsonSerializerOptions
-                    //    {
-                    //        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                    //    });
+                        var data = JsonSerializer.Deserialize<List<CategoryListModel>>(jsonCategoryData, new JsonSerializerOptions
+                        {
+                            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                        });
 
-                    //    if (result != null)
-                    //        result.Categories = new SelectList(data, "Id", "CategoryName");
-                    //}
+                       if (result != null)
+                        {
+                            var categoriesList = data.Select(item => new SelectListItem
+                            {
+                                Value = item.ID.ToString(),
+                                Text = item.CategoryName,
+                                Selected = item.ID == result.CategoryID
+                            }).ToList();
 
+                            result.Categories = categoriesList;
+                        }
 
-
+                    }
                     return View(result);
                 }
             }
@@ -163,7 +187,7 @@ namespace Blog_Page.Areas.Admin.Controllers
             if (data != null)
             {
                 var categories = JsonSerializer.Deserialize<List<SelectListItem>>(data);
-                model.Categories = new SelectList(categories, "Value", "Text", model.CategoryID);
+                model.Categories = categories;
             }
 
 
@@ -179,7 +203,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                     var jsonData = JsonSerializer.Serialize(model);
                     var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                    var response = await client.PutAsync($"http://localhost:5287/api/Blog/update", content);
+                    var response = await client.PutAsync($"http://localhost:5158/api/Blog/update", content);
 
                     if (response.IsSuccessStatusCode)
                     {

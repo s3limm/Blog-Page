@@ -17,8 +17,11 @@ namespace Blog_Page.Models
 
         //Relational Properties
 
+
         [Required(ErrorMessage = "Kategori boş geçilemez")]
 
         public int CategoryID { get; set; }
+        public List<SelectListItem>? Categories { get; set; }
+        //public SelectList? Categories { get; set; }
     }
 }
