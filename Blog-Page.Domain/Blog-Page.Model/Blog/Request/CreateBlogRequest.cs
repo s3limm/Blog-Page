@@ -9,8 +9,9 @@ namespace Blog_Page.Model.Blog.Request
         public string Description { get; set; }
         public string Content { get; set; }
         public int CategoryID { get; set; }
+        public List<IFormFile>? files { get; set; }
 
-        //public IFormFile? FileData { get; set; }
+
     }
 }
 

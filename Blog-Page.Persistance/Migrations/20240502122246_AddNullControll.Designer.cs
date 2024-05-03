@@ -4,6 +4,7 @@ using Blog_Page.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blog_Page.Persistance.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    partial class BlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240502122246_AddNullControll")]
+    partial class AddNullControll
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +53,7 @@ namespace Blog_Page.Persistance.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(8413),
+                            CreatedDate = new DateTime(2024, 5, 2, 15, 22, 46, 80, DateTimeKind.Local).AddTicks(8179),
                             Definition = "User",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = 0
@@ -58,7 +61,7 @@ namespace Blog_Page.Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(8433),
+                            CreatedDate = new DateTime(2024, 5, 2, 15, 22, 46, 80, DateTimeKind.Local).AddTicks(8195),
                             Definition = "Admin",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = 0
@@ -109,10 +112,10 @@ namespace Blog_Page.Persistance.Migrations
                         {
                             ID = 1,
                             AppRoleId = 1,
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(7945),
+                            CreatedDate = new DateTime(2024, 5, 2, 15, 22, 46, 80, DateTimeKind.Local).AddTicks(7806),
                             Email = "selimemrem@gmail.com",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Password = "$2a$11$TTMbiERvsI5sKisceYP.q.4Nd85T2eXuZgBp/33rUVVIce.4fI/..",
+                            Password = "$2a$11$U3IxafekWpq9w9oB70KDQuFHSldVN/9QDkf7CwOjfMzpJhFLdQ522",
                             Status = 0,
                             userName = "Admin"
                         });
@@ -141,12 +144,6 @@ namespace Blog_Page.Persistance.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("ImageName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");

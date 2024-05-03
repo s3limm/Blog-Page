@@ -8,9 +8,9 @@ using System.Web.Mvc;
 
 namespace Blog_Page.Domain.Entities
 {
-    public class Blog:BaseEntity
+    public class Blog : BaseEntity
     {
-       
+
         public int ID { get; set; }
         [Required(ErrorMessage = "Lütfen bir başlık giriniz.")]
         [MaxLength(100, ErrorMessage = "En fazla 100 karakter kullanabilirsiniz.")]
@@ -25,10 +25,10 @@ namespace Blog_Page.Domain.Entities
         public string Content { get; set; }
         public int WriterID { get; set; }
         public int CategoryID { get; set; }
-        //public byte[]? FileData { get; set; }
-
+        public string? ImageName { get; set; }
+        public string? ImagePath {get; set;}
 
         //Relational Property
-        public virtual Category Category { get; set; }
+        public virtual Category? Category { get; set; }
     }
 }

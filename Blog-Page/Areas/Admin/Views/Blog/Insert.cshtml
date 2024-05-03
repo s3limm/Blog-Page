@@ -27,18 +27,23 @@
                             <span asp-validation-for="CategoryID" class="text-danger"></span>
                         </div>
 
-                        <!--1.Görsel-->
-                        @* <div class="form-group">
-                            <label asp-for="FileData">Görsel Yükle</label>
-                            <input asp-for="FileData" type="file" name="file" class="file-upload-default">
+                       @*  <!--1.Görsel-->
+                        <div class="form-group">
+                            <label asp-for="files">Görsel Yükle</label>
+                            <input asp-for="files" type="file" name="file" class="file-upload-default" multiple class="form-control-file">
                             <div class="input-group col-xs-12">
-                                <input asp-for="FileData" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <input asp-for="files" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                 <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
                                 </span>
                             </div>
-                            <span class="text-danger" asp-validation-for="FileData"></span>
-                        </div> *@
+                            <span class="text-danger" asp-validation-for="files"></span>
+                        </div>
+ *@
+                        <div class="form-group">
+                            <label asp-for="files" class="control-label"></label>
+                            <input asp-for="files" type="file" multiple class="form-control-file" />
+                        </div>
                        
                         <div class="form-group">
                             <label asp-for="Content">İçerik</label>

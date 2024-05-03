@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Blog_Page.Domain.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace Blog_Page.Models
@@ -22,6 +23,9 @@ namespace Blog_Page.Models
         [Required(ErrorMessage = "Kategori boş geçilemez")]
 
         public int CategoryID { get; set; }
+
+        //Relational Properties
+        public Category? Category{ get; set; }
         public List<SelectListItem>? Categories { get; set; }
     }
 }

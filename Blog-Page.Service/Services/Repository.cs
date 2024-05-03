@@ -24,7 +24,6 @@ namespace Blog_Page.Service.Services
         {
             await _context.Set<T>().AddAsync(entity);
             await _context.SaveChangesAsync();
-
         }
 
         public async Task DeleteAsync(T entity)

@@ -1,24 +1,40 @@
-﻿using Blog_Page.Domain.Entities;
+﻿using Blog_Page.Areas.Admin.Controllers;
+using Blog_Page.Domain.Entities;
 using Blog_Page.Models;
 using Blog_Page.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace Blog_Page.Controllers
 {
     public class BlogController : Controller
     {
-        IRepositoryUI<Blog> _blog;
-        public BlogController(IRepositoryUI<Blog> blog)
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public BlogController(IHttpClientFactory httpClientFactory)
         {
-            _blog = blog;
+            _httpClientFactory = httpClientFactory;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<Blog> blogs = await _blog.GetListAsync();
-            return View(blogs);
+            var client = _httpClientFactory.CreateClient();
+
+            var response = await client.GetAsync("http://localhost:5158/api/Blog/List");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonData = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<List<BlogListModel>>(jsonData, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
+
+                return View(result);
+            }
+            return View();
         }
-
-
     }
 }

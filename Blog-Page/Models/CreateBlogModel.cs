@@ -13,7 +13,7 @@ namespace Blog_Page.Models
 
         [Required(ErrorMessage = "İçerik boş geçilemez")]
         public string Content { get; set; }
-        //public IFormFile FileData { get; set; }
+        public List<IFormFile>? files { get; set; }
 
         //Relational Properties
 
@@ -22,6 +22,6 @@ namespace Blog_Page.Models
 
         public int CategoryID { get; set; }
         public List<SelectListItem>? Categories { get; set; }
-        //public SelectList? Categories { get; set; }
+        
     }
 }
