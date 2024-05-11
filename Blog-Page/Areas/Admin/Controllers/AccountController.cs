@@ -77,6 +77,37 @@ namespace Blog_Page.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Register()
+        {
+            return View(new CreateUserModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(CreateUserModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                    var client = _httpClientFactory.CreateClient();
+
+                    var jsonData = JsonSerializer.Serialize(model);
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                    var response = await client.PostAsync("http://localhost:5158/api/User/create", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("LogIn", "Account", new { area = "Admin" });
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Bir hata oluştu");
+                    }
+            }
+            return View(model);
+        }
+
+
 
         public async Task<IActionResult> LogOut()
         {

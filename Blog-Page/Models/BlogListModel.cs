@@ -1,4 +1,5 @@
 ﻿using Blog_Page.Domain.Entities;
+using System.Web.Mvc;
 
 namespace Blog_Page.Models
 {
@@ -12,5 +13,6 @@ namespace Blog_Page.Models
         //Relational Properties
         public int CategoryID { get; set; }
         public Category Category { get; set; }
+        public List<SelectListItem> Categories { get; set; }
     }
 }

@@ -18,6 +18,9 @@
 		<None Include="Views\Shared\Blog\_Layout.cshtml" />
 		<None Include="Views\_ViewImports.cshtml" />
 		<None Include="Views\_ViewStart.cshtml" />
+		<None Include="wwwroot\Dashboard\s3limm\.github\workflows\handle-new-issue-comment.yml" />
+		<None Include="wwwroot\Dashboard\s3limm\.github\workflows\handle-new-issue.yml" />
+		<None Include="wwwroot\Dashboard\s3limm\.github\workflows\issue-staler.yml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -42,6 +45,10 @@
 
 	<ItemGroup>
 		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\Images\" />
 	</ItemGroup>
 
 </Project>

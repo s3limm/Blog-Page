@@ -13,7 +13,15 @@ namespace Blog_Page.Models
 
         [Required(ErrorMessage = "İçerik boş geçilemez")]
         public string Content { get; set; }
-        //public IFormFile FileData { get; set; }
+<<<<<<< HEAD
+<<<<<<< HEAD
+        public List<IFormFile> FileData { get; set; }
+=======
+        public List<IFormFile>? files { get; set; }
+>>>>>>> 3288455e8ca16f06a469040823af755f9393d265
+=======
+        public List<IFormFile>? files { get; set; }
+>>>>>>> 3288455e8ca16f06a469040823af755f9393d265
 
         //Relational Properties
 
@@ -22,6 +30,13 @@ namespace Blog_Page.Models
 
         public int CategoryID { get; set; }
         public List<SelectListItem>? Categories { get; set; }
-        //public SelectList? Categories { get; set; }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 3288455e8ca16f06a469040823af755f9393d265
+=======
+        
+>>>>>>> 3288455e8ca16f06a469040823af755f9393d265
     }
 }

@@ -98,27 +98,33 @@ namespace Blog_Page.Areas.Admin.Controllers
                     model.Categories = categories.Select(item => new SelectListItem { Text = item.Text, Value = item.Value }).ToList();
                 }
 
-                // model.Categories null değilse, SelectList veya MultiSelectList oluşturun
-                var multiSelectList = model.Categories != null
-                    ? new MultiSelectList(model.Categories, "Value", "Text")
-                    : new MultiSelectList(Enumerable.Empty<SelectListItem>(), "Value", "Text");
-
                 var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
                 if (token != null)
                 {
                     var client = _httpClientFactory.CreateClient();
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                    var jsonData = JsonSerializer.Serialize(model);
-                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                    var formData = new MultipartFormDataContent();
+                    formData.Add(new StringContent(model.Title), "Title");
+                    formData.Add(new StringContent(model.Description), "Description");
+                    formData.Add(new StringContent(model.Content), "Content");
+                    formData.Add(new StringContent(model.CategoryID.ToString()), "CategoryID");
 
-                    var response = await client.PostAsync($"http://localhost:5158/api/Blog/create", content);
+                    foreach (var file in model.FileData)
+                    {
+                        formData.Add(new StreamContent(file.OpenReadStream()), "FileData", file.FileName);
+                    }
+
+                    var response = await client.PostAsync($"http://localhost:5158/api/Blog/create", formData);
 
                     if (response.IsSuccessStatusCode)
                     {
                         return RedirectToAction("List", "Blog", new { area = "Admin" });
                     }
-                    ModelState.AddModelError("", "Bir hata oluştu");
+                    else
+                    {
+                        ModelState.AddModelError("", "API ile iletişim sırasında bir hata oluştu.");
+                    }
                 }
             }
 
@@ -128,8 +134,8 @@ namespace Blog_Page.Areas.Admin.Controllers
 
 
 
-        [HttpGet]
 
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
@@ -147,8 +153,6 @@ namespace Blog_Page.Areas.Admin.Controllers
                     {
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                     });
-
-
 
                     var responseCategory = await client.GetAsync($"http://localhost:5158/api/Category/list");
 
@@ -183,16 +187,14 @@ namespace Blog_Page.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(UpdateBlogModel model)
         {
-            var data = TempData["Categories"]?.ToString();
-            if (data != null)
-            {
-                var categories = JsonSerializer.Deserialize<List<SelectListItem>>(data);
-                model.Categories = categories;
-            }
-
-
             if (ModelState.IsValid)
             {
+                var data = TempData["Categories"]?.ToString();
+                if (data != null)
+                {
+                    var categories = JsonSerializer.Deserialize<List<SelectListItem>>(data);
+                    model.Categories = categories.Select(item => new SelectListItem { Text = item.Text, Value = item.Value }).ToList();
+                }
 
                 var token = User.Claims.FirstOrDefault(x => x.Type == "accesToken")?.Value;
                 if (token != null)
@@ -200,21 +202,36 @@ namespace Blog_Page.Areas.Admin.Controllers
                     var client = _httpClientFactory.CreateClient();
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-                    var jsonData = JsonSerializer.Serialize(model);
-                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                    var formData = new MultipartFormDataContent();
+                    formData.Add(new StringContent(model.Title), "Title");
+                    formData.Add(new StringContent(model.Description), "Description");
+                    formData.Add(new StringContent(model.Content), "Content");
+                    formData.Add(new StringContent(model.CategoryID.ToString()), "CategoryID");
+                    formData.Add(new StringContent(model.ID.ToString()), "ID");
 
-                    var response = await client.PutAsync($"http://localhost:5158/api/Blog/update", content);
+                    foreach (var file in model.FileData)
+                    {
+                        formData.Add(new StreamContent(file.OpenReadStream()), "FileData", file.FileName);
+                    }
+
+                    var response = await client.PutAsync($"http://localhost:5158/api/Blog/update", formData);
 
                     if (response.IsSuccessStatusCode)
                     {
                         return RedirectToAction("List", "Blog", new { area = "Admin" });
                     }
-                    ModelState.AddModelError("", "Bir hata oluştu");
+                    else
+                    {
+                        ModelState.AddModelError("", "API ile iletişim sırasında bir hata oluştu.");
+                    }
                 }
-
             }
+
             return View(model);
         }
+
+
+
 
         public async Task<IActionResult> Delete(int id)
         {
