@@ -24,7 +24,12 @@ namespace Blog_Page.API.Controllers
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public BlogController(IRepository<Blog> service, IMapper mapper, IWebHostEnvironment hostingEnvironment)
+=======
+
+        public BlogController(IRepository<Blog> service, IMapper mapper, IWebHostEnvironment environment)
+>>>>>>> 3288455e8ca16f06a469040823af755f9393d265
 =======
 
         public BlogController(IRepository<Blog> service, IMapper mapper, IWebHostEnvironment environment)
@@ -56,6 +61,7 @@ namespace Blog_Page.API.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateAsync([FromForm] CreateBlogRequest request)
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             if (request.FileData != null)
@@ -98,6 +104,10 @@ namespace Blog_Page.API.Controllers
             foreach (var item in request.files)
             {
 >>>>>>> 3288455e8ca16f06a469040823af755f9393d265
+=======
+            foreach (var item in request.files)
+            {
+>>>>>>> 3288455e8ca16f06a469040823af755f9393d265
 
                 if (item.FileName == null || item.FileName.Length == 0)
                 {
@@ -124,6 +134,9 @@ namespace Blog_Page.API.Controllers
                 });
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 3288455e8ca16f06a469040823af755f9393d265
+=======
 >>>>>>> 3288455e8ca16f06a469040823af755f9393d265
 =======
 >>>>>>> 3288455e8ca16f06a469040823af755f9393d265

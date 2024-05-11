@@ -11,11 +11,16 @@ namespace Blog_Page.Model.Blog.Request
         public int CategoryID { get; set; }
         public List<IFormFile>? files { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 <<<<<<< HEAD
         public List<IFormFile>? FileData { get; set; }
 =======
+>>>>>>> 3288455e8ca16f06a469040823af755f9393d265
+=======
+
+
 >>>>>>> 3288455e8ca16f06a469040823af755f9393d265
 =======
 

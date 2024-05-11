@@ -15,7 +15,11 @@ namespace Blog_Page.Models
         public string Content { get; set; }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public List<IFormFile> FileData { get; set; }
+=======
+        public List<IFormFile>? files { get; set; }
+>>>>>>> 3288455e8ca16f06a469040823af755f9393d265
 =======
         public List<IFormFile>? files { get; set; }
 >>>>>>> 3288455e8ca16f06a469040823af755f9393d265
@@ -32,6 +36,10 @@ namespace Blog_Page.Models
         public List<SelectListItem>? Categories { get; set; }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 3288455e8ca16f06a469040823af755f9393d265
 =======
         
 >>>>>>> 3288455e8ca16f06a469040823af755f9393d265
