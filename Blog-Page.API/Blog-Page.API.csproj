@@ -42,8 +42,4 @@
 			<GlobalPropertiesToRemove></GlobalPropertiesToRemove>
 		</ProjectReference>
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Uploads\" />
-	</ItemGroup>
 </Project>

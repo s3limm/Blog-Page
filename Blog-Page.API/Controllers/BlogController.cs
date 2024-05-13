@@ -46,12 +46,14 @@ namespace Blog_Page.API.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateAsync([FromForm] CreateBlogRequest request)
         {
+            string path = "C:\\Users\\YAVUZ\\Desktop\\GitHub\\Blog-Page\\Blog-Page\\wwwroot\\Uploads\\";
+
             if (request.FileData != null)
             {
                 // Eğer upload klasörü yoksa oluştur
-                if (!Directory.Exists("Uploads"))
+                if (!Directory.Exists(path))
                 {
-                    Directory.CreateDirectory("Uploads");
+                    Directory.CreateDirectory(path);
                 }
 
                 // Dosya işlemleri
@@ -60,7 +62,7 @@ namespace Blog_Page.API.Controllers
                     if (file.Length > 0)
                     {
                         // Dosyayı wwwroot/upload klasörüne kaydet
-                        var filePath = Path.Combine("Uploads", file.FileName);
+                        var filePath = Path.Combine(path, file.FileName);
                         using (var stream = new FileStream(filePath, FileMode.Create))
                         {
                             await file.CopyToAsync(stream);

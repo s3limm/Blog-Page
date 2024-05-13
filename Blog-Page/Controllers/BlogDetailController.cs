@@ -73,7 +73,7 @@ namespace Blog_Page.Controllers
 
                     foreach (var fileName in result.FileNames.Split(','))
                     {
-                        var filePath = Path.Combine("C:\\Users\\selim\\Desktop\\GithubParalel\\Blog-Page\\Blog-Page.API\\Uploads\\" + fileName.Trim());
+                        var filePath = Path.Combine("C:\\Users\\YAVUZ\\Desktop\\GitHub\\Blog-Page\\Blog-Page\\wwwroot\\Uploads\\" + fileName.Trim());
 
                         using (var fileStream = new FileStream(filePath, FileMode.Open))
                         {
