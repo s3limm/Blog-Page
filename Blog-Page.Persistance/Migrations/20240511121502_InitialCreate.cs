@@ -54,7 +54,7 @@ namespace Blog_Page.Persistance.Migrations
                     userName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    AppRoleId = table.Column<int>(type: "int", nullable: true),
+                    AppRoleId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -66,7 +66,8 @@ namespace Blog_Page.Persistance.Migrations
                         name: "FK_AppUsers_AppRoles_AppRoleId",
                         column: x => x.AppRoleId,
                         principalTable: "AppRoles",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,7 +81,7 @@ namespace Blog_Page.Persistance.Migrations
                     Content = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: false),
                     WriterID = table.Column<int>(type: "int", nullable: false),
                     CategoryID = table.Column<int>(type: "int", nullable: false),
-                    FileData = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    FileNames = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -101,14 +102,14 @@ namespace Blog_Page.Persistance.Migrations
                 columns: new[] { "Id", "CreatedDate", "Definition", "ModifiedDate", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 20, 13, 37, 41, 194, DateTimeKind.Local).AddTicks(5889), "Admin", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0 },
-                    { 2, new DateTime(2024, 4, 20, 13, 37, 41, 194, DateTimeKind.Local).AddTicks(5286), "User", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0 }
+                    { 1, new DateTime(2024, 5, 11, 15, 15, 2, 287, DateTimeKind.Local).AddTicks(1121), "Admin", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0 },
+                    { 2, new DateTime(2024, 5, 11, 15, 15, 2, 287, DateTimeKind.Local).AddTicks(1102), "User", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "AppUsers",
                 columns: new[] { "ID", "AppRoleId", "CreatedDate", "Email", "ModifiedDate", "Password", "Status", "userName" },
-                values: new object[] { 1, 1, new DateTime(2024, 4, 20, 13, 37, 41, 194, DateTimeKind.Local).AddTicks(4724), "selimemrem@gmail.com", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "$2a$11$dJ7PvFSo96xT9ZNTSaJtj.Pe/qBaGj9Lv5P0ci98aZzkvT3g3.mMy", 0, "Admin" });
+                values: new object[] { 1, 1, new DateTime(2024, 5, 11, 15, 15, 2, 287, DateTimeKind.Local).AddTicks(632), "selimemrem@gmail.com", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "$2a$11$wuYoFYJvgtd9pTfcF5eabO72vnW5hqkHuU6duGojF3GiKxi8vWZuq", 0, "Admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppUsers_AppRoleId",

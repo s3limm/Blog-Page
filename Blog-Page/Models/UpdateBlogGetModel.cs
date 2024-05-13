@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Blog_Page.Models
 {
-    public class UpdateBlogModel : BaseModel
+    public class UpdateBlogGetModel:BaseModel
     {
         public int? ID { get; set; }
 
@@ -16,7 +16,7 @@ namespace Blog_Page.Models
 
         [Required(ErrorMessage = "İçerik boş geçilemez")]
         public string Content { get; set; }
-        public List<IFormFile> FileData { get; set; }
+        public string FileNames { get; set; }
 
         //Relational Properties
 
@@ -25,7 +25,7 @@ namespace Blog_Page.Models
         public int CategoryID { get; set; }
 
         //Relational Properties
-        public Category? Category{ get; set; }
+        public Category? Category { get; set; }
         public List<SelectListItem>? Categories { get; set; }
     }
 }

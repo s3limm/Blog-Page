@@ -25,23 +25,7 @@ namespace Blog_Page.Domain.Entities
         public string Content { get; set; }
         public int WriterID { get; set; }
         public int CategoryID { get; set; }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         public string FileNames { get; set; }
-
-=======
-        public string? ImageName { get; set; }
-        public string? ImagePath {get; set;}
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
-        public string? ImageName { get; set; }
-        public string? ImagePath {get; set;}
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
-        public string? ImageName { get; set; }
-        public string? ImagePath {get; set;}
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
 
         //Relational Property
         public virtual Category? Category { get; set; }

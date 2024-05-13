@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Blog_Page.Models;
 using Blog_Page.Persistance.Context;
 using Blog_Page.Repositories.Base;
@@ -14,6 +14,14 @@ using System;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+ static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseContentRoot(Directory.GetCurrentDirectory()); // Bu satırı ekleyin
+        });
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

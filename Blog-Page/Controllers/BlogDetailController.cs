@@ -30,12 +30,10 @@ namespace Blog_Page.Controllers
             if (responseProduct.IsSuccessStatusCode)
             {
                 var jsonData = await responseProduct.Content.ReadAsStringAsync();
-                var result = JsonSerializer.Deserialize<UpdateBlogModel>(jsonData, new JsonSerializerOptions
+                var result = JsonSerializer.Deserialize<UpdateBlogPostModel>(jsonData, new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 });
-
-
 
                 var responseCategory = await client.GetAsync($"http://localhost:5158/api/Category/list");
 
@@ -70,6 +68,26 @@ namespace Blog_Page.Controllers
                         }
 
                     }
+
+                    var files = new List<IFormFile>();
+
+                    foreach (var fileName in result.FileNames.Split(','))
+                    {
+                        var filePath = Path.Combine("C:\\Users\\selim\\Desktop\\GithubParalel\\Blog-Page\\Blog-Page.API\\Uploads\\" + fileName.Trim());
+
+                        using (var fileStream = new FileStream(filePath, FileMode.Open))
+                        {
+                            var memoryStream = new MemoryStream();
+                            fileStream.CopyTo(memoryStream);
+                            memoryStream.Position = 0;
+
+                            var formFile = new FormFile(memoryStream, 0, memoryStream.Length, null, Path.GetFileName(filePath));
+                            files.Add(formFile);
+                        }
+                    }
+
+                    // Modeli güncelle
+                    result.FileData = files;
 
                 }
                 return View(result);

@@ -50,19 +50,7 @@ namespace Blog_Page.Persistance.Migrations
                         new
                         {
                             Id = 2,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            CreatedDate = new DateTime(2024, 5, 6, 20, 59, 58, 70, DateTimeKind.Local).AddTicks(550),
-=======
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(8413),
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(8413),
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(8413),
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
+                            CreatedDate = new DateTime(2024, 5, 11, 15, 15, 2, 287, DateTimeKind.Local).AddTicks(1102),
                             Definition = "User",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = 0
@@ -70,19 +58,7 @@ namespace Blog_Page.Persistance.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            CreatedDate = new DateTime(2024, 5, 6, 20, 59, 58, 70, DateTimeKind.Local).AddTicks(570),
-=======
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(8433),
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(8433),
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(8433),
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
+                            CreatedDate = new DateTime(2024, 5, 11, 15, 15, 2, 287, DateTimeKind.Local).AddTicks(1121),
                             Definition = "Admin",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = 0
@@ -133,31 +109,10 @@ namespace Blog_Page.Persistance.Migrations
                         {
                             ID = 1,
                             AppRoleId = 1,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            CreatedDate = new DateTime(2024, 5, 6, 20, 59, 58, 70, DateTimeKind.Local).AddTicks(165),
+                            CreatedDate = new DateTime(2024, 5, 11, 15, 15, 2, 287, DateTimeKind.Local).AddTicks(632),
                             Email = "selimemrem@gmail.com",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Password = "$2a$11$XhIbjX9tcJiW1UdLaKGRdOKVCl0qHfkf.uncwaY.fBEznu9K9pQHK",
-=======
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(7945),
-                            Email = "selimemrem@gmail.com",
-                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Password = "$2a$11$TTMbiERvsI5sKisceYP.q.4Nd85T2eXuZgBp/33rUVVIce.4fI/..",
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(7945),
-                            Email = "selimemrem@gmail.com",
-                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Password = "$2a$11$TTMbiERvsI5sKisceYP.q.4Nd85T2eXuZgBp/33rUVVIce.4fI/..",
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
-                            CreatedDate = new DateTime(2024, 5, 2, 20, 1, 29, 267, DateTimeKind.Local).AddTicks(7945),
-                            Email = "selimemrem@gmail.com",
-                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Password = "$2a$11$TTMbiERvsI5sKisceYP.q.4Nd85T2eXuZgBp/33rUVVIce.4fI/..",
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
+                            Password = "$2a$11$wuYoFYJvgtd9pTfcF5eabO72vnW5hqkHuU6duGojF3GiKxi8vWZuq",
                             Status = 0,
                             userName = "Admin"
                         });
@@ -187,27 +142,8 @@ namespace Blog_Page.Persistance.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                     b.Property<string>("FileNames")
                         .IsRequired()
-=======
-=======
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-                    b.Property<string>("ImageName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImagePath")
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")

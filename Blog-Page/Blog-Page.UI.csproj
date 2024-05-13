@@ -12,6 +12,12 @@
 	<PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
 	<PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
 	<ItemGroup>
+	  <Compile Remove="wwwroot\Images\**" />
+	  <Content Remove="wwwroot\Images\**" />
+	  <EmbeddedResource Remove="wwwroot\Images\**" />
+	  <None Remove="wwwroot\Images\**" />
+	</ItemGroup>
+	<ItemGroup>
 		<None Include="Views\About\Index.cshtml" />
 		<None Include="Views\Blog\Index.cshtml" />
 		<None Include="Views\Home\Index.cshtml" />
@@ -45,10 +51,6 @@
 
 	<ItemGroup>
 		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="wwwroot\Images\" />
 	</ItemGroup>
 
 </Project>

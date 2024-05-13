@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blog_Page.Persistance.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    [Migration("20240420103741_InitialCreate")]
+    [Migration("20240511121502_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -53,7 +53,7 @@ namespace Blog_Page.Persistance.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 4, 20, 13, 37, 41, 194, DateTimeKind.Local).AddTicks(5286),
+                            CreatedDate = new DateTime(2024, 5, 11, 15, 15, 2, 287, DateTimeKind.Local).AddTicks(1102),
                             Definition = "User",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = 0
@@ -61,7 +61,7 @@ namespace Blog_Page.Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 4, 20, 13, 37, 41, 194, DateTimeKind.Local).AddTicks(5889),
+                            CreatedDate = new DateTime(2024, 5, 11, 15, 15, 2, 287, DateTimeKind.Local).AddTicks(1121),
                             Definition = "Admin",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = 0
@@ -76,7 +76,7 @@ namespace Blog_Page.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("AppRoleId")
+                    b.Property<int>("AppRoleId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -112,10 +112,10 @@ namespace Blog_Page.Persistance.Migrations
                         {
                             ID = 1,
                             AppRoleId = 1,
-                            CreatedDate = new DateTime(2024, 4, 20, 13, 37, 41, 194, DateTimeKind.Local).AddTicks(4724),
+                            CreatedDate = new DateTime(2024, 5, 11, 15, 15, 2, 287, DateTimeKind.Local).AddTicks(632),
                             Email = "selimemrem@gmail.com",
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Password = "$2a$11$dJ7PvFSo96xT9ZNTSaJtj.Pe/qBaGj9Lv5P0ci98aZzkvT3g3.mMy",
+                            Password = "$2a$11$wuYoFYJvgtd9pTfcF5eabO72vnW5hqkHuU6duGojF3GiKxi8vWZuq",
                             Status = 0,
                             userName = "Admin"
                         });
@@ -145,9 +145,9 @@ namespace Blog_Page.Persistance.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<byte[]>("FileData")
+                    b.Property<string>("FileNames")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -201,7 +201,9 @@ namespace Blog_Page.Persistance.Migrations
                 {
                     b.HasOne("Blog_Page.Domain.Entities.AppRole", "AppRole")
                         .WithMany("AppUser")
-                        .HasForeignKey("AppRoleId");
+                        .HasForeignKey("AppRoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppRole");
                 });

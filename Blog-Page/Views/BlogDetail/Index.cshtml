@@ -1,6 +1,14 @@
 ﻿@using Blog_Page.Models
-@model UpdateBlogModel
+@model UpdateBlogPostModel
 
+@{
+    List<IFormFile> images = new List<IFormFile>();
+}
+
+@* @for (int i = 0; i < Model.FileData.Count; i++)
+{
+    images.Add(Model.FileData[i]);
+} *@
 
   <!-- Breadcrumb -->
 <section class="breadcrumb-area">
@@ -24,9 +32,6 @@
                 <img src="~/Website/Home/images/bg1.png" alt="BG" class="bg-img">
                 <img src="~/Website/Home/images/icon2.png" alt="Icon">
                 <div class="project-details-info flex-1">
-                    @* <h3>Raven studio</h3>
-                    <p>Sit amet luctussd fav venenatis, lectus magna fringilla inis urna, porttitor rhoncus dolor purus non enim praesent in elementum sahas facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etisam dignissim diam quis enim lobortis viverra orci sagittis eu volutpat odio facilisis mauris sit.</p>
-                    <p>Scelerisque fermentum duisi faucibus in ornare quam sisd sit amet luctussd fav venenatis, lectus magna fringilla zac urna, porttitor rhoncus dolor purus non enim praesent cuz elementum sahas facilisis leot.</p> *@
 
                     <ul>
                         <li>
@@ -80,19 +85,6 @@
         <div data-aos="zoom-in">
             <div class="project-about-2 d-flex shadow-box mb-24">
                 <img src="~/Website/Home/images/bg1.png" alt="BG" class="bg-img">
-               @*  <div class="left-details">
-                    <img src="~/Website/Home/images/icon3.png" alt="Icon">
-                    <ul>
-                        <li>
-                            <p>Created Date</p>
-                            <h4>@Model.CreatedDate.ToShortDateString()</h4>
-                        </li>
-                        <li>
-                            <p>Category</p>
-                            <h4>@Model.Category.CategoryName</h4>
-                        </li>
-                    </ul>
-                </div> *@
                 <div class="right-details">
                     <h3>Description</h3>
                     <p>@Html.Raw(Model.Content)</p>

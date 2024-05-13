@@ -22,22 +22,7 @@ namespace Blog_Page.API.Controllers
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _environment;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        public BlogController(IRepository<Blog> service, IMapper mapper, IWebHostEnvironment hostingEnvironment)
-=======
-
         public BlogController(IRepository<Blog> service, IMapper mapper, IWebHostEnvironment environment)
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
-
-        public BlogController(IRepository<Blog> service, IMapper mapper, IWebHostEnvironment environment)
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
-
-        public BlogController(IRepository<Blog> service, IMapper mapper, IWebHostEnvironment environment)
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
         {
             _service = service;
             _mapper = mapper;
@@ -61,9 +46,6 @@ namespace Blog_Page.API.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateAsync([FromForm] CreateBlogRequest request)
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             if (request.FileData != null)
             {
                 // Eğer upload klasörü yoksa oluştur
@@ -97,49 +79,6 @@ namespace Blog_Page.API.Controllers
                 CategoryID = request.CategoryID,
                 FileNames = fileNames
             });
-=======
-            foreach (var item in request.files)
-            {
-=======
-            foreach (var item in request.files)
-            {
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
-            foreach (var item in request.files)
-            {
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-
-                if (item.FileName == null || item.FileName.Length == 0)
-                {
-                    return Content("File not selected");
-                }
-                var path = Path.Combine(_environment.WebRootPath, "Images/", item.FileName);
-
-                using (FileStream stream = new FileStream(path, FileMode.Create))
-                {
-                    await item.CopyToAsync(stream);
-                    stream.Close();
-                }
-
-
-                //Insert In User Profile table
-                await _service.CreateAsync(new Blog
-                {
-                    Title = request.Title,
-                    Description = request.Description,
-                    Content = request.Content,
-                    CategoryID = request.CategoryID,
-                    ImageName = item.FileName,
-                    ImagePath = path
-                });
-            }
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
-=======
->>>>>>> 3288455e8ca16f06a469040823af755f9393d265
             return Ok();
         }
 

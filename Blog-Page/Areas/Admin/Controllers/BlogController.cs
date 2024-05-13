@@ -3,6 +3,7 @@ using Azure.Core;
 using Blog_Page.Domain.Entities;
 using Blog_Page.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Hosting.Internal;
@@ -19,10 +20,13 @@ namespace Blog_Page.Areas.Admin.Controllers
     {
 
         private readonly IHttpClientFactory _httpClientFactory;
+        public readonly IWebHostEnvironment _webHostEnvironment;
 
-        public BlogController(IHttpClientFactory httpClientFactory)
+
+        public BlogController(IHttpClientFactory httpClientFactory, IWebHostEnvironment webHostEnvironment)
         {
             _httpClientFactory = httpClientFactory;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<IActionResult> List()
@@ -149,7 +153,7 @@ namespace Blog_Page.Areas.Admin.Controllers
                 if (responseProduct.IsSuccessStatusCode)
                 {
                     var jsonData = await responseProduct.Content.ReadAsStringAsync();
-                    var result = JsonSerializer.Deserialize<UpdateBlogModel>(jsonData, new JsonSerializerOptions
+                    var result = JsonSerializer.Deserialize<UpdateBlogPostModel>(jsonData, new JsonSerializerOptions
                     {
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                     });
@@ -176,7 +180,6 @@ namespace Blog_Page.Areas.Admin.Controllers
 
                             result.Categories = categoriesList;
                         }
-
                     }
                     return View(result);
                 }
@@ -185,7 +188,7 @@ namespace Blog_Page.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(UpdateBlogModel model)
+        public async Task<IActionResult> Edit(UpdateBlogPostModel model)
         {
             if (ModelState.IsValid)
             {
@@ -208,6 +211,9 @@ namespace Blog_Page.Areas.Admin.Controllers
                     formData.Add(new StringContent(model.Content), "Content");
                     formData.Add(new StringContent(model.CategoryID.ToString()), "CategoryID");
                     formData.Add(new StringContent(model.ID.ToString()), "ID");
+                   
+                    //var property1Value = model.Property1;
+                    //var property2Value = model.Property2;
 
                     foreach (var file in model.FileData)
                     {
