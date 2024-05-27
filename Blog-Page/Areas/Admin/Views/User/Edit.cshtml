@@ -1,30 +1,27 @@
 ﻿@using Blog_Page.Models;
 @model UpdateUserModel
 
-<div class="main-panel">
-    <div class="content-wrapper">
-        <div class="col-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">Kullanıcı Güncelleme Sayfası</h2>
-                    <p class="card-description"> Yeni Kullanıcı </p>
-                    <form method="post" asp-area="Admin" asp-controller="User" asp-action="Edit" class="forms-sample">
-                        <div class="form-group">
-                            <label asp-for="userName">Kullanıcı Adı</label>
-                            <input asp-for="userName" type="text" class="form-control" placeholder="Kullanıcı Adı:">
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Email">Email</label>
-                            <input asp-for="Email" type="email" class="form-control" placeholder="Email:">
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Password">Şifre</label>
-                            <input asp-for="Password" type="text" class="form-control" placeholder="Şifre:">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Güncelle</button>
-                    </form>
+<div class="col-xl">
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Update User</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" asp-area="Admin" asp-controller="User" asp-action="Edit" class="forms-sample">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="userName">Name</label>
+                    <input type="text" class="form-control" id="basic-default-fullname" asp-for="userName" placeholder="Name" />
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Email">Email</label>
+                    <input type="text" class="form-control" id="basic-default-company" asp-for="Email" placeholder="Email" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Password">Password</label>
+                    <input type="text" class="form-control" id="basic-default-company" asp-for="Password" placeholder="Password" />
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
         </div>
     </div>
 </div>

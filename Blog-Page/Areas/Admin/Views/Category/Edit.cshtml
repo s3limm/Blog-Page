@@ -1,24 +1,19 @@
 ﻿@using Blog_Page.Models;
 @model UpdateCategoryModel
 
-<div class="main-panel">
-    <div class="content-wrapper">
-
-        <div class="col-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title" style="padding-bottom:20px">Kategori Güncelleme Sayfası</h2>
-
-                    <form method="post" asp-area="Admin" asp-controller="Category" asp-action="Edit" class="forms-sample">
-                        <div class="form-group">
-                            <label asp-for="CategoryName">Kategori Adı</label>
-                            <input type="text" class="form-control" asp-for="CategoryName" placeholder="Kategori Adı:">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Güncelle</button>
-                    </form>
-                </div>
-            </div>
+<div class="col-xl">
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Update Category</h2>
         </div>
-
+        <div class="card-body">
+            <form method="post" asp-area="Admin" asp-controller="Category" asp-action="Edit" class="forms-sample">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="CategoryName">Name</label>
+                    <input type="text" class="form-control" id="basic-default-fullname" asp-for="CategoryName" placeholder="Name" />
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
     </div>
 </div>

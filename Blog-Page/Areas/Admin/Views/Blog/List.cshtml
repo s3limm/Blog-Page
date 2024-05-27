@@ -6,26 +6,24 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Blog Listeleme Sayfası</h2>
-                    <table class="table table-bordered">
+                    <h2 class="card-title">Blogs List</h2>
+                    <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th> # </th>
-                                <th> Blog Adı </th>
-                                <th> Oluşturulma Tarihi </th>
-                                <th> İşlemler </th>
+                                <th class="col-12 col-lg-4 col-md-8"> Name </th>
+                                <th class="col-12 col-lg-4 col-md-8"> Created Date </th>
+                                <th class="col-12 col-lg-4 col-md-8"> Transactions </th>
                             </tr>
                         </thead>
                         <tbody>
                             @for (int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td> @(i + 1) </td>
                                     <td> @Model[i].Title </td>
                                     <td> @Model[i].CreatedDate</td>
                                     <td>
-                                        <a class="big-icon" asp-area="Admin" asp-controller="Blog" asp-action="Edit" asp-route-id="@Model[i].ID"><button type="button" class="btn btn-warning">Güncelle</button></a>
-                                        <a class="big-icon margin-icon" asp-area="Admin" asp-controller="Blog" asp-action="Delete" asp-route-id="@Model[i].ID"> <button type="button" class="btn btn-danger">Sil</button></a>
+                                        <a class="big-icon" asp-area="Admin" asp-controller="Blog" asp-action="Edit" asp-route-id="@Model[i].ID"><button type="button" class="btn btn-warning">Update</button></a>
+                                        <a class="big-icon margin-icon" asp-area="Admin" asp-controller="Blog" asp-action="Delete" asp-route-id="@Model[i].ID"> <button type="button" class="btn btn-danger">Delete</button></a>
                                     </td>
                                 </tr>
 
@@ -35,5 +33,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>

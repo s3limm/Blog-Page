@@ -5,34 +5,6 @@
     Layout = null;
 }
 
-@* <form class="pt-3" asp-action="LogIn" asp-controller="Account" method="post">
-                            <div class="form-group">
-                                <input asp-for="userName" type="text" class="form-control form-control-lg" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <input asp-for="passWord" type="password" class="form-control form-control-lg" placeholder="Password">
-                            </div>
-                            <div class="mt-3">
-                                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
-                            </div>
-                            <div class="my-2 d-flex justify-content-between align-items-center">
-                                <div class="form-check">
-                                    <label class="form-check-label text-muted">
-                                        <input type="checkbox" class="form-check-input">
-                                        Keep me signed in
-                                    </label>
-                                </div>
-                                <a href="#" class="auth-link text-black">Forgot password?</a>
-                            </div>
-                            <div class="mb-2">
-                                <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                                    <i class="ti-facebook mr-2"></i>Connect using facebook
-                                </button>
-                            </div>
-                            <div class="text-center mt-4 font-weight-light">
-                                Don't have an account? <a href="register.html" class="text-primary">Create</a>
-                            </div>
-                        </form> *@
 
 <!DOCTYPE html>
 
@@ -149,26 +121,26 @@
                                         </g>
                                     </svg>
                                 </span>
-                                <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                                <span class="app-brand-text demo text-body fw-bolder">s3limm</span>
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2">Welcome to Sneat! 👋</h4>
-                        <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                        <h4 class="mb-2">Welcome to Asmin Dashboard! 👋</h4>
+                        <p class="mb-4">Sign In</p>
 
                         <form id="formAuthentication" class="mb-3" asp-action="LogIn" asp-controller="Account" method="post">
                             <div class="mb-3">
-                                <label class="form-label" asp-for="userName">Kullanıcı Adınız</label>
+                                <label class="form-label" asp-for="userName">User Name</label>
                                 <input type="text"
                                        class="form-control"
                                        id="userName"
                                        name="userName"
-                                       placeholder="Kullanıcı adınızı ya da mail adresinizi giriniz."
+                                       placeholder="Enter your user name or email."
                                        autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
-                                    <label class="form-label" asp-for="passWord">Şifre</label>
+                                    <label class="form-label" asp-for="passWord">PassWord</label>
                                 </div>
                                 <div class="input-group input-group-merge">
                                     <input type="password"
@@ -181,14 +153,14 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit">Giriş Yap</button>
+                                <button class="btn btn-primary d-grid w-100" type="submit">Sign In</button>
                             </div>
                         </form>
 
                         <p class="text-center">
-                            <span>Burada yeni misin ?</span>
+                            <span>Are you new here ?</span>
                             <a href="~/Admin/Account/Register">
-                                <span>Hesap Oluştur</span>
+                                <span>Create new account</span>
                             </a>
                         </p>
                     </div>
