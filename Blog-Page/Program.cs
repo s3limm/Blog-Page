@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Blog_Page.Models;
 using Blog_Page.Persistance.Context;
-using Blog_Page.Repositories.Base;
-using Blog_Page.Repositories.Interfaces;
 using Blog_Page.Service.Helpers;
 using Blog_Page.Service.Interfaces;
 using Blog_Page.Service.Mappings.AutoMappers;
@@ -50,16 +48,6 @@ builder.Services.AddDbContext<BlogDbContext>(opt =>
 {
     opt.UseSqlServer("Server=.\\SQLEXPRESS;Database=blogdb;Trusted_Connection=True;TrustServerCertificate=True");
 });
-//builder.Services.AddScoped<IBlogService, BlogService>();
-//builder.Services.AddScoped<ICategoryService, CategoryService>();
-//builder.Services.AddScoped<IUserService, UserService>();
-
-
-//RegisterService Middleware
-//ServiceMiddleware.RegisterServices();
-
-//Database Migrate Middleware 
-//DatabaseMigrator.Migrate();
 
 //AutoMapper Configuration
 var profiles = ProfileHelper.GetProfiles();

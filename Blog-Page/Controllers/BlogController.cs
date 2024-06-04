@@ -1,7 +1,6 @@
 ﻿using Blog_Page.Areas.Admin.Controllers;
 using Blog_Page.Domain.Entities;
 using Blog_Page.Models;
-using Blog_Page.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;

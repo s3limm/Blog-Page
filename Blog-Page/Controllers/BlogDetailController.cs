@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Blog_Page.Domain.Entities;
 using Blog_Page.Models;
-using Blog_Page.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json.Linq;

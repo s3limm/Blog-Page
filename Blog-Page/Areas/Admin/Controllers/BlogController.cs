@@ -136,9 +136,6 @@ namespace Blog_Page.Areas.Admin.Controllers
         }
 
 
-
-
-
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -186,7 +183,6 @@ namespace Blog_Page.Areas.Admin.Controllers
             }
             return RedirectToAction("List", "Blog", new { area = "Admin" });
         }
-
         [HttpPost]
         public async Task<IActionResult> Edit(UpdateBlogPostModel model)
         {
